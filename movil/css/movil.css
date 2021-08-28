@@ -1,0 +1,115 @@
+.hb {
+	background: #fff;
+}
+
+.hc {
+	color:#ff0;
+}
+
+.footer{
+	width:100%;
+	background-color: #E6E6E6 ;			
+	position: fixed;
+	bottom: 0px;
+	left: 0;
+ 
+}
+
+/*PIE DE USUARIO*/
+.footertexto{
+	background:#088A08; /*verde*/
+	color:#fff;
+	width:100%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	font-size:14px;
+	text-align: left;
+			
+		}
+
+@font-face {
+font-family: Digital-7;
+src: url('../fonts/digital-7.ttf');
+}
+
+.digital {
+	color:#000;
+	font-family: Digital-7;
+	font-weight: bold;
+	text-shadow: -1px 1px 1px #000;
+}
+
+.boton {			
+   	display:block;
+    width:70px;
+    height:70px;
+    line-height:70px;
+    border: 3px solid #BDBDBD;
+    border-radius: 50%;
+    color:#fff;
+    background: #088A08; 
+    box-shadow: 2px 2px 1px #000;
+    text-align:center;
+	font-size:15px;
+	font-weight:bold;		    
+
+}
+
+.boton:hover {
+    /*background: #EF3C39;*/
+    background: #00b200;
+    color:#000;
+    border: 3px solid #ff0;		    
+
+}	
+
+.bordes {
+	float:left;			
+	padding-left:37%;
+}		
+
+.divC {
+	width:70px;
+	height:70px;
+	position:absolute;
+	margin:auto;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	z-index:1;
+}
+
+.movil {
+	position:absolute;
+	margin:auto;
+	bottom:5%;
+	left:45%;
+	z-index:1;
+}
+
+.ftitle{
+	font-size:14px;
+	font-weight:bold;
+	padding:5px 0;
+	margin-bottom:10px;
+	border-bottom:1px solid #ccc;
+}
+
+.fitem {
+	width: 100%;		
+	font-size: 15px;
+	margin-bottom: 0.5%;
+	text-align: left;
+}
+
+.fitem label{
+	text-align:right;
+	display:inline-block;
+	width:15%;
+}
+
+.fitem input{
+	width:65%;	
+}

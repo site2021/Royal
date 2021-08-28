@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache">
+ 	<meta http-equiv="Pragma" CONTENT="no-cache">
+
+	<link href="img/cheq_ico.png" type="image/x-icon" rel="shortcut icon" />
+	<title>Chequéate-APP</title>
+
+    <link rel="stylesheet" type="text/css" href="../jeasyui/themes/metro/easyui2.css">
+    <link rel="stylesheet" type="text/css" href="../jeasyui/themes/mobile.css"> 
+    <link rel="stylesheet" type="text/css" href="../jeasyui/themes/color.css"> 
+    <link rel="stylesheet" type="text/css" href="../jeasyui/themes/icon.css">  
+
+	<link rel="stylesheet" type="text/css" href="../css/movil.css">
+
+    <script type="text/javascript" src="../jeasyui/jquery.min.js"></script>
+    <script type="text/javascript" src="../jeasyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../jeasyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="../jeasyui/locale/easyui-lang-es.js"></script>
+
+	<script type="text/javascript" src="../lib/datagrid-detailview.js"></script>
+	<script type="text/javascript" src="../lib/datagrid-filter.js"></script>
+	<script type="text/javascript" src="../lib/accounting.js"></script>
+	<script type="text/javascript" src="../lib/movil.js"></script>
+	<script type="text/javascript" src="../lib/usuarios.js"></script>
+	<script type="text/javascript" src="../lib/alistamientos.js"></script>
+
+	<script type="text/javascript">
+        function cellStyler(value,row,index){
+            if (value == 0){
+                return 'color:#cffccf';
+            }
+        }
+
+    </script>	
+
+    <style type="text/css">
+		#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			display:inline-block;
+			width:80px;
+		}
+		.fitem input{
+			width:160px;
+		}
+	</style>
+
+</head>
+<body>
+	<!-- pagina: INICIO /////////////////////////////////////////////////////////////////////////// -->
+	<div id="inicio" class="easyui-navpanel" style="position:relative;border: solid 10px; border-radius: 40px 40px 40px 40px; border-color: #E9E5E5;" data-options="bodyCls:'hb'">
+		<header style="background-color: #0d6b9a">
+			<div class="m-toolbar">
+				<div class="m-title">- BIENVENIDOS -</div>
+			</div>
+	        <div class="m-left">
+	            <a href="javascript:()" class="easyui-linkbutton" plain="true" 
+	            	style="color:#fff" outline="true">Ver 1.2
+	            </a>
+	        </div>
+
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>
+
+		</header>
+		<!-- <footer style="text-align:center">
+			<div>
+				<label class="digital" >I N T R A N E T</label><br>
+				<label class="digital" >M o v i l</label>
+			</div>
+			
+		</footer> -->
+
+		<div style="width:100%;margin-top:10%;display:block">
+			<img src="img/publicidad.png" style="margin-left:10%;width:80%">			
+		</div>
+
+		<div class="bordes" style="margin-top:15%">	
+				<!-- variabel de control FULLSCREEN -->
+		        <div style="float:left;display:none">
+					<input id="xfull" name="xfull" class="easyui-textbox" style="width:20px" value="N">
+		        </div>
+	    </div>
+
+	    <!-- <div class="divC">
+         	<a id="btnNuevo" class="boton" onclick="login()">
+         		<labeL style="font-family:Arial">Iniciar</label>
+         	</a>
+	    </div> -->
+	    <!-- <p>dnjfjfjhfjdhfjdhjfhjhfjdh</p> -->
+	    <a href="javascript:void(0)" class="easyui-linkbutton" 
+		   style="-webkit-box-shadow: 0 0 0 0.4rem rgba(255,0, 0, 0.50);
+    	box-shadow: 0 0 0 0.4rem rgba(255,0, 0, 0.50);color:#000;border-color:#E52521;width:70%;height:40px;top: 20px;left: 50px;border-radius: 80px;background-color: #FFF5F5;font-weight: 900" 
+		   onclick="covid19()">Condiciones de Salud</a>
+
+	    <!-- <a id="btnNuevo" class="boton" onclick="covid19()">
+     		<labeL style="font-family:Arial;top: 100px">Covid 19</label>
+     	</a> -->
+     <!-- 	<div style="width:100%;margin-top:30%;display:block">
+		<img src="img/royal002.jpeg" style="margin-left:10%;width:80%">		 -->	
+	</div>
+		<!-- <div class="footer" style="display:block">
+			
+		</div> -->
+
+		<!-- ventana de dialogo: LOGIN -->
+		<div id="dlg1" class="easyui-dialog" style="padding:10px;width:80%"
+			 data-options="inline:true,modal:true,closed:true,title:''">
+			<header style="padding:0px 1px 3px 0px;">
+				<div class="m-toolbar">
+	                <div class="m-title" style="color:#fff">Login</div>
+				</div>
+			</header> 
+			<footer>
+				<div class="m-toolbar" style="padding:6px">
+					<a href="javascript:void(0)" class="easyui-linkbutton" 
+					   style="background:#E6E6E6;color:#000;border-color:#BDBDBD;width:49%;height:35px" 
+					   onclick="validarUsuario()" data-options="iconCls:'icon-ok'">Entrar</a>
+
+					<a href="javascript:void(0)" class="easyui-linkbutton" 
+					   style="background:#E6E6E6;color:#000;width:49%;;border-color:#BDBDBD;height:35px" 
+					   onclick="cerrar('#dlg1')" data-options="iconCls:'icon-cancel'">Cancelar</a>
+				</div>
+			</footer>
+
+			<div style="margin-bottom:10px">
+				<input id="usuario" name="usuario" class="easyui-textbox" prompt="digitar USUARIO" 
+					   style="background-color:#F6CECE;width:100%;height:30px"
+					   data-options="iconCls:'icon-man'"
+					   value="">
+			</div>
+			<div>
+				<input id="clave" name="clave" class="easyui-textbox" type="password" prompt="digitar CLAVE" 
+					   style="width:100%;height:30px" data-options="iconCls:'icon-lock'" value="">
+			</div>
+		</div>
+	</div>
+
+	<!-- pagina: MENU ///////////////////////////////////////////////////////////////////////////// -->
+	<div id="menu" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">MENU PRINCIPAL</span>
+			</div>
+            <div class="m-left">
+                <a href="javascript:void(0)" class="easyui-linkbutton m-back"  style="color:#fff"
+                	data-options="plain:true,outline:true" 
+                	onclick="irInicio()">Inicio</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>            
+		</header>
+	</div>
+
+	
+    <style scoped>
+       .tt-inner{
+            display:inline-block;
+            line-height:12px;
+            padding-top:5px;
+        }
+        p{
+            line-height:150%;
+        }
+    </style>
+	</div>
+
+	<div id="dlgcovid" class="easyui-dialog"title="<font color=white>DATOS</font>"
+			data-options="modal:true,closable:true"
+			style="font-family:Arial;margin:0 0 0 0;width:100%;height: 470px"
+			closed="true" buttons="#encuestacovid-buttons">				
+				<form id="fmcovid" method="post" novalidate>	
+					<div style="float:left; margin-top: 2%; margin-left: 11.5%">
+						<label>No ID:</label>
+						<input id="codigoencuesta" name="codigoencuesta" class="easyui-textbox" prompt="No de identificación">
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 11.5%">
+				   		<label>Fecha:</label>
+						<input id="fechaencuesta" name="fechaencuesta" class="easyui-datebox"
+						data-options="disabled:false,editable:true,formatter:myformatter,parser:myparser"><br><br>
+					</div>
+
+					<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search"
+				   onclick="traerDatosEncuesta()" style="width:90px;margin-left: 120px;border-radius: 50px 50px 50px 50px">Buscar</a><br>
+
+					<div style="float:left; margin-top: 2%; margin-left: 9%">
+						<label>Nombre:</label>
+						<input id="nombreencuesta" name="nombreencuesta" class="easyui-textbox">
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 11%">
+						<label>Celular:</label>
+						<input id="celular" name="celular" class="easyui-textbox">
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 5%">
+						<label style="color: green">USTED HA PRESENTANDO EN LOS ÚLTIMOS 14 DÍAS LOS SIGUIENTES SÍNTOMAS RELACIONADOS CON EL COVID-19:</label><br><br>
+						<label>TOS Y/O EXPECTORACIÓN:</label>
+						<select id="tos" name="tos"  class="easyui-combobox" style="width: 175px;">
+							<option value="NO" selected>NO</option>
+						    <option value="SI">SI</option>
+						</select>
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 5%">
+						<label>MALESTAR GENERAL, DOLOR MUSCULAR O FATIGA:</label><br>
+						<select id="malestar" name="malestar"  class="easyui-combobox" style="width: 175px;">
+							<option value="NO" selected>NO</option>
+						    <option value="SI">SI</option>
+						</select>
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 5%">
+						<label>DIFICULTAD PARA RESPIRAR:</label><br>
+						<select id="difrespirar" name="difrespirar"  class="easyui-combobox" style="width: 175px;">
+							<option value="NO" selected>NO</option>
+						    <option value="SI">SI</option>
+						</select>
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 5%">
+						<label>DIARREA:</label><br>
+						<select id="diarrea" name="diarrea"  class="easyui-combobox" style="width: 175px;">
+							<option value="NO" selected>NO</option>
+						    <option value="SI">SI</option>
+						</select>
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 5%">
+						<label>DISMINUCIÓN DEL GUSTO U OLFATO:</label><br>
+						<select id="olfatogusto" name="olfatogusto"  class="easyui-combobox" style="width: 175px;">
+							<option value="NO" selected>NO</option>
+						    <option value="SI">SI</option>
+						</select>
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 5%">
+						<label>¿HA ESTADO FUERA DEL PAÍS O HA ESTADO CON PERSONAS PROCEDENTES DEL EXTRANJERO EN LOS ÚLTIMOS 14 DÍAS?</label><br>
+						<select id="fuerapais" name="fuerapais"  class="easyui-combobox" style="width: 175px;">
+							<option value="NO" selected>NO</option>
+						    <option value="SI">SI</option>
+						</select>
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 5%">
+						<label>¿HA ESTADO EN CONTACTO CON UNA PERSONA POSITIVA O SOSPECHOSA PARA COVID-19 SIN MEDIDAS DE PROTECCIÓN ADECUADAS EN LOS ÚLTIMOS 14 DÍAS?</label><br>
+						<select id="contactosospechoso" name="contactosospechoso"  class="easyui-combobox" style="width: 175px;">
+							<option value="NO" selected>NO</option>
+						    <option value="SI">SI</option>
+						</select>
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 5%">
+						<label>¿SE ENCUENTRA EN PERIODO DE CUARENTENA POR COVID-19?</label><br>
+						<select id="cuarentena" name="cuarentena"  class="easyui-combobox" style="width: 175px;">
+							<option value="NO" selected>NO</option>
+						    <option value="SI">SI</option>
+						</select>
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 5%">
+						<label>¿ALGUNA PERSONA CON LA QUE VIVE SE ENCUENTRA EN CUARENTENA POR COVID-19?</label><br>
+						<select id="personacuarentena" name="personacuarentena"  class="easyui-combobox" style="width: 175px;">
+							<option value="NO" selected>NO</option>
+						    <option value="SI">SI</option>
+						</select>
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 5%">
+						<br><label>COMPROMISO<br>Declaro en el presente formulario, que la información diligenciada es veraz, así mismo manifiesto que entiendo que el propósito de diligenciar este formulario es cuidar de mi salud y la de los demás. Por lo cual, me comprometo a diligenciar esta encuesta antes de ingresar al establecimiento.<br><br>
+
+						Transportando Ideas, en cumplimiento de lo definido por la Ley 1581 de 2012, el decreto reglamentario 1377 de 2013 y nuestra política de protección de datos personales, le informan que los datos personales que usted suministre, serán tratados mediante el uso y mantenimiento de medidas de seguridad técnicas, físicas y administrativas a fin de impedir que terceros no autorizados accedan a los mismos, lo anterior de conformidad con lo establecido en la ley.<br><br>Nota: Si una persona presenta sintomatología no será catalogado como una persona con covid.</label><br><br>
+						<select id="compromiso" name="compromiso"  class="easyui-combobox" style="width: 175px;">
+							<option value="ACEPTO" selected>ACEPTO</option>
+						</select><br><br>
+					</div>
+				</form>
+			</div>
+
+			<div id="encuestacovid-buttons">
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok_azul"
+				   onclick="saveEncuestaCovid()" style="width:90px;border-radius: 50px 50px 50px 50px">OK</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" 
+				   onclick="cerrar('#dlgcovid')" style="width:90px;border-radius: 50px 50px 50px 50px">Cancelar</a>
+			</div>
+		</div>
+	<script>
+
+		function hoy(){
+			var xhoy = new Date();
+			var y = xhoy.getFullYear();
+			var m = xhoy.getMonth()+1;
+			var d = xhoy.getDate();
+			return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);  
+		}
+
+		function hoyhora(){
+			var xhoy = new Date();
+			var y = xhoy.getFullYear();
+			var m = xhoy.getMonth()+1;
+			var d = xhoy.getDate();
+			var mi = xhoy.getMinutes();
+			var h = xhoy.getHours();
+			var s = xhoy.getSeconds();
+			return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d) + ' '+ h + ':' + mi + ':' + s;  
+		}
+	</script>
+	
+	<script type="text/javascript">
+		function covid19(){
+    		$('#dlgcovid').dialog('open');
+    		setVar('fechaencuesta', 0, hoyhora());
+    		setVar('temperaturacasa', 0, 0);
+    		url = 'json/saveen.php';
+    	}
+
+    	function saveEncuestaCovid(){
+		$('#fmcovid').form('submit',{
+				url: url,
+				onSubmit: function(){
+					return $(this).form('validate');
+				},
+				success: function(result){
+					//var result = eval('('+result+')');
+					if (result.errorMsg){
+						$.messager.show({
+							title: 'Error',
+							msg: result.errorMsg
+						});
+					} else {
+						$('#dlgcovid').dialog('close');		// close the dialog
+						$.messager.alert('<font color=white>Mensaje</font>', 'Registro guardado exitosamente.');
+						$('#dgencuestacovid').datagrid('reload');	// reload the user data
+					}
+				}
+			});
+	}
+
+	function traerDatosEncuesta(){
+		var xcodigoencuesta = $("#codigoencuesta").textbox('getText');
+		// alert(xcedula);
+
+		//alert("buscar interno="+xinterno);
+		setVar('nombreencuesta',0,'');
+		setVar('celular',0,'');
+
+		var url="json/datosencuesta.php?codigoencuesta="+xcodigoencuesta;
+
+		$.getJSON(url,function(registros){
+			if (registros.length == 0){
+				$.messager.alert("No existen datos de RUTA");
+			}		
+			else {
+				$.each(registros, function(i,registro){
+
+					setVar('nombreencuesta', 0, registro.nombreencuesta);
+					setVar('entidadencuesta', 0, registro.entidadencuesta);
+					setVar('rutaencuesta', 0, registro.rutaencuesta);
+					setVar('internoencuesta', 0, registro.internoencuesta);
+					setVar('jornadaencuesta', 0, registro.jornadaencuesta);
+					setVar('celular', 0, registro.celular);
+
+					mostrarDetalle();
+
+				});
+			}
+		});
+
+    	}
+
+	function mostrarDetalle(){
+		var xcodigoencuesta = $("#codigoencuesta").val();			
+		
+		$("#dgencuestacovid").datagrid('load',{
+			codigoencuesta:xcodigoencuesta				
+		})
+	}
+
+	$("#tos").combobox({
+		onSelect: function(){
+			mensajeTos();
+		}
+	});
+
+	$("#malestar").combobox({
+		onSelect: function(){
+			mensajeMalestar();
+		}
+	});
+
+	$("#difrespirar").combobox({
+		onSelect: function(){
+			mensajeDifrespirar();
+		}
+	});
+
+	$("#diarrea").combobox({
+		onSelect: function(){
+			mensajeDiarrea();
+		}
+	});
+
+	$("#olfatogusto").combobox({
+		onSelect: function(){
+			mensajeOlfatogusto();
+		}
+	});
+
+	$("#fuerapais").combobox({
+		onSelect: function(){
+			mensajeFuerapais();
+		}
+	});
+
+	$("#contactosospechoso").combobox({
+		onSelect: function(){
+			msjContactosospechoso();
+		}
+	});
+
+	$("#cuarentena").combobox({
+		onSelect: function(){
+			mensajeCuarentena();
+		}
+	});
+
+	$("#personacuarentena").combobox({
+		onSelect: function(){
+			msjPersonacuarentena();
+		}
+	});
+
+	function mensajeTos(xtos){
+		var xtos = $("#tos").combobox('getValue');
+
+		if(xtos=='SI'){
+			$.messager.alert('<font color=white>Mensaje</font>', 'Tienes tos pero no es por Covid-19 utiliza siempre tapabocas.');
+		}
+	}
+
+	function mensajeMalestar(xmalestar){
+		var xmalestar = $("#malestar").combobox('getValue');
+
+		if(xmalestar=='SI'){
+			$.messager.alert('<font color=white>Mensaje</font>', 'Toma reposo.');
+		}
+	}
+
+	function mensajeDifrespirar(xdifrespirar){
+		var xdifrespirar = $("#difrespirar").combobox('getValue');
+
+		if(xdifrespirar=='SI'){
+			$.messager.alert('<font color=white>Mensaje</font>', 'Quédate en casa.');
+		}
+	}
+
+	function mensajeDiarrea(xdiarrea){
+		var xdiarrea = $("#diarrea").combobox('getValue');
+
+		if(xdiarrea=='SI'){
+			$.messager.alert('<font color=white>Mensaje</font>', 'Presentas este síntoma y no es por Covid-19 sigue las recomendaciones del médico.');
+		}
+	}
+
+	function mensajeOlfatogusto(xolfatogusto){
+		var xolfatogusto = $("#olfatogusto").combobox('getValue');
+
+		if(xolfatogusto=='SI'){
+			$.messager.alert('<font color=white>Mensaje</font>', 'Quédate en casa.');
+		}
+	}
+
+	function mensajeFuerapais(xfuerapais){
+		var xfuerapais = $("#fuerapais").combobox('getValue');
+
+		if(xfuerapais=='SI'){
+			$.messager.alert('<font color=white>Mensaje</font>', 'Quédate en casa.');
+		}
+	}
+
+	function msjContactosospechoso(xcontactosospechoso){
+		var xcontactosospechoso = $("#contactosospechoso").combobox('getValue');
+
+		if(xcontactosospechoso=='SI'){
+			$.messager.alert('<font color=white>Mensaje</font>', 'Quédate en casa.');
+		}
+	}
+
+	function mensajeCuarentena(xcuarentena){
+		var xcuarentena = $("#cuarentena").combobox('getValue');
+
+		if(xcuarentena=='SI'){
+			$.messager.alert('<font color=white>Mensaje</font>', 'Quédate en casa.');
+		}
+	}
+
+	function msjPersonacuarentena(xpersonacuarentena){
+		var xpersonacuarentena = $("#personacuarentena").combobox('getValue');
+
+		if(xpersonacuarentena=='SI'){
+			$.messager.alert('<font color=white>Mensaje</font>', 'Quédate en casa.');
+		}
+	}
+	</script>
+
+	<script type="text/javascript">
+		function getVar(pnombre,ptipo){
+			if(ptipo==0){
+				return $("#"+pnombre).textbox('getValue');
+			}else if(ptipo==1){
+				return $("#"+pnombre).numberbox('getValue');
+			}else if(ptipo==2){
+				return $("#"+pnombre).datebox('getValue');
+			}
+		}
+
+		function setVar(pnombre, ptipo, pvalor){
+			if(ptipo==0){
+				$("#"+pnombre).textbox('setValue', pvalor);
+			}else if(ptipo==1){
+				$("#"+pnombre).numberbox('setValue', pvalor);
+			}else if(ptipo==2){
+				$("#"+pnombre).datebox('setValue'. pvalor);
+			}			
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache">
+ 	<meta http-equiv="Pragma" CONTENT="no-cache">
+
+	<link href="img/royal_ico.ico" type="image/x-icon" rel="shortcut icon" />
+	<title>ROYAL-Movil</title>
+
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/metro/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/mobile.css"> 
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/color.css"> 
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/icon.css">  
+
+	<link rel="stylesheet" type="text/css" href="css/movil.css">
+
+    <script type="text/javascript" src="jeasyui/jquery.min.js"></script>
+    <script type="text/javascript" src="jeasyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="jeasyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="jeasyui/locale/easyui-lang-es.js"></script>
+
+	<script type="text/javascript" src="lib/datagrid-detailview.js"></script>
+	<script type="text/javascript" src="lib/datagrid-filter.js"></script>
+	<script type="text/javascript" src="lib/accounting.js"></script>
+	<script type="text/javascript" src="lib/movil.js"></script>
+	<script type="text/javascript" src="lib/usuarios.js"></script>
+	<script type="text/javascript" src="lib/alistamientos.js"></script>
+
+	<script type="text/javascript">
+        function cellStyler(value,row,index){
+            if (value == 0){
+                return 'color:#cffccf';
+            }
+        }
+
+    </script>	
+
+    <style type="text/css">
+		#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			display:inline-block;
+			width:80px;
+		}
+		.fitem input{
+			width:160px;
+		}
+	</style>
+
+</head>
+<body>
+	<!-- pagina: INICIO /////////////////////////////////////////////////////////////////////////// -->
+	<div id="inicio" class="easyui-navpanel" style="position:relative" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<div class="m-title">- BIENVENIDOS -</div>
+			</div>
+	        <div class="m-left">
+	            <a href="javascript:()" class="easyui-linkbutton" plain="true" 
+	            	style="color:#fff" outline="true">Ver 1.2
+	            </a>
+	        </div>
+
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>
+
+		</header>
+		<footer style="text-align:center">
+			<div>
+				<label class="digital" >I N T R A N E T</label><br>
+				<label class="digital" >M o v i l</label>
+			</div>
+			
+		</footer>
+
+		<div style="width:100%;margin-top:10%;display:block">
+			<img src="img/royal001.jpg" style="margin-left:10%;width:80%">			
+		</div>
+
+		<div class="bordes" style="margin-top:15%">	
+				<!-- variabel de control FULLSCREEN -->
+		        <div style="float:left;display:none">
+					<input id="xfull" name="xfull" class="easyui-textbox" style="width:20px" value="N">
+		        </div>
+	    </div>
+
+	    <div class="divC">
+         	<a id="btnNuevo" class="boton" onclick="login()">
+         		<labeL style="font-family:Arial">Iniciar</label>
+         	</a>
+	    </div>
+
+
+		<div class="footer" style="display:block">
+			
+		</div>
+
+		<!-- ventana de dialogo: LOGIN -->
+		<div id="dlg1" class="easyui-dialog" style="padding:10px;width:80%"
+			 data-options="inline:true,modal:true,closed:true,title:''">
+			<header style="padding:0px 1px 3px 0px;">
+				<div class="m-toolbar">
+	                <div class="m-title" style="color:#fff">Login</div>
+				</div>
+			</header> 
+			<footer>
+				<div class="m-toolbar" style="padding:6px">
+					<a href="javascript:void(0)" class="easyui-linkbutton" 
+					   style="background:#E6E6E6;color:#000;border-color:#BDBDBD;width:49%;height:35px" 
+					   onclick="validarUsuario()" data-options="iconCls:'icon-ok'">Entrar</a>
+
+					<a href="javascript:void(0)" class="easyui-linkbutton" 
+					   style="background:#E6E6E6;color:#000;width:49%;;border-color:#BDBDBD;height:35px" 
+					   onclick="cerrar('#dlg1')" data-options="iconCls:'icon-cancel'">Cancelar</a>
+				</div>
+			</footer>
+
+			<div style="margin-bottom:10px">
+				<input id="usuario" name="usuario" class="easyui-textbox" prompt="digitar USUARIO" 
+					   style="background-color:#F6CECE;width:100%;height:30px"
+					   data-options="iconCls:'icon-man'"
+					   value="">
+			</div>
+			<div>
+				<input id="clave" name="clave" class="easyui-textbox" type="password" prompt="digitar CLAVE" 
+					   style="width:100%;height:30px" data-options="iconCls:'icon-lock'" value="">
+			</div>
+		</div>
+	</div>
+
+	<!-- pagina: MENU ///////////////////////////////////////////////////////////////////////////// -->
+	<div id="menu" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">MENU PRINCIPAL</span>
+			</div>
+            <div class="m-left">
+                <a href="javascript:void(0)" class="easyui-linkbutton m-back"  style="color:#fff"
+                	data-options="plain:true,outline:true" 
+                	onclick="irInicio()">Inicio</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>            
+		</header>
+
+		<div style="width:100%;margin-top:5%;display:block">
+			<img src="img/royal001.jpg" style="margin-left:10%;width:80%">			
+		</div>
+
+		<ul class="m-list" style="margin-top:-4%">
+			<li id="mlista"><a href="javascript:void(0)" style="background:silver;font-weight:bold"
+				data-options="animation:'slide',direction:'left'"
+				onclick="irAlista()">Alistamientos</a></li>
+			<li id="masistencia"><a href="javascript:void(0)" style="background:silver;font-weight:bold"
+				data-options="animation:'slide',direction:'left'"
+				onclick="irAsistencia()">Asistencia</a></li>
+			<li id="minformes"><a href="javascript:void(0)" style="background:silver;font-weight:bold"
+				data-options="animation:'slide',direction:'left'"
+				onclick="irInformes()">Informes</a></li>
+			<li id="mclima"><a href="javascript:void(0)" style="background:silver;font-weight:bold"
+				data-options="animation:'slide',direction:'left'"
+				onclick="irClima()">Clima</a></li>
+			<li id="mvia"><a href="javascript:void(0)" style="background:silver;font-weight:bold"
+				data-options="animation:'slide',direction:'left'"
+				onclick="irVia()">Vías</a></li>
+			<li id="mmantenimiento"><a href="javascript:void(0)" style="background:silver;font-weight:bold"
+				data-options="animation:'slide',direction:'left'"
+				onclick="irMantenimiento()">Mantenimientos</a></li>
+			<li id="mreconocruta"><a href="javascript:void(0)" style="background:silver;font-weight:bold"
+				data-options="animation:'slide',direction:'left'"
+				onclick="irReconocRuta()">Reconocimiento Ruta</a></li>
+			<li id="mcertificado"><a href="javascript:void(0)" style="background:silver;font-weight:bold"
+				data-options="animation:'slide',direction:'left'"
+				onclick="irCertificado()">Certificado Laboral</a></li>
+			<!-- <li id="mcontrato"><a href="javascript:void(0)" style="background:silver;font-weight:bold"
+				data-options="animation:'slide',direction:'left'"
+				onclick="irContrato()">Contratos</a></li> -->
+		</ul>
+
+		<div class="footer">
+			<div class="footertexto">
+				<label>Usuario:</label>
+				<input id="suser" name="suser" class="easyui-textbox" 
+					   style="width:15%;height:25px" data-options="readonly:'true'">
+				<input id="snombre" name="snombre" class="easyui-textbox" 
+					   style="width:50%;height:25px" data-options="readonly:'true'">
+				<input id="sciudad" name="sciudad" class="easyui-textbox" 
+					   style="width:10%;height:25px" data-options="readonly:'true'">
+			</div>
+		</div>
+	</div>
+
+	<!-- pagina: ALISTAMIENTOS //////////////////////////////////////////////////////////////////// -->
+	<div id="alista" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">Alistamientos</span>
+			</div>
+            <div class="m-left">
+                <a href="#" class="easyui-linkbutton m-back" 
+                   data-options="plain:true,outline:true,back:true"
+                   style="color:#fff" >Atras</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>            
+		</header>
+
+		<div id="toolbaralista">
+			<input id="afecha" name="afecha" class="easyui-datebox" style="width:32%"
+				data-options="disabled:false,editable:true,formatter:myformatter,parser:myparser">
+
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" 
+				style="margin-left:5%"
+				onclick="validarRec()"></a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="true" 
+				style="margin-left:5%"
+				onclick="printAlista()"></a>
+
+		</div>
+		<table id="dgalista" class="easyui-datagrid" style="width:100%;height:500px"
+			url="json/alista_resumen.php"
+			toolbar="#toolbaralista"
+			pagination="false"
+			rownumbers="false" fitColumns="false" singleSelect="true">
+			<thead>
+				<tr>					
+	            	<th field="interno" width="70px">interno</th>					
+	            	<th field="fecha" width="70px">fecha</th>					
+					<th field="cuantos" width="70px" align="center">restringe</th>
+				</tr>
+			</thead>
+		</table>
+
+		<!-- DIALOG: entrada de datos de alistamientos //////////////////////////////////////////// -->
+		<div id="dlgalista" class="easyui-dialog" title="<font color=white>DATOS</font>"
+			data-options="modal:true,closable:true"
+			style="font-family:Arial;margin:0 0 0 0;width:99%"
+			closed="true" buttons="#alista-buttons">
+			<div id="tbdatos">
+	            <!-- botones de consulta de S,N o todos /////////////////////////////////////////// -->
+	            <a href="javascript:void(0)" class="easyui-linkbutton"  
+					style="background:#F2F5A9;color:#000;border-color:#000;width:10%;height:25px;margin-left:5%"
+					onclick="mostrarDg('*')"
+					data-options="">*</a>
+	            <a href="javascript:void(0)" class="easyui-linkbutton"  
+					style="background:#F2F5A9;color:#000;border-color:#000;width:10%;height:25px;margin-left:5%"
+					onclick="mostrarDg('N')"
+					data-options="">N</a>
+	            <a href="javascript:void(0)" class="easyui-linkbutton"  
+					style="background:#F2F5A9;color:#000;border-color:#000;width:10%;height:25px;margin-left:5%"
+					onclick="mostrarDg('S')"
+					data-options="">S</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton"
+					style="margin-left:5%"
+					onclick="reject()"
+					data-options="iconCls:'icon-undo',plain:true"></a>
+			</div>
+			<table id="dg" class="easyui-datagrid" style="width:100%;height:410px"
+				url='json/alista_getdata.php'
+				toolbar="#tbdatos"
+				data-options="			
+	                singleSelect: true,
+	                fitColumns:true,
+	                onClickRow: onClickRow,
+	                rowStyler: function(index,row){
+	                    if (row.nivel2 == 0){
+	                        return 'background-color:#cffccf;font-weight:bold;';
+	                    }
+                	}
+	            ">
+				<thead>
+					<tr>
+						<th data-options="field:'id',width:10,hidden:true">id</th>
+						<th data-options="field:'nivel1',width:30">#</th>
+						<th data-options="field:'nivel2',width:20,styler:cellStyler">#</th>
+						<th data-options="field:'detalle',width:300">detalle</th>
+						<th data-options="field:'digitar',width:30,align:'center', 
+							editor:{type:'checkbox',options:{on:'S',off:'N'}}">res</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="alista-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+			   onclick="grabarAlista()" style="width:90px">OK</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" 
+			   onclick="cerrar('#dlgalista')" style="width:90px">Cancelar</a>
+		</div>
+	</div>
+
+
+	<!-- pagina: ASISTENCIA /////////////////////////////////////////////////////////////////////// -->
+	<div id="asistencia" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">Asistencia</span>
+			</div>
+            <div class="m-left">
+                <a href="#" class="easyui-linkbutton m-back" 
+                   data-options="plain:true,outline:true,back:true"
+                   style="color:#fff" >Atras</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>
+		</header>
+
+		<div id="toolbasistencia">
+			<div class="fitem">
+				<input id="icolegio" name="icolegio" class="easyui-combobox" 
+					   url="json/combocolegios.php" style="width:180px"
+					   data-options="editable:false,valueField:'codigo',textField:'nombre'">
+				<input id="iruta" name="iruta" class="easyui-textbox" style="width:50px"
+					   data-options="disabled:true">
+				<input id="ijornada" name="ijornada" class="easyui-combobox" 
+					   url="json/combojornadas.php" style="width:65px"
+					   data-options="editable:false,valueField:'codigo',textField:'nombre'">
+			</div>
+			<div class="fitem">
+				<input id="ifecha" name="ifecha" class="easyui-datebox" style="width:32%"
+					data-options="disabled:false,editable:false,formatter:myformatter,parser:myparser">
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" 
+					style="margin-left:5%"
+					onclick="validarAsistencia()"></a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" 
+					style="margin-left:2%;width:30px; height:30px" onclick="borrarAsistencia()">
+				</a>				
+				<a href="javascript:void(0)" class="easyui-linkbutton"
+					style="margin-left:2%"
+					onclick="reject()"
+					data-options="iconCls:'icon-undo',plain:true"></a>
+				<a href="javascript:void(0)" class="easyui-linkbutton"
+					style="margin-left:5%"
+					onclick="addUser()"
+					data-options="iconCls:'icon-man',plain:true"></a>
+			</div>
+		</div>
+		
+		<table id="dgasistencia" class="easyui-datagrid" 
+			style="font-family:Arial;width:100%;height:500px"
+			url="json/asistencia_getdata.php"
+			toolbar="#toolbasistencia"
+			data-options="
+				singleSelect: true,
+				fitColumns:true,
+				rownumbers: true,
+				onClickRow: onClickRow,
+                rowStyler: function(index,row){
+                    if (row.asis != 'X'){
+                        return 'background-color:#cffccf;font-weight:bold;';
+                    }
+            	}				
+			">
+			<thead>
+				<tr>					
+					<th data-options="field:'id',width:50,hidden:true">Id</th>					
+					<th data-options="field:'fecha',width:100,hidden:true">Fecha</th>					
+					<th data-options="field:'jornada',width:50,hidden:true">Jornada</th>					
+					<th data-options="field:'codigo',width:50">Cod</th>					
+					<th data-options="field:'nombre',width:300">Nombre</th>
+					<th data-options="field:'asis',width:50,hidden:true">Obs</th>
+					<th data-options="field:'asistencia',width:50,align:'center', 
+						editor:{type:'checkbox',options:{on:'S',off:'N'}}">Asis</th>
+				</tr>
+			</thead>
+		</table>
+		<div class="fitem">
+	        <!-- botones de consulta de S,N o todos /////////////////////////////////////////// -->
+	        <a href="javascript:void(0)" class="easyui-linkbutton"  
+				style="background:#F2F5A9;color:#000;border-color:#000;width:10%;height:25px;margin-left:30%"
+				onclick="mostrarAsistencia('*')"
+				data-options="">*</a>
+	        <a href="javascript:void(0)" class="easyui-linkbutton"  
+				style="background:#F2F5A9;color:#000;border-color:#000;width:10%;height:25px;margin-left:2%"
+				onclick="mostrarAsistencia('N')"
+				data-options="">N</a>
+	        <a href="javascript:void(0)" class="easyui-linkbutton"  
+				style="background:#F2F5A9;color:#000;border-color:#000;width:10%;height:25px;margin-left:2%"
+				onclick="mostrarAsistencia('S')"
+				data-options="">S</a>
+		</div>
+
+		<!-- DIALOG: entrada de datos de nuevo alumno ///////////////////////////////////////////// -->
+		<div id="dlgnuevo" class="easyui-dialog" title="<font color=white>NUEVO</font>"
+			data-options="modal:true,closable:true"
+			style="font-family:Arial;margin:0 0 0 0;width:99%;padding:5px"
+			closed="true" buttons="#add-buttons">
+			<div class="fitem">
+				<input id="nnombre" name="nnombre" class="easyui-textbox" style="width:280px"
+					   data-options="disabled:true">
+			</div>			
+			<div class="fitem">
+				<input id="ncodigos" name="ncodigos" class="easyui-combobox"
+					   url="" style="width:100px"
+					   data-options="valueField:'nombre',textField:'codigo'">
+			</div>
+		</div>
+
+		<!-- TAREA -->
+		<div id="dlgobs" class="easyui-dialog" title="<font color=white>OBSERVACION</font>"
+			data-options="modal:true,closable:true"
+			style="font-family:Arial;margin:0 0 0 0;width:99%;padding:5px"
+			closed="true" buttons="#add-buttons-obs">
+			<div class="fitem">
+				<input id="vobserva" name="vobserva" class="easyui-textbox" style="width:280px"
+					   data-options="disabled:true">
+			</div>			
+		</div>
+
+		<div id="add-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+			   onclick="validarCodigo()" style="width:90px">OK</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" 
+			   onclick="cerrar('#dlgnuevo')" style="width:90px">Cancelar</a>
+		</div>
+		<!-- TAREA -->
+		<div id="add-buttons-obs">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" 
+			   onclick="cerrar('#dlgobs')" style="width:90px">Cerrar</a>
+		</div>
+	</div>	
+	<!-- pagina: CLIMA /////////////////////////////////////////////////////////////////////// -->
+	<div id="clima" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">Clima</span>
+			</div>
+            <div class="m-left">
+                <a href="#" class="easyui-linkbutton m-back" 
+                   data-options="plain:true,outline:true,back:true"
+                   style="color:#fff" >Atras</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>
+
+		</header>
+
+		<table>
+			<div id="TTPW_czxwB">El tiempo - Tutiempo.net</div>
+			<script type="text/javascript" src="https://www.tutiempo.net/s-widget/pw/fczxwB/C10/"></script>
+			<!-- <a class="weatherwidget-io" href="https://forecast7.com/es/4d81n75d69/pereira/" data-label_1="PEREIRA" data-icons="Climacons Animated" data-days="3" data-theme="clear" >PEREIRA</a>
+			<script>
+			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+			</script> -->
+		</table>
+	</div>
+
+	<!-- pagina: VIAS /////////////////////////////////////////////////////////////////////// -->
+	<div id="via" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">Estado de las vías</span>
+			</div>
+            <div class="m-left">
+                <a href="#" class="easyui-linkbutton m-back" 
+                   data-options="plain:true,outline:true,back:true"
+                   style="color:#fff" >Atras</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>
+
+		</header>
+
+		<table>
+			<iframe src="https://embed.waze.com/es/iframe?zoom=15&lat=4.807370&lon=-75.691552&ct=livemap"
+            width="100%" height="100%"></iframe>
+		</table>
+	</div>
+
+	<!-- pagina: REVISION MANTENIMIENTO /////////////////////////////////////////////////////////////// -->
+	<div id="mantenimiento" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">Mantenimientos</span>
+			</div>
+            <div class="m-left">
+                <a href="#" class="easyui-linkbutton m-back" 
+                   data-options="plain:true,outline:true,back:true"
+                   style="color:#fff" >Atras</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>            
+		</header>
+
+		<div id="toolbarmantenimiento">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" 
+				style="margin-left:1%; margin-top: 1%"
+				onclick="newMantenimiento()">Añadir</a>
+		</div>
+
+		<table id="dgmantenimiento" class="easyui-datagrid" style="width:100%;height:500px"
+			url="json/mantenimiento_resumen.php"
+			toolbar="#toolbarmantenimiento"
+			pagination="false"
+			rownumbers="false" fitColumns="false" singleSelect="true">
+			<thead>
+				<tr>					
+	            	<th field="interno" width="40px">int</th>					
+	            	<th field="fecha" width="70px">fecha</th>					
+					<th field="taller" width="270px" align="center">taller</th>
+					<th field="km" width="50px" align="center">km</th>
+					<th field="tipo" width="70px" align="center">tipo</th>
+					<th field="mecanico" width="200px" align="center">mecanico</th>
+					<th field="descripcion" width="320px" align="center">descripcion</th>
+				</tr>
+			</thead>
+		</table>
+
+		<div id="dlgMantenimiento" class="easyui-dialog"title="<font color=white>DATOS</font>"
+			data-options="modal:true,closable:true"
+			style="font-family:Arial;margin:0 0 0 0;width:100%;height: 340px"
+			closed="true" buttons="#mantenimiento-buttons">				
+				<form id="fmMantenimiento" method="post" novalidate>	
+					<div style="float:left; margin-top: 2%; margin-left: 11.5%">
+						<label>Fecha:</label>
+						<input id="fecha" name="fecha" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser">
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 13%">
+						<label>Taller:</label>
+						<input id="taller" name="taller" class="easyui-textbox">
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 17%">
+						<label>Km:</label>
+						<input id="km" name="km" class="easyui-numberbox" value="1234567" data-options="groupSeparator:','">
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 15.5%">
+						<label>Tipo:</label>
+						<select id="tipo" name="tipo"  class="easyui-combobox" style="width: 172px;">
+							<option value="correctivo">Correctivo</option>
+							<option value="preventivo">Preventivo</option>
+						</select> 
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 6%">
+						<label>Mecánico:</label>
+						<input id="mecanico" name="mecanico" class="easyui-textbox">
+					</div>
+
+					<div style="float:left; margin-top: 2%; margin-left: 2%">
+						<label>Descripción:</label>
+						<input id="descripcion" name="descripcion" class="easyui-textbox" multiline="true" style="height: 62.5px; margin-left: 1%;">
+						</select> 
+					</div>
+				</form>
+			</div>
+
+			<div id="mantenimiento-buttons">
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+				   onclick="saveMantenimiento()" style="width:90px">OK</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" 
+				   onclick="cerrar('#dlgMantenimiento')" style="width:90px">Cancelar</a>
+			</div>
+		</div>
+
+		<!-- pagina: RECONOCIMIENTO DE RUTA //////////////////////////////////////////////////////// -->
+	<div id="reconocruta" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">Ruta</span>
+			</div>
+            <div class="m-left">
+                <a href="#" class="easyui-linkbutton m-back" 
+                   data-options="plain:true,outline:true,back:true"
+                   style="color:#fff" >Atras</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>            
+		</header>
+
+		<div id="toolbreconocruta">
+			<input id="rcolegio" name="rcolegio" class="easyui-combobox" 
+				   url="json/combocolegios.php" style="width:180px"
+				   data-options="editable:false,valueField:'codigo',textField:'nombre'">
+			<input id="rruta" name="rruta" class="easyui-textbox" style="width:50px"
+				   data-options="disabled:true">
+			<input id="rrfecha" name="rrfecha" class="easyui-datebox" style="width:32%"
+					data-options="disabled:false,editable:false,formatter:myformatter,parser:myparser">
+
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" 
+				onclick="validarReconocRuta()"></a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" 
+				onclick="editReconocRuta()"></a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" 
+				style="margin-left:2%;width:30px; height:30px" onclick="borrarReconocRuta()">
+			</a>
+		</div>
+
+		<div id="dlgreconocruta" class="easyui-dialog" title="<font color=white>DATOS</font>" closed="true" buttons="#dlg-buttons" data-options="modal:true,closable:true" style="font-family:Arial;margin:0 0 0 0;width:100%;height: 490px">
+		<form id="fm" method="post" novalidate>
+			
+			<input id="rfecha" name="rfecha" type="hidden" class="easyui-datebox" style="height: 0px;" 
+			data-options="disabled:false,editable:true,formatter:myformatter,parser:myparser">
+			
+			<div class="fitem">
+				<label>Nombre</label>
+				<input id="nombre" name="nombre" class="easyui-textbox" disabled="true">
+			</div>
+			<div class="fitem">
+				<label>Grado</label>
+				<input id="grado" name="grado" class="easyui-textbox" disabled="true">
+			</div>
+			<div class="fitem">
+				<label>Dirección</label>
+				<input id="direccion" name="direccion" class="easyui-textbox">
+			</div>
+			<div class="fitem">
+				<label>Barrio</label>
+				<input id="barrio" name="barrio" class="easyui-textbox">
+			</div>
+			<div class="fitem">
+				<label>Celular</label>
+				<input id="celular" name="celular" class="easyui-textbox">
+			</div>
+			<div class="fitem">
+				<label>Presentación</label>
+				<select id="presentacion" name="presentacion" class="easyui-combobox" prompt="Seleccione" style="width: 164px;">
+					<option value="personal">Personal</option>
+					<option value="telefonico">Teléfonico</option>
+				</select> 
+			</div>
+			<div class="fitem">
+				<label>Recibe</label>
+				<input id="nombrerecibe" name="nombrerecibe" class="easyui-textbox" prompt="Nombre quien recibe">
+			</div>
+			<div class="fitem">
+				<label>Recogida</label>
+				<input id="horarecogida" name="horarecogida" class="easyui-timespinner" data-options="label:'Select Time:',labelPosition:'top'">
+			</div>
+			<div class="fitem">
+				<label>Regreso</label>
+				<input id="horaregreso" name="horaregreso" class="easyui-timespinner" data-options="label:'Select Time:',labelPosition:'top'">
+			</div>
+
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveReconocRuta()" style="width:90px">OK</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgreconocruta').dialog('close')" style="width:90px">Cancelar</a>
+	</div>
+		<!-- DATAGRID RECONOCIMIENTO RUTA //////////////////////////////////////////////////////////// -->
+	<table id="dgreconocruta" class="easyui-datagrid"
+		style="width:100%;height:500px"
+		url="json/reconocruta_getdata.php" rownumbers="true"
+		toolbar="#toolbreconocruta"
+		singleSelect="true" pagination="false" showFooter="false">
+
+		<thead>
+			<tr>						
+				<th field="id", width="50" hidden="true">Id</th>
+				<th field="nombre", width="200" >Nombre</th>		
+				<th field="grado", width="42" >Grado</th>	
+				<th field="direccion", width="250" >Dirección</th>	
+				<th field="barrio", width="180" >Barrio</th>	
+				<th field="celular", width="74" >Celular</th>	
+				<th field="presentacion", width="70" >Presentación</th>	
+				<th field="nombrerecibe", width="200" >Nombre quien recibe</th>	
+				<th field="horarecogida", width="60" >Recogida</th>	
+				<th field="horaregreso", width="60" >Regreso</th>	
+			</tr>
+		</thead>
+	</table>
+	</div>
+
+	<!-- pagina: CERTIFICADO LABORAL ////////////////////////////////////////////////////////////// -->
+	<div id="certificado" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">Certificado</span>
+			</div>
+            <div class="m-left">
+                <a href="#" class="easyui-linkbutton m-back" 
+                   data-options="plain:true,outline:true,back:true"
+                   style="color:#fff" >Atras</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>
+		</header>
+
+		<div class="ritem" style="margin-top:20px;margin-bottom:20px;text-align:center">
+			<select id="xcertificado" name="xcertificado" class="easyui-combobox" style="width:200px">
+			    <option value="1" selected="false">Elija el tipo de certificado</option>
+			    <option value="2">Certificado - ANTIGUO</option>
+			    <option value="3">Certificado - VIGENTE CON SALARIO</option>
+			    <option value="4">Certificado - VIGENTE SIN SALARIO</option>
+			</select>
+		</div>
+
+		<div class="ritem" style="text-align:center">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="generarCertificado()"
+				data-options="iconAlign:'left'"
+				style="width:80px">generar</a>
+		</div>
+	</div>
+
+	<!-- pagina: CONTRATOS /////////////////////////////////////////////////////////////////// -->
+	<div id="contrato" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">Contratos</span>
+			</div>
+            <div class="m-left">
+                <a href="#" class="easyui-linkbutton m-back" 
+                   data-options="plain:true,outline:true,back:true"
+                   style="color:#fff" >Atras</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>
+		</header>
+
+		<div id="toolbarcontrato">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" 
+				style="margin-left:1%; margin-top: 1%"
+				onclick="newContrato()">Añadir</a>
+		</div>
+
+		<table id="dgcontrato" class="easyui-datagrid" style="width:100%;height:500px"
+			url="json/contrato_resumen.php"
+			toolbar="#toolbarcontrato"
+			pagination="false"
+			rownumbers="false" fitColumns="false" singleSelect="true">
+			<thead>
+				<tr>					
+	            	<th field="usuario" width="40px">Usuario</th>
+	            	<th field="numero" width="40px">N°</th>
+	            	<th field="contratante" width="120px">Contratante</th>
+				</tr>
+			</thead>
+		</table>
+
+		<div id="dlgContrato" class="easyui-dialog"title="<font color=white>Contrato</font>"
+			data-options="modal:true,closable:true"
+			style="font-family:Arial;margin:0 0 0 0;width:100%;height: 450px"
+			closed="true" buttons="#contratos-buttons">				
+			<form id="fmContrato" method="post" novalidate>	
+				<div class="fitem">
+					<label >Numero:</label>
+					<input id="numero" name="numero" class="easyui-numberbox">
+				</div>
+				<div class="fitem">
+					<label>Contratante:</label>
+					<input id="contratante" name="contratante" class="easyui-textbox">
+				</div>
+				<div class="fitem">
+					<label>Vecino de:</label>
+					<input id="vecinociudad" name="vecinociudad" class="easyui-textbox">
+				</div>
+				<div class="fitem">
+					<label>Fecha Inicio:</label>
+					<input id="fechainicio" name="fechainicio" class="easyui-datebox" data-options="disabled:false,editable:true,formatter:myformatter,parser:myparser">
+				</div>
+
+				<div class="fitem">
+					<label>Fecha Fin:</label>
+					<input id="fechafin" name="fechafin" class="easyui-datebox" data-options="disabled:false,editable:true,formatter:myformatter,parser:myparser">
+				</div>
+				<div class="fitem">
+					<label>Desde:</label>
+					<input id="desdeciudad" name="desdeciudad" class="easyui-textbox">
+				</div>
+
+				<div class="fitem">
+					<label>Recorrido:</label>
+					<input id="recorrido" name="recorrido" class="easyui-textbox" multiline="true" style="height: 80px;">
+				</div>
+
+				<div class="fitem">
+					<label>Placa:</label>
+					<input id="placa" name="placa" class="easyui-textbox">
+				</div>
+				<div class="fitem">
+					<label>Clase:</label>
+					<select id="clase" name="clase" class="easyui-combobox" style="width: 164px">
+						<option></option>
+					    <option value="BUS">Bus</option>
+					    <option value="BUSETA">Buseta</option>
+					    <option value="MICROBÚS">Microbús</option>
+					    <option value="DUSTER">Duster</option>
+					</select>
+				</div>
+
+				<div class="fitem">
+					<label>Interno</label>
+					<input id="interno" name="interno" class="easyui-numberbox">
+				</div>
+				<div class="fitem">
+					<label>Valor</label>
+					<input id="valor" name="valor" class="easyui-textbox">
+				</div>
+
+				<div class="fitem">
+					<label>Forma Pago</label>
+					<select id="formapago" name="formapago" class="easyui-combobox" style="width: 164px">
+						<option></option>
+					    <option value="CREDITO">Credito</option>
+					    <option value="CONTADO">Contado</option>
+					</select>
+				</div>
+				<div class="fitem">
+					<label>Dirección</label>
+					<input id="direccion" name="direccion" class="easyui-textbox">
+				</div>
+
+				<div class="fitem">
+					<label>Teléfono</label>
+					<input id="telefono" name="telefono" class="easyui-numberbox">
+				</div>
+			</form>
+		</div>
+
+		<div id="contratos-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+			   onclick="saveContrato()" style="width:90px">OK</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" 
+			   onclick="cerrar('#dlgContrato')" style="width:90px">Cancelar</a>
+		</div>
+	</div>
+
+	</div>
+
+
+
+	<script type="text/javascript">
+		function generarCertificado(){
+			var wcertificado = getVar('xcertificado',3);
+			
+			if(wcertificado==2){
+				certificadoPDF(2);
+
+			}else if(wcertificado==3){
+				certificadoPDF(3);
+
+			}else if(wcertificado==4){
+				certificadoPDF(4);
+
+			}
+
+		}
+
+		function certificadoPDF(pcual){
+
+			// var xinterno = row['interno'];	
+			var xinterno = getVar('suser',0);		
+
+			var params  = 'width='+screen.width;
+    		params += ', height='+screen.height;
+    		params += ', top=0, left=0'
+    		params += ', fullscreen=yes';    		
+
+    		if(pcual==2){
+    			window.open ("certificado_antiguo.php?interno="+xinterno, params);
+
+    		}else if(pcual==3){
+    			window.open ("certificado_vigenteSalario.php?interno="+xinterno, params);
+
+    		}else if(pcual==4){
+    			window.open ("certificado_vigenteSinSalario.php?interno="+xinterno, params);
+
+    		}
+
+		}
+	</script>
+
+	<!-- SCRIPT GENERALES ///////////////////////////////////////////////////////////////////////// -->	
+
+	<!-- SCRIT edicion de la grilla /////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+        var editIndex = undefined;
+        function endEditing(){
+            if (editIndex == undefined){return true}
+
+            // edicion para dg/dg-alistamiento
+        	var reg = $("#dg").datagrid('getSelected');
+        	if(reg){
+        		var xdg = '#dg';
+        	}else {        		
+        		var reg = $("#dgasistencia").datagrid('getSelected');
+        		if(reg){
+        			var xdg = '#dgasistencia';
+        		}
+        	}        	
+
+            if ($(xdg).datagrid('validateRow', editIndex)){
+                $(xdg).datagrid('endEdit', editIndex);
+                editIndex = undefined;
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+        function updateTabla(pindex){
+        	accept();
+        	$('#dg').datagrid('selectRow', pindex);
+        	row = $("#dg").datagrid('getSelected');
+        	if(row){
+        		var xid = row['id'];
+        		var xdigitar = row['digitar'];
+
+				var xaccion = 'U';
+				var xtabla = 'tbalistatmp';
+
+				var xcamposActualizar = ['digitar'];
+				var xvaloresActualizar = [xdigitar];
+
+				var xcamposCondicion = ['id'];
+				var xvaloresCondicion = [xid];
+
+				$.post('json/myFileDB.php',
+					{accion:xaccion, tabla:xtabla, camposActualizar:xcamposActualizar, valoresActualizar:xvaloresActualizar,
+					 camposCondicion:xcamposCondicion, valoresCondicion:xvaloresCondicion},
+					function(result){
+						if(!result.success){
+							alert(result.sql);
+							// $.messager.alert('Mensaje','fallo ACTUALIZACION!!!');
+						}
+					},
+				'json');
+				
+        	}
+        	
+        }
+
+        function updateTablaDos(pindex){
+        	accept();
+        	$('#dgasistencia').datagrid('selectRow', pindex);
+        	row = $("#dgasistencia").datagrid('getSelected');
+        	if(row){
+        		var xid = row['id'];
+        		var xasistencia = row['asistencia'];
+
+				var xaccion = 'U';
+				var xtabla = 'tbasistencia';
+
+				var xcamposActualizar = ['asistencia'];
+				var xvaloresActualizar = [xasistencia];
+
+				var xcamposCondicion = ['id'];
+				var xvaloresCondicion = [xid];
+
+				$.post('json/myFileDB.php',
+					{accion:xaccion, tabla:xtabla, camposActualizar:xcamposActualizar, valoresActualizar:xvaloresActualizar,
+					 camposCondicion:xcamposCondicion, valoresCondicion:xvaloresCondicion},
+					function(result){
+						if(!result.success){
+							alert(result.sql);
+							// $.messager.alert('Mensaje','fallo ACTUALIZACION!!!');
+						}
+					},
+				'json');
+				
+        	}
+        	
+        }
+
+        function onClickRow(index){
+        	var row = $("#dg").datagrid('getSelected');
+        	if(row){
+	        	if(row['nivel2']!=0){
+	        		// alert(editIndex+'-'+index);
+	        		// el indice anterior que necesito esta en editIndex
+	        		// para actualizar la tabla
+	        		updateTabla(editIndex);
+
+		            if (editIndex != index){
+		                if (endEditing()){	                	
+		                    $('#dg').datagrid('selectRow', index)
+		                            .datagrid('beginEdit', index);
+		                    editIndex = index;
+		                } else {
+		                    $('#dg').datagrid('selectRow', editIndex);
+		                }
+		            }
+				}
+			}else {
+				var reg = $("#dgasistencia").datagrid('getSelected');
+
+				if(reg['asis']=='X'){
+					updateTablaDos(editIndex);
+
+		            if (editIndex != index){
+		                if (endEditing()){	                	
+		                    $('#dgasistencia').datagrid('selectRow', index)
+		                            .datagrid('beginEdit', index);
+		                    editIndex = index;
+		                    
+		                } else {
+		                    $('#dgasistencia').datagrid('selectRow', editIndex);
+		                }
+		            }
+		        //TAREA
+		        }
+
+		        // else{
+		        // 	$('#dgasistencia').onclick(mostrarObs());
+		        // }  
+
+			}
+        }
+
+        function removeit(){
+            if (editIndex == undefined){return}
+            $('#dg').datagrid('cancelEdit', editIndex)
+                    .datagrid('deleteRow', editIndex);
+            editIndex = undefined;
+        }
+
+        function accept(pdg){        	
+        	if(pdg=='dg'){
+        		var xdg = '#dg';
+        	}else {
+        		var xdg = '#dgasistencia';
+        	}
+
+            if (endEditing()){
+                $(xdg).datagrid('acceptChanges');
+            }
+        	
+        }
+
+        function reject(){
+        	var row = $("#dg").datagrid('getSelected');
+        	if(row){
+        		$('#dg').datagrid('rejectChanges');
+        	}else {
+        		$('#dgasistencia').datagrid('rejectChanges');
+        	}
+
+            editIndex = undefined;
+        }	
+	</script>
+
+	<!-- SCRIPT reconocimiento de ruta /////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+    	$("#rcolegio").combobox({
+    		onSelect: function(){
+    			traerRutaReconoc();
+    			// mostrarAsistencia();
+    			// listarCodigos();
+    		}
+    	});
+	</script>	
+
+	<script type="text/javascript">
+		function traerRutaReconoc(){
+    		var xcolegio = $("#rcolegio").combobox('getText');
+    		var xinterno = getVar('suser',0);
+
+    		setVar('rruta',0,'');
+
+    		var xaccion = 'C';
+    		var xtabla = 'tbdatosveh';
+
+    		var xcamposCondicion = ['colegio','interno'];
+    		var xvaloresCondicion = [xcolegio,xinterno];
+
+    		var xordenar = 'id';
+
+			$.post('json/myFileDB.php',
+				{accion:xaccion, tabla:xtabla, camposCondicion:xcamposCondicion, valoresCondicion:xvaloresCondicion,
+				 ordenar:xordenar},
+				function(result){
+					if(result.success){
+						var row = result.items;
+						xruta = row[0]['ruta'];
+						setVar('rruta',0,xruta);
+
+					}else {
+						$.messager.alert('Mensaje','ruta NO EXISTE!!!');
+
+					}
+				},
+			'json');
+		}
+
+		function validarReconocRuta(){
+			var xinterno = getVar('suser',0);
+			var xcolegio = $("#rcolegio").combobox('getText');
+			var xruta = getVar('rruta',0);
+			var xfechageneral = getVar('rrfecha', 2)
+
+
+			var xaccion = 'C';
+			var xtabla = 'tbreconocruta';
+
+			var xcamposCondicion = ['interno','colegio','ruta','fechageneral'];
+			var xvaloresCondicion = [xinterno,xcolegio,xruta,xfechageneral];
+
+			var xordenar = 'id';
+
+			$.post('json/myFileDB.php', 
+				{accion:xaccion,tabla:xtabla,camposCondicion:xcamposCondicion,valoresCondicion:xvaloresCondicion,
+				 ordenar:xordenar}, 
+				 function(result){
+				 	if(result.success){
+				 		$.messager.alert("Mensaje","ya existe RECONOCIMIENTO!!!");
+						verReconocRuta();
+				 	}else {
+				 		addReconocRuta();			 		
+				 	}
+				 }, 
+			'json');
+
+		}
+
+		function addReconocRuta(){
+			var xinterno = getVar('suser',0);
+			var xcolegio = $("#rcolegio").combobox('getText');
+			var xruta = getVar('rruta',0);
+			var xfechageneral = getVar('rrfecha',2);
+
+			$.post('json/reconocruta_data.php',
+				{interno:xinterno, colegio:xcolegio, ruta:xruta, fechageneral:xfechageneral}, 
+				function(result){
+					if(result.success){
+						$.messager.alert("Mensaje","reconocimiento creado EXITOSAMENTE!!!");
+						verReconocRuta();
+					}
+				}, 
+			'json');
+
+		}
+
+		function verReconocRuta(){
+			var xinterno = getVar('suser',0);
+			var xcolegio = $("#rcolegio").combobox('getText');
+			var xruta = $("#rruta").combobox('getText');
+			var xfechageneral = getVar('rrfecha',2)
+
+			$("#dgreconocruta").datagrid('load',{
+				interno:xinterno,
+				colegio:xcolegio,
+				ruta:xruta,
+				fechageneral:xfechageneral
+			})
+
+
+		}
+
+		function editReconocRuta(){
+			// var fecha = getVar('rfecha',2);
+			var row = $('#dgreconocruta').datagrid('getSelected');
+			if (row){
+				$('#dlgreconocruta').dialog('open');
+				$('#fm').form('load',row);
+				url = 'json/reconocruta_update.php?id='+row.id;
+			}
+		}
+
+		function saveReconocRuta(){
+			$('#fm').form('submit',{
+				url: url,
+				onSubmit: function(){
+					return $(this).form('validate');
+				},
+				success: function(result){
+					//var result = eval('('+result+')');
+					if (result.errorMsg){
+						$.messager.show({
+							title: 'Error',
+							msg: result.errorMsg
+						});
+					} else {
+						$('#dlgreconocruta').dialog('close');		// close the dialog
+						$('#dgreconocruta').datagrid('reload');	// reload the user data
+					}
+				}
+			});
+		}
+
+		function borrarReconocRuta(){
+			$.messager.confirm('Confirm', 'esta seguro de BORRAR reconocimiento?', function(r){
+				if (r){
+					var xinterno = getVar('suser',0);
+					var xcolegio = $("#rcolegio").combobox('getText');
+					var xruta = getVar('rruta',0);
+					var xfechageneral = getVar('rrfecha',2);
+
+					var xaccion = 'D';
+					var xtabla = 'tbreconocruta';
+
+					var xcamposCondicion = ['interno','colegio','ruta','fechageneral'];
+					var xvaloresCondicion = [xinterno,xcolegio,xruta,xfechageneral];
+
+					$.post('json/myFileDB.php',
+						{accion:xaccion,tabla:xtabla,camposCondicion:xcamposCondicion,
+						 valoresCondicion:xvaloresCondicion},
+						function(result){
+						if (result.success){
+							$.messager.alert("Mensaje","asistencia borrada EXITOSAMENTE!!!");
+							verReconocRuta();
+
+						} else {
+							$.messager.alert('Mensaje', 'problemas!!!-borrar asistencia');
+						}
+					},'json');				
+				}
+			});
+
+		}
+
+	</script>
+	<!-- SCRIPT asistencias /////////////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+    	$("#icolegio").combobox({
+    		onSelect: function(){
+    			traerRuta();
+    			// mostrarAsistencia();
+    			// listarCodigos();
+    		}
+    	});
+	</script>
+
+	<script type="text/javascript">
+		function traerRuta(){
+    		var xcolegio = $("#icolegio").combobox('getText');
+    		var xinterno = getVar('suser',0);
+
+    		setVar('iruta',0,'');
+
+    		var xaccion = 'C';
+    		var xtabla = 'tbdatosveh';
+
+    		var xcamposCondicion = ['colegio','interno'];
+    		var xvaloresCondicion = [xcolegio,xinterno];
+
+    		var xordenar = 'id';
+
+			$.post('json/myFileDB.php',
+				{accion:xaccion, tabla:xtabla, camposCondicion:xcamposCondicion, valoresCondicion:xvaloresCondicion,
+				 ordenar:xordenar},
+				function(result){
+					if(result.success){
+						var row = result.items;
+						xruta = row[0]['ruta'];
+						setVar('iruta',0,xruta);
+
+					}else {
+						$.messager.alert('Mensaje','ruta NO EXISTE!!!');
+
+					}
+				},
+			'json');
+		}
+
+		function mostrarAsistencia(pcuales){
+			var row = $("#dgasistencia").datagrid('getSelected');
+			if(row){
+				xindex = $("#dgasistencia").datagrid('getRowIndex',row);
+				updateTablaDos(xindex);
+			}
+
+			var xinterno = getVar('suser',0);
+			var xcolegio = $("#icolegio").combobox('getText');
+			var xruta = getVar('iruta',0);
+			var xfecha = getVar('ifecha',2);
+			var xjornada = getVar('ijornada',3);
+
+			$("#dgasistencia").datagrid('load',{
+				interno:xinterno,
+				colegio:xcolegio,
+				ruta:xruta,
+				fecha:xfecha,
+				jornada:xjornada,
+				cuales:pcuales
+			});
+
+		}
+
+		function validarAsistencia(){
+			var xinterno = getVar('suser',0);
+			var xcolegio = $("#icolegio").combobox('getText');
+			var xruta = getVar('iruta',0);
+			var xfecha = getVar('ifecha',2);
+			var xjornada = getVar('ijornada',3);
+
+			var xaccion = 'C';
+			var xtabla = 'tbasistencia';
+
+			var xcamposCondicion = ['interno','colegio','ruta','fecha','jornada'];
+			var xvaloresCondicion = [xinterno,xcolegio,xruta,xfecha,xjornada];
+
+			var xordenar = 'id';
+
+			$.post('json/myFileDB.php', 
+				{accion:xaccion,tabla:xtabla,camposCondicion:xcamposCondicion,valoresCondicion:xvaloresCondicion,
+				 ordenar:xordenar}, 
+				 function(result){
+				 	if(result.success){
+				 		$.messager.alert("Mensaje","ya existe ASISTENCIA!!!");
+						mostrarAsistencia('*');
+				 	}else {
+				 		addLista();			 		
+				 	}
+				 }, 
+			'json');
+
+		}
+
+		function addLista(){
+			var xinterno = getVar('suser',0);
+			var xcolegio = $("#icolegio").combobox('getText');
+			var xruta = getVar('iruta',0);
+			var xfecha = getVar('ifecha',2);
+			var xjornada = getVar('ijornada',3);
+
+			$.post('json/asistencia_data.php',
+				{interno:xinterno, colegio:xcolegio, ruta:xruta, fecha:xfecha, jornada:xjornada}, 
+				function(result){
+					if(result.success){
+						$.messager.alert("Mensaje","asistencia creada EXITOSAMENTE!!!");
+						mostrarAsistencia('*');
+					}
+				}, 
+			'json');
+
+		}
+
+		function borrarAsistencia(){
+			$.messager.confirm('Confirm', 'esta seguro de BORRAR asistencia?', function(r){
+				if (r){
+					var xinterno = getVar('suser',0);
+					var xcolegio = $("#icolegio").combobox('getText');
+					var xruta = getVar('iruta',0);
+					var xfecha = getVar('ifecha',2);
+					var xjornada = getVar('ijornada',3);
+
+					var xaccion = 'D';
+					var xtabla = 'tbasistencia';
+
+					var xcamposCondicion = ['interno','colegio','ruta','fecha','jornada'];
+					var xvaloresCondicion = [xinterno,xcolegio,xruta,xfecha,xjornada];
+
+					$.post('json/myFileDB.php',
+						{accion:xaccion,tabla:xtabla,camposCondicion:xcamposCondicion,
+						 valoresCondicion:xvaloresCondicion},
+						function(result){
+						if (result.success){
+							$.messager.alert("Mensaje","asistencia borrada EXITOSAMENTE!!!");
+							mostrarAsistencia('*');
+
+						} else {
+							$.messager.alert('Mensaje', 'problemas!!!-borrar asistencia');
+						}
+					},'json');				
+				}
+			});
+
+		}
+
+		// funciones complementarias para adicion de codigos //////////////////////////////////////
+		function addUser(){
+			listarCodigos();
+			pantalla('#dlgnuevo');
+			setVar('nnombre',0,'');
+		}
+
+		function mostrarObs(){
+			var row = $("#dgasistencia").datagrid('getSelected');
+			if(row){				
+				// alert('gg: ok ');	
+				if(row['asis'] != 'X'){
+					var xobserva = row['asis'];
+					setVar('vobserva',0,xobserva);
+					pantalla('#dlgobs');
+				}
+			}				
+
+			
+		}
+
+		//CONTINUARRRRRRRRR
+
+		function listarCodigos(){
+			var xcolegio = $("#icolegio").combobox('getText');
+
+			var xurl = "json/combocodigos.php?colegio="+xcolegio;
+
+			$("#ncodigos").combobox({
+				url:xurl	
+			});
+
+		}
+
+		function validarCodigo(){
+			var xcodigo = $("#ncodigos").combobox('getText');
+			if(xcodigo==''){
+				$.messager.alert("Mensaje","codigo VACIO!!!");
+				return
+			}else {				
+				var xinterno = getVar('suser',0);
+				var xcolegio = $("#icolegio").combobox('getText');
+				var xruta = getVar('iruta',0);
+				var xfecha = getVar('ifecha',2);
+				var xjornada = $("#ijornada").combobox('getText');				
+
+				if(xinterno=='' || xcolegio=='' || xruta=='' || xfecha=='' || xjornada==''){
+					$.messager.alert("Mensaje","faltan DATOS!!!");
+					return;
+				}				
+
+				contarCodigo(xcodigo,xinterno,xcolegio,xruta,xfecha,xjornada);
+			}
+
+		}
+
+		function contarCodigo(xcodigo,xinterno,xcolegio,xruta,xfecha,xjornada){
+			var xaccion = 'C';
+			var xtabla = 'tbasistencia';
+
+			var xcamposCondicion = ['codigo','interno','colegio','ruta','fecha','jornada'];
+			var xvaloresCondicion = [xcodigo,xinterno,xcolegio,xruta,xfecha,xjornada];
+
+			var xordenar = 'id';			
+
+			$.post('json/myFileDB.php',
+				{accion:xaccion, tabla:xtabla, camposCondicion:xcamposCondicion, valoresCondicion:xvaloresCondicion,
+				 ordenar:xordenar},
+				function(result){
+					if(result.success){
+						$.messager.alert("Mensaje","codigo YA EXISTE!!!");
+					}else {
+						addCodigo(xcodigo,xinterno,xcolegio,xruta,xfecha,xjornada);
+					}
+				},
+			'json');
+		}
+
+		function addCodigo(xcodigo,xinterno,xcolegio,xruta,xfecha,xjornada){
+			$.messager.confirm('Confirm', 'esta seguro de ADICIONAR codigo?', function(r){
+				if (r){
+					var xaccion = 'I';
+					var xtabla = 'tbasistencia';
+
+					// nos faltaba el nombre compadres
+					var xnombre = getVar('nnombre',0);
+
+					var xcampos = ['codigo','interno','colegio','ruta','fecha','jornada','nombre','asistencia'];
+					var xvalores = [xcodigo,xinterno,xcolegio,xruta,xfecha,xjornada,xnombre,'S'];
+
+					$.post('json/myFileDB.php', 
+						{accion:xaccion, tabla:xtabla, campos:xcampos, valores:xvalores},
+						function(result){
+						if (result.success){
+							$.messager.alert("Mensaje","codigo adicionado EXITOSAMENTE!!!");
+							mostrarAsistencia('*');
+							cerrar('#dlgnuevo');
+						} else {
+							$.messager.alert('Mensaje', 'problemas!!!-grabar codigo');
+						}
+					},'json');
+				}
+			});
+
+		}
+
+	</script>
+
+	<script type="text/javascript">
+		$("#ifecha").datebox({
+			onChange: function(){
+				mostrarAsistencia('*');
+			}
+		});
+
+    	$("#ncodigos").combobox({
+    		onSelect: function(){
+    			var xnombre = $("#ncodigos").combobox('getValue');
+    			$("#nnombre").textbox('setValue',xnombre);
+
+    		}
+    	});
+
+  //   	$("#dgasistencia").textbox({
+		// 	onChange: function(){
+		// 		var xobservacion = $("#dgasistencia").textbox('getValue');
+		// 		$("#vobserva").textbox('setValue',xobservacion);
+		// 	}
+		// });
+
+		$("#dgasistencia").datagrid({
+			onDblClickRow: function(){
+				mostrarObs();
+
+			}
+		})
+
+	</script>
+
+	<!-- SCRIPT mantenimientos ////////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+	// var url;
+	function newMantenimiento(){			
+		$('#dlgMantenimiento').dialog('open');
+		$('#fmMantenimiento').form('clear');
+	}
+
+	function saveMantenimiento(){
+		$.messager.confirm('Confirm', 'Esta seguro de GRABAR registro?', function(r){
+			if (r){
+				var xaccion = 'I';
+				var xtabla = 'tbmantenimientos';
+
+				var xinterno = getVar('suser',0);
+				var xfecha = getVar('fecha',0);
+				var xtaller = getVar('taller',0);
+				var xkm = getVar('km',0);
+				var xtipo = getVar('tipo',0);
+				var xmecanico = getVar('mecanico',0);
+				var xdescripcion = getVar('descripcion',0);
+
+				var xcampos = ['interno','fecha','taller','km','tipo','mecanico','descripcion'];
+				var xvalores = [xinterno,xfecha,xtaller,xkm,xtipo,xmecanico,xdescripcion];
+
+				$.post('json/myFileDB.php',
+					{accion:xaccion, tabla:xtabla, campos:xcampos, valores:xvalores},
+					function(result){
+					if (result.success){
+						$.messager.alert('Mensaje', 'Registro grabado EXITOSAMENTE!!!');
+						$('#dlgMantenimiento').dialog('close');
+
+						refreshdg(xinterno);
+						updateDgMtos();									
+											
+					} else {
+
+						$.messager.alert('Mensaje', 'problemas!!!-grabar registro');
+	
+					}
+				},'json');
+
+			}
+		});
+	}	
+	</script>
+
+	<!-- SCRIPT contratos ////////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+		
+		function newContrato(){			
+			$('#dlgContrato').dialog('open');
+			$('#fmContrato').form('clear');
+		}
+
+		function saveContrato(){
+		$.messager.confirm('Confirm', 'Esta seguro de GRABAR contrato?', function(r){
+			if (r){
+				var xaccion = 'I';
+				var xtabla = 'tbcontratos';
+
+				// var xinterno = getVar('suser',0);
+				var xusuario = getVar('suser',0);
+				var xnumero = getVar('numero',0);
+				var xcontratante = getVar('contratante',0);
+				var xvecinociudad = getVar('vecinociudad',0);
+				var xfechainicio = getVar('fechainicio',0);
+				var xfechafin = getVar('fechafin',0);
+				var xdesdeciudad = getVar('desdeciudad',0);
+				var xrecorrido = getVar('recorrido',0);
+				var xplaca = getVar('placa',0);
+				var xclase = getVar('clase',0);
+				var xinterno = getVar('interno',0);
+				var xvalor = getVar('valor',0);
+				var xformapago = getVar('formapago',0);
+				var xdireccion = getVar('direccion',0);
+				var xtelefono = getVar('telefono',0);
+
+				var xcampos = ['numero','contratante','vecinociudad','fechainicio','fechafin','desdeciudad','recorrido','placa','clase','interno','valor','formapago','direccion','telefono','usuario'];
+				var xvalores = [xnumero,xcontratante,xvecinociudad,xfechainicio,xfechafin,xdesdeciudad,xrecorrido,xplaca,xclase,xinterno,xvalor,xformapago,xdireccion,xtelefono,xusuario];
+
+				$.post('json/myFileDB.php',
+					{accion:xaccion, tabla:xtabla, campos:xcampos, valores:xvalores},
+					function(result){
+					if (result.success){
+						$.messager.alert('Mensaje', 'Contrato grabado EXITOSAMENTE!!!');
+						$('#dlgContrato').dialog('close');								
+											
+					} else {
+
+						$.messager.alert('Mensaje', 'problemas!!!-grabar registro');
+					}
+				},'json');
+
+			}
+		});
+	}
+
+	</script>
+</body>
+</html>

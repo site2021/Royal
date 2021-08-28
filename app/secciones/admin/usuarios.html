@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Administracion-Usuarios</title>
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/color.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/demo/demo.css">
+	
+	<script type="text/javascript" src="../../jeasyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../jeasyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../jeasyui/locale/easyui-lang-es.js"></script>
+	
+</head>
+<body>
+	<table id="dg" title=" USUARIOS " class="easyui-datagrid" style="width:80%;height:auto"
+			url="users_get.php"
+			toolbar="#toolbar" pagination="true"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr>
+				<th field="id" width="20">ID</th>
+				<th field="usuario" width="40">Usuario</th>
+				<th field="nombre" width="100">Nombre</th>
+				<th field="clave" width="30">Clave</th>
+				<th field="perfil" width="30">Perfil</th>
+				<th field="ejecutivo" width="100">Ejecutivo</th>				
+				<th field="costos" width="30">Costos</th>
+				<th field="descto" width="30">Descto</th>
+				<th field="estado" width="30">Estado</th>
+				<th field="celular" width="100">Celular</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Nuevo</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Editar</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remover</a>
+	</div>
+	
+	<div id="dlg" class="easyui-dialog" style="width:400px;height:400px;padding:10px 20px"
+			closed="true" buttons="#dlg-buttons">
+		<div class="ftitle">Datos USUARIO</div>
+		<form id="fm" method="post" novalidate>
+			<div class="fitem">
+				<label>Usuario</label>
+				<input name="usuario" class="easyui-textbox" required="true">
+			</div>
+			<div class="fitem">
+				<label>Nombre</label>
+				<input name="nombre" class="easyui-textbox" required="true">
+			</div>
+			<div class="fitem">
+				<label>Clave</label>
+				<input name="clave" class="easyui-textbox">
+			</div>
+			<div class="fitem">
+				<label>Perfil</label>
+				<input name="perfil" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>Ejecutivo</label>
+				<input name="ejecutivo" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>Costos</label>
+				<input name="costos" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>Descto</label>
+				<input name="descto" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>Estado</label>
+				<input name="estado" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>Celular</label>
+				<input name="celular" class="easyui-textbox" >
+			</div>
+
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()" style="width:90px">OK</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
+	</div>
+
+	<!-- usuarios cocina -->
+	<!-- <table id="dgcocina" title=" USUARIOS COCINA " class="easyui-datagrid" style="width:80%;height:auto"
+			url="user_gertcocina.php"
+			toolbar="#toolbar" pagination="true"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr>
+				<th field="id" width="20">ID</th>
+				<th field="usuario" width="40">Usuario</th>
+				<th field="nombre" width="100">Nombre</th>
+				<th field="clave" width="30">Clave</th>
+				<th field="perfil" width="30">Perfil</th>
+				<th field="ejecutivo" width="100">Ejecutivo</th>				
+				<th field="costos" width="30">Costos</th>
+				<th field="descto" width="30">Descto</th>
+				<th field="estado" width="30">Estado</th>
+				<th field="celular" width="100">Celular</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUserCocina()">Nuevo</a>
+	</div> -->
+
+	<div id="dlgcocina" class="easyui-dialog" style="width:400px;height:400px;padding:10px 20px"
+			closed="true" buttons="#dlg-buttons">
+		<div class="ftitle">Datos USUARIO Cocina</div>
+		<form id="fmcocina" method="post" novalidate>
+			<div class="fitem">
+				<label>Usuario</label>
+				<input name="usuario" class="easyui-textbox" required="true">
+			</div>
+			<div class="fitem">
+				<label>Nombre</label>
+				<input name="nombre" class="easyui-textbox" required="true">
+			</div>
+			<div class="fitem">
+				<label>Clave</label>
+				<input name="clave" class="easyui-textbox">
+			</div>
+			<div class="fitem">
+				<label>Perfil</label>
+				<input name="perfil" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>edad</label>
+				<input name="edad" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>peso</label>
+				<input name="peso" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>estatura</label>
+				<input name="estatura" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>tarifa</label>
+				<input name="tarifa" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>pago</label>
+				<input name="pago" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>fechapago</label>
+				<input name="fechapago" class="easyui-textbox" >
+			</div>
+
+			<div class="fitem">
+				<label>mes</label>
+				<input name="mes" class="easyui-textbox" >
+			</div>
+
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUserCocina()" style="width:90px">OK</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
+	</div>
+
+
+	<script type="text/javascript">
+		var url;
+		function newUser(){
+			$('#dlg').dialog('open').dialog('setTitle','Nuevo USUARIO');
+			$('#fm').form('clear');
+			url = 'user_save.php';
+		}
+
+		function newUserCocina(){
+			$('#dlgcocina').dialog('open').dialog('setTitle','Nuevo USUARIO COCINA');
+			$('#fmcocina').form('clear');
+			url = 'user_savecocina.php';
+		}
+
+		function editUser(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$('#dlg').dialog('open').dialog('setTitle','Editar USUARIO');
+				$('#fm').form('load',row);
+				url = 'user_update.php?id='+row.id;
+			}
+		}
+		function saveUser(){
+			$('#fm').form('submit',{
+				url: url,
+				onSubmit: function(){
+					return $(this).form('validate');
+				},
+				success: function(result){
+					//var result = eval('('+result+')');
+					if (result.errorMsg){
+						$.messager.show({
+							title: 'Error',
+							msg: result.errorMsg
+						});
+					} else {
+						$('#dlg').dialog('close');		// close the dialog
+						$('#dg').datagrid('reload');	// reload the user data
+					}
+				}
+			});
+		}
+
+		function saveUserCocina(){
+			$('#fmcocina').form('submit',{
+				url: url,
+				onSubmit: function(){
+					return $(this).form('validate');
+				},
+				success: function(result){
+					//var result = eval('('+result+')');
+					if (result.errorMsg){
+						$.messager.show({
+							title: 'Error',
+							msg: result.errorMsg
+						});
+					} else {
+						$('#dlgcocina').dialog('close');		// close the dialog
+						$('#dgcocina').datagrid('reload');	// reload the user data
+					}
+				}
+			});
+		}
+		function destroyUser(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$.messager.confirm('Confirm','Esta seguro de remover el usuario: ' + row.usuario,function(r){
+					if (r){
+						$.post('user_destroy.php',{id:row.id},function(result){
+							if (result.success){
+								$('#dg').datagrid('reload');	// reload the user data
+							} else {
+								$.messager.show({	// show error message
+									title: 'Error',
+									msg: result.errorMsg
+								});
+							}
+						},'json');
+					}
+				});
+			}
+		}
+	</script>
+
+	<style type="text/css">
+		#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			display:inline-block;
+			width:80px;
+		}
+		.fitem input{
+			width:160px;
+		}
+	</style>
+</body>
+</html>

@@ -1,0 +1,1 @@
+<iframe src="secciones/estrategico/principal.html" frameborder="0" width=100% height=99.5%></iframe>

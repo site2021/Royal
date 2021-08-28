@@ -1,0 +1,1 @@
+<iframe src="secciones/pingpong/example.htm" frameborder="0" width=100% height=500></iframe>

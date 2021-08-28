@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache">
+ 	<meta http-equiv="Pragma" CONTENT="no-cache">
+
+	<link href="img/royal_ico.ico" type="image/x-icon" rel="shortcut icon" />
+	<title>ROYAL-Movil</title>
+
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/metro/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/mobile.css"> 
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/color.css"> 
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/icon.css">  
+
+	<link rel="stylesheet" type="text/css" href="css/movil.css">
+
+    <script type="text/javascript" src="jeasyui/jquery.min.js"></script>
+    <script type="text/javascript" src="jeasyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="jeasyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="jeasyui/locale/easyui-lang-es.js"></script>
+
+	<script type="text/javascript" src="lib/datagrid-detailview.js"></script>
+	<script type="text/javascript" src="lib/accounting.js"></script>
+	<script type="text/javascript" src="lib/movil.js"></script>
+
+	<script type="text/javascript">
+        function cellStyler(value,row,index){
+            if (value == 0){
+                return 'color:#cffccf';
+            }
+        }
+    </script>	
+
+</head>
+<body>
+	<!-- pagina: INICIO ////////////////////////////////////////////////////////////////////////////-->
+	<div id="inicio" class="easyui-navpanel" style="position:relative" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<div class="m-title">- BIENVENIDOS -</div>
+			</div>
+	        <div class="m-left">
+	            <a href="javascript:()" class="easyui-linkbutton" plain="true" 
+	            	style="color:#fff" outline="true">Ver 1.0
+	            </a>
+	        </div>
+
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>
+
+		</header>
+		<footer style="text-align:center">
+			<div>
+				<label class="digital" >I N T R A N E T</label><br>
+				<label class="digital" >M o v i l</label>
+			</div>
+			
+		</footer>
+
+		<div style="width:100%;margin-top:10%;display:block">
+			<img src="img/royal001.jpg" style="margin-left:10%;width:80%">			
+		</div>
+
+		<div class="bordes" style="margin-top:15%">	
+				<!-- variabel de control FULLSCREEN -->
+		        <div style="float:left;display:none">
+					<input id="xfull" name="xfull" class="easyui-textbox" style="width:20px" value="N">
+		        </div>
+	    </div>
+
+	    <div class="divC">
+         	<a id="btnNuevo" class="boton" onclick="login()">
+         		<labeL style="font-family:Arial">Iniciar</label>
+         	</a>
+	    </div>
+
+
+		<div class="footer" style="display:block">
+			
+		</div>
+
+		<!-- ventana de dialogo: LOGIN -->
+		<div id="dlg1" class="easyui-dialog" style="padding:10px;width:80%"
+			 data-options="inline:true,modal:true,closed:true,title:''">
+			<header style="padding:0px 1px 3px 0px;">
+				<div class="m-toolbar">
+	                <div class="m-title" style="color:#fff">Login</div>
+				</div>
+			</header> 
+			<footer>
+				<div class="m-toolbar" style="padding:6px">
+					<a href="javascript:void(0)" class="easyui-linkbutton" 
+					   style="background:#E6E6E6;color:#000;border-color:#BDBDBD;width:49%;height:35px" 
+					   onclick="validarUsuario()" data-options="iconCls:'icon-ok'">Entrar</a>
+
+					<a href="javascript:void(0)" class="easyui-linkbutton" 
+					   style="background:#E6E6E6;color:#000;width:49%;;border-color:#BDBDBD;height:35px" 
+					   onclick="cerrar('#dlg1')" data-options="iconCls:'icon-cancel'">Cancelar</a>
+				</div>
+			</footer>
+
+			<div style="margin-bottom:10px">
+				<input id="usuario" name="usuario" class="easyui-textbox" prompt="digitar USUARIO" 
+					   style="background-color:#F6CECE;width:100%;height:30px"
+					   data-options="iconCls:'icon-man'"
+					   value="">
+			</div>
+			<div>
+				<input id="clave" name="clave" class="easyui-textbox" type="password" prompt="digitar CLAVE" 
+					   style="width:100%;height:30px" data-options="iconCls:'icon-lock'" value="">
+			</div>
+		</div>
+	</div>
+
+	<!-- pagina: MENU ////////////////////////////////////////////////////////////////////////////-->
+	<div id="menu" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">MENU PRINCIPAL</span>
+			</div>
+            <div class="m-left">
+                <a href="javascript:void(0)" class="easyui-linkbutton m-back"  style="color:#fff"
+                	data-options="plain:true,outline:true" 
+                	onclick="irInicio()">Inicio</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>            
+		</header>
+
+		<div style="width:100%;margin-top:5%;display:block">
+			<img src="img/royal001.jpg" style="margin-left:10%;width:80%">			
+		</div>
+
+		<ul class="m-list" style="margin-top:10%">
+			<li id="mlista"><a href="javascript:void(0)" style="background:silver;font-weight:bold"
+				data-options="animation:'slide',direction:'left'"
+				onclick="irAlista()">Alistamientos</a></li>
+
+			<li id="minformes"><a href="javascript:void(0)" style="background:silver;font-weight:bold"
+				data-options="animation:'slide',direction:'left'"
+				onclick="irInformes()">Informes</a></li>
+			
+		</ul>
+
+		<div class="footer">
+			<div class="footertexto">
+				<label>Usuario:</label>
+				<input id="suser" name="suser" class="easyui-textbox" 
+					   style="width:15%;height:25px" data-options="readonly:'true'">
+				<input id="snombre" name="snombre" class="easyui-textbox" 
+					   style="width:50%;height:25px" data-options="readonly:'true'">
+				<input id="sciudad" name="sciudad" class="easyui-textbox" 
+					   style="width:10%;height:25px" data-options="readonly:'true'">
+
+			</div>
+			
+		</div>
+	</div>
+
+	<!-- pagina: alistamientos /////////////////////////////////////////////////////////////////////-->
+	<div id="alista" class="easyui-navpanel" data-options="bodyCls:'hb'">
+		<header>
+			<div class="m-toolbar">
+				<span class="m-title">Alistamientos</span>
+			</div>
+            <div class="m-left">
+                <a href="#" class="easyui-linkbutton m-back" 
+                   data-options="plain:true,outline:true,back:true"
+                   style="color:#fff" >Atras</a>
+            </div>
+	        <div class="m-right">
+	            <a href="javascript:toggleFullScreen(0)" class="easyui-linkbutton m-next" plain="true" 
+	            	style="color:#fff" outline="true">Full
+	            </a>
+	        </div>            
+		</header>
+
+		<div id="toolbaralista">
+			<input id="afecha" name="afecha" class="easyui-datebox" style="width:32%"
+				data-options="disabled:true,editable:false,formatter:myformatter,parser:myparser">
+
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" 
+				style="margin-left:5%"
+				onclick="validarRec()"></a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="true" 
+				style="margin-left:5%"
+				onclick="printAlista()"></a>
+
+		</div>
+		<table id="dgalista" class="easyui-datagrid" style="width:100%;height:500px"
+			url="json/alista_resumen.php"
+			toolbar="#toolbaralista"
+			pagination="false"
+			rownumbers="false" fitColumns="false" singleSelect="true">
+			<thead>
+				<tr>					
+	            	<th field="interno" width="70px">interno</th>					
+	            	<th field="fecha" width="70px">fecha</th>					
+					<th field="cuantos" width="70px" align="center">restringe</th>
+				</tr>
+			</thead>
+		</table>
+
+		<!-- DIALOG: entrada de datos de alistamientos //////////////////////////////////////////// -->
+		<div id="dlgalista" class="easyui-dialog" title="<font color=white>DATOS</font>"
+			data-options="modal:true,closable:true"
+			style="font-family:Arial;margin:0 0 0 0;width:99%"
+			closed="true" buttons="#alista-buttons">
+			<div id="tbdatos">
+	            <!-- botones de consulta de S,N o todos /////////////////////////////////////////// -->
+	            <a href="javascript:void(0)" class="easyui-linkbutton"  
+					style="background:#F2F5A9;color:#000;border-color:#000;width:10%;height:25px;margin-left:5%"
+					onclick="mostrarDg('*')"
+					data-options="">*</a>
+	            <a href="javascript:void(0)" class="easyui-linkbutton"  
+					style="background:#F2F5A9;color:#000;border-color:#000;width:10%;height:25px;margin-left:5%"
+					onclick="mostrarDg('N')"
+					data-options="">N</a>
+	            <a href="javascript:void(0)" class="easyui-linkbutton"  
+					style="background:#F2F5A9;color:#000;border-color:#000;width:10%;height:25px;margin-left:5%"
+					onclick="mostrarDg('S')"
+					data-options="">S</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton"
+					style="margin-left:5%"
+					onclick="reject()"
+					data-options="iconCls:'icon-undo',plain:true"></a>					
+			</div>
+			<table id="dg" class="easyui-datagrid" style="width:100%;height:410px"
+				url='json/alista_getdata.php'
+				toolbar="#tbdatos"
+				data-options="			
+	                singleSelect: true,
+	                fitColumns:true,
+	                onClickRow: onClickRow,
+	                rowStyler: function(index,row){
+	                    if (row.nivel2 == 0){
+	                        return 'background-color:#cffccf;font-weight:bold;';
+	                    }
+                	}
+	            ">
+				<thead>
+					<tr>
+						<th data-options="field:'id',width:10,hidden:true">id</th>
+						<th data-options="field:'nivel1',width:30">#</th>
+						<th data-options="field:'nivel2',width:20,styler:cellStyler">#</th>
+						<th data-options="field:'detalle',width:300">detalle</th>
+						<th data-options="field:'digitar',width:30,align:'center', 
+							editor:{type:'checkbox',options:{on:'S',off:'N'}}"">res</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="alista-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+			   onclick="grabarAlista()" style="width:90px">OK</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" 
+			   onclick="cerrar('#dlgalista')" style="width:90px">Cancelar</a>
+		</div>
+
+	</div>	
+
+
+	<!-- SCRIPT GENERALES ///////////////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+		function validarUsuario(){
+			var xusuario = getVar('usuario',0);
+			var xclave = getVar('clave',0);
+
+			//alert(xusuario+' '+xclave);
+
+			// buscar x usuario 
+			var xaccion = 'C';
+			var xtabla = 'tbusuarios';
+
+			var xcamposCondicion = ['usuario','clave'];
+			var xvaloresCondicion = [xusuario,xclave];
+
+			var xorden = 'usuario';
+
+			$.post('json/myFileDB.php',
+				{accion:xaccion, tabla:xtabla, camposCondicion:xcamposCondicion, valoresCondicion:xvaloresCondicion,
+				 ordenar:xorden},
+				function(result){
+					var xreg = result.rowcount;
+					if(xreg>0){
+						var reg = result.items;
+						var xnombre = reg[0]['nombre'];
+						var xciudad = reg[0]['ciudad'];
+
+						setVar('suser',0,xusuario);
+						setVar('snombre',0,xnombre);
+						setVar('sciudad',0,xciudad);
+
+						cerrar('#dlg1');
+						mostrarMenu('01');
+						$.mobile.go('#menu');
+
+					}else {
+						validarConductor();
+
+					}
+				},
+			'json');
+
+		}
+
+		function validarConductor(){
+			var xusuario = getVar('usuario',0);
+			var xclave = getVar('clave',0);
+
+			// validar claves usuario/conductor
+			if(xclave!='royal'+xusuario){
+				$.messager.alert('Mensaje', 'error USUARIO/CLAVE');
+				return;
+			}
+
+			var xaccion = 'C';
+			var xtabla = 'tbdatosveh';
+
+			var xcamposCondicion = ['interno'];
+			var xvaloresCondicion = [xusuario];
+
+			var xorden = 'interno';
+
+			$.post('json/myFileDB.php',
+				{accion:xaccion, tabla:xtabla, camposCondicion:xcamposCondicion, valoresCondicion:xvaloresCondicion,
+				 ordenar:xorden},
+				function(result){
+					if(result.success){
+						var reg = result.items;
+						var xnombre = reg[0]['nombreconductor'];						
+
+						setVar('suser',0,xusuario);
+						setVar('snombre',0,xnombre);
+						setVar('sciudad',0,'');
+
+						cerrar('#dlg1');
+						mostrarMenu('02');
+						$.mobile.go('#menu');
+
+					}else {
+						$.messager.alert('Mensaje', 'error USUARIO/CLAVE');
+
+					}
+				},
+			'json');
+
+		}
+
+		function login(){
+			var efull = getVar('xfull',0);
+			if(efull=='N'){			
+				toggleFullScreen();
+				setVar('xfull',0,'S');				
+			}
+
+			setVar('usuario',0,'');
+			setVar('clave',0,'');
+
+			pantalla('#dlg1');
+			
+		}
+
+	</script>
+
+	<!-- SCRIPT evaluar cambio en dg ////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+	</script>
+
+	<!-- SCRIT edicion de la grilla /////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+        var editIndex = undefined;
+        function endEditing(){
+            if (editIndex == undefined){return true}
+            if ($('#dg').datagrid('validateRow', editIndex)){
+                $('#dg').datagrid('endEdit', editIndex);
+                editIndex = undefined;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function updateTabla(pindex){
+        	accept();
+        	$('#dg').datagrid('selectRow', pindex);
+        	row = $("#dg").datagrid('getSelected');
+        	if(row){
+        		var xid = row['id'];
+        		var xdigitar = row['digitar'];
+
+				var xaccion = 'U';
+				var xtabla = 'tbalistatmp';
+
+				var xcamposActualizar = ['digitar'];
+				var xvaloresActualizar = [xdigitar];
+
+				var xcamposCondicion = ['id'];
+				var xvaloresCondicion = [xid];
+
+				$.post('json/myFileDB.php',
+					{accion:xaccion, tabla:xtabla, camposActualizar:xcamposActualizar, valoresActualizar:xvaloresActualizar,
+					 camposCondicion:xcamposCondicion, valoresCondicion:xvaloresCondicion},
+					function(result){
+						if(!result.success){
+							alert(result.sql);
+							// $.messager.alert('Mensaje','fallo ACTUALIZACION!!!');
+						}
+					},
+				'json');
+				
+        	}
+        	
+        }
+
+        function onClickRow(index){        	
+        	var row = $("#dg").datagrid('getSelected');
+        	if(row['nivel2']!=0){
+        		// alert(editIndex+'-'+index);
+        		// el indice anterior que necesito esta en editIndex
+        		// para actualizar la tabla
+        		updateTabla(editIndex);
+
+	            if (editIndex != index){
+	                if (endEditing()){	                	
+	                    $('#dg').datagrid('selectRow', index)
+	                            .datagrid('beginEdit', index);
+	                    editIndex = index;
+	                } else {	                	
+	                    $('#dg').datagrid('selectRow', editIndex);
+	                }
+	            }
+			}	        
+        }
+        function removeit(){
+            if (editIndex == undefined){return}
+            $('#dg').datagrid('cancelEdit', editIndex)
+                    .datagrid('deleteRow', editIndex);
+            editIndex = undefined;
+        }
+        function accept(){
+            if (endEditing()){
+                $('#dg').datagrid('acceptChanges');
+            }
+        }
+        function reject(){
+            $('#dg').datagrid('rejectChanges');
+            editIndex = undefined;
+        }		
+	</script>
+
+	<!-- SCRIPT Alistamientos ///////////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+		function validarRec(){
+			var xinterno = getVar('suser',0);
+			var xfecha = getVar('afecha',2);
+
+			var xaccion = 'C';
+			var xtabla = 'vst_alistamientos';
+
+			var xcamposCondicion = ['interno','fecha'];
+			var xvaloresCondicion = [xinterno,xfecha];
+
+			var xorden = 'interno';
+
+			$.post('json/myFileDB.php',
+				{accion:xaccion, tabla:xtabla, camposCondicion:xcamposCondicion, valoresCondicion:xvaloresCondicion,
+				 ordenar:xorden},
+				function(result){
+					if(result.success){
+						$.messager.alert('Mensaje','registro YA EXISTE!!!');
+					}else {
+						newRec();
+					}
+				},
+			'json');
+
+		}
+
+		function newRec(){
+			var xinterno = getVar('suser',0);
+			
+			$.post('json/alista_init.php',
+				{interno:xinterno},
+				function(result){
+					if(result.success){
+						refreshdg(xinterno,'*');
+						pantalla('#dlgalista');
+					}
+				},
+			'json');
+
+		}
+
+		function mostrarDg(pcuales){
+			// actualizar datos del actual, si esta seleccionado
+			var row = $("#dg").datagrid('getSelected');
+			if(row){
+				xindex = $("#dg").datagrid('getRowIndex',row);
+				updateTabla(xindex);
+
+			}
+
+			var xinterno = getVar('suser',0);
+			refreshdg(xinterno,pcuales);
+		}
+
+		function refreshdg(pinterno,pcuales){
+			$("#dg").datagrid('load',{
+				interno:pinterno,
+				cuales:pcuales
+			});
+		}
+
+		function grabarAlista(){
+			$.messager.confirm('Confirm', 'esta seguro de GRABAR Alistamiento?', function(r){
+				if (r){
+					// variables de informacion general
+					var xinterno = getVar('suser',0);
+					var xfecha = getVar('afecha',2);
+
+					// liberar la fila actual
+					// accept();
+
+					$.post('json/alista_grabar.php',
+						{interno:xinterno, fecha:xfecha},
+						function(result){
+							if(result.success){
+								$.messager.alert('Mensaje','alistamiento grabado EXITOSAMENTE!!!');
+								// esto es zona 51 ni por espacio aereo			
+
+							}else {	
+								$.messager.alert('Mensaje','problemas grabar!!!');
+							}
+						},
+					'json');
+
+					updateDg();
+					cerrar('#dlgalista');
+
+
+				}
+			});			
+
+		}
+
+		function updateDg(){
+			var xinterno = getVar('suser',0);
+
+			$("#dgalista").datagrid('load',{
+				interno:xinterno
+			}).datagrid('reload');
+
+		}
+
+		function printAlista(){
+			var row = $("#dgalista").datagrid('getSelected');
+			if(row){
+				var xinterno = row['interno'];
+				var xfecha = row['fecha'];
+				
+				var params  = 'width='+screen.width;
+	    		params += ', height='+screen.height;
+	    		params += ', top=0, left=0'
+	    		params += ', fullscreen=yes';
+
+	    		window.open ("alistaPDF.php?interno="+xinterno+"&fecha="+xfecha, params);			
+
+			}else {
+				$.messager.alert('Mensaje','no hay SELECCION!!!');
+
+			}
+		}
+
+	</script>
+
+</body>
+</html>

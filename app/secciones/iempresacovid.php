@@ -1,0 +1,1 @@
+<iframe id="ipage" src="secciones/encuesta/encuesta.html" frameborder="0" width=100% height=95%></iframe>

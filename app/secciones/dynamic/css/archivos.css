@@ -1,0 +1,186 @@
+.hc {
+	background-color: #e6e6e6;
+    border-color: #fff;
+}
+.hb {
+    border-color: #fff;
+}
+/* visor de archivo ------------------------------------------------------------------------------- */
+#dlgVisor-container {
+    position: absolute;
+    width: 99%;
+    height: 98%;
+}
+#div-visor {
+    position: absolute;
+    top: 3%;
+    left: 2%;
+    width: 54%;
+    height: 88%;
+    border: 1px solid #5f5e5e;  
+}
+#div-archivos {
+    position: absolute;
+    top: 3%;
+    left: 56.5%;
+    width: 42%;
+    height: 88%;
+    border: 1px solid #5f5e5e;
+}
+.tablearchivos {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.div-archivos-grid {
+    position: absolute;
+    width: 100%;
+    height: 88%;
+}
+#div-archivos-barra {
+    position: absolute;
+    background: #e6e6e6;
+    width: 99%;
+    height: 11%;    
+    bottom: 0.5%;
+    left: 0.5%;
+}
+#div-visor-archivo {
+    position: absolute;
+    width: 100%;
+    height: 89%;
+    left: 0%;
+    top: 0%;
+    background-color: #fff;
+}
+#div-visor-barra {
+    position: absolute;
+    background: #e6e6e6;
+    width: 99%;
+    height: 11%;
+    left: 0.5%;
+    bottom: 0.5%;
+}
+#visor-container {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    top: 0%; 
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    margin: auto;
+    /*border: 1px solid #f2f2f2;*/
+}
+
+/* style para visores */
+#visor-jpg, #visor-jpg-diario, #visor-jpg-mes, #visor-pdf, #visor-mp4 {
+    position: absolute;    
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    margin: auto;
+}
+#visor-jpg {
+    width: 60%;
+    height: 80%;
+}
+#visor-jpg-diario {
+    width: 100%;
+    height: 15%;
+}
+#visor-jpg-mes {
+    width: 20%;
+    height: 90%;
+}
+#visor-pdf {
+    width: 100%;
+    height: 100%;    
+}
+#visor-mp4 {
+    width: 100%;
+    height: 80%;
+}
+
+/* adicion de la clase del visor dinamico --------------------------------------------------------- */
+.visor-container-class {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.visor-container-img {
+	border: 1px solid #c0c0c0;
+}
+#visor-modal {
+	position: absolute;
+	width: 0%;
+	height: 0%;
+	top: 50%;
+	left: 33%;
+	background-color: rgba(0,0,0,0.9);
+	visibility: hidden;
+	z-index: 99999;
+	transition: 0.5s;
+}
+/* perdon por esta sapa! pero la necesito para la modal del visor de imagenes --------------------- */
+.closebtn {
+	display: inline-block;
+	text-decoration: none;
+	color: #cccccc;
+	font-size: 3vw;
+}
+#visor-modal-titulo {
+	position: absolute;
+	width: 5%;
+	height: 5%;
+	top: 3%;
+	right: 11%;
+}
+.btnmodal {
+	position: absolute;
+	width: 3.5%;
+	height: 7%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background-color: #4d4d4d;
+	color: #c0c0c0;
+	border: 1px solid #595959;
+	cursor: pointer;
+	transition: 0.5s;
+}
+.btnmodal:hover {
+	transform: scale(1.3);
+	box-shadow: 0 0 10px #fff;
+}
+.btnmodal img {
+	width: 45%;
+}
+#btnplus {
+	top: 70%;
+	right: 13%;
+}
+#btnexpand {
+	top: 79%;
+	right: 13%;
+}
+#btnminus {
+	top: 88%;
+	right: 13%;
+}
+#visor-modal-img {
+	position: absolute;
+	overflow: auto;
+	width: 60%;
+	height: 90%;
+	top: 5%;
+	left: 20%;
+	background-color: rgba(255,255,255,0.1);
+	border: 1px solid #000;	
+}
+#visor-modal-img-archivo {
+	position: absolute;
+	border: 1px solid red;
+}

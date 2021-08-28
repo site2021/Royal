@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ventas-tarifas</title>
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/color.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/demo/demo.css">
+	
+	<script type="text/javascript" src="../../jeasyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../jeasyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../jeasyui/locale/easyui-lang-es.js"></script>
+
+	<script type="text/javascript" src="../js/accounting.js"></script>
+	<script type="text/javascript" src="../js/datagrid-filter.js"></script>
+
+	<!-- script manejo de filtro -->
+    <script type="text/javascript">
+		$(function(){
+			$("#cmbproductos").combobox('setValue', 1);
+
+
+			//$("#xdg").datagrid('enableFilter');
+		})
+    </script>
+
+	<style>
+		.numberbox .textbox-text{
+		  text-align: right;		  
+		}
+	</style>    
+
+	
+</head>
+<body>	
+	<table id="dg" title=" TARIFAS" class="easyui-datagrid" style="width:90%;height:410px"
+		url="tarifas_get.php"
+		toolbar="#toolbar" pagination="false"
+		rownumbers="false" fitColumns="true" singleSelect="true">		
+		<thead>		
+			<tr>
+				<th field="id" width="20" hidden="true">ID</th>
+				<th field="id_producto" width="20" hidden="true">ID_PRO</th>
+				<th field="nombre" width="350">NOMBRE</th>
+				<th field="bus40" width="130" align="right"
+					data-options="
+							formatter: function(value,row){
+							return accounting.formatNumber(value,0);
+							}">bus40
+				</th>
+				<th field="buseta2528" width="130" align="right"
+					data-options="
+							formatter: function(value,row){
+							return accounting.formatNumber(value,0);
+							}">buseta2528
+				</th>
+				<th field="buseta1924" width="130" align="right"
+						data-options="
+							formatter: function(value,row){
+							return accounting.formatNumber(value,0);
+							}">buseta1924
+				</th>
+				<th field="micro1611" width="130" align="right"
+						data-options="
+							formatter: function(value,row){
+							return accounting.formatNumber(value,0);
+							}">micro1611
+				</th>
+				<th field="h110" width="130" align="right"
+						data-options="
+							formatter: function(value,row){
+							return accounting.formatNumber(value,0);
+							}">h110
+				</th>
+				<th field="camioneta4" width="130" align="right"
+						data-options="
+							formatter: function(value,row){
+							return accounting.formatNumber(value,0);
+							}">camioneta4
+				</th>
+				<th field="duxter40idareg" width="130" align="right"
+						data-options="
+							formatter: function(value,row){
+							return accounting.formatNumber(value,0);
+							}">duxter40idareg
+				</th>
+				<th field="duxter40tray" width="130" align="right"
+						data-options="
+							formatter: function(value,row){
+							return accounting.formatNumber(value,0);
+							}">duxter40tray
+				</th>
+			</tr>
+		</thead>	
+	</table>	
+	<div id="toolbar">
+		<div style="float:left">
+			<input id="cmbproductos" name="cmbproductos" class="easyui-combobox" 
+				   url="comboproductos.php" style="width:380px"
+				   data-options="editable:false,valueField:'codigo',textField:'nombre'">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newTarifa()">Nuevo</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editTarifa()">Editar</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyTarifa()">Remover</a>			
+		</div>
+		<div style="float:left;margin-left:50px">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-excel" plain="true" onclick="tarifasXLS()">Excel</a>
+		</div>
+		<div style="float:right">			
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="limpiarFiltro()"></a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="mostrarTarifas()"></a>
+			<input id="descripcion" name="descripcion" class="easyui-textbox"  style="width:200px" >
+		</div>
+
+	</div>
+	
+	<div id="dlg" class="easyui-dialog" style="width:55%;height:450px;padding:10px 20px"
+		closed="true" buttons="#dlg-buttons">
+		<div class="ftitle">Datos TARIFAS</div>
+		<form id="fm" method="post" novalidate>
+			<div class="fitem">
+				<label>PRODUCTO</label>
+				<input id="producto" name="producto" class="easyui-combobox" 
+					   url="comboproductos.php" style="width:380px"
+					   data-options="readonly:true,editable:false,valueField:'codigo',textField:'nombre'">
+
+			</div>
+			<div class="fitem">
+				<label>DESTINO</label>
+				<input name="nombre" class="easyui-textbox"  style="width:380px" >
+			</div>
+			<div class="fitem">
+				<label>BUS (40 PAX)</label>
+				<input name="bus40" class="easyui-numberbox"					
+					data-options="align:'right',precision:0,groupSeparator:',',"
+				>
+			</div>
+			<div class="fitem">
+				<label>BUSETAS (25-28 PAX)</label>
+				<input name="buseta2528" class="easyui-numberbox" 
+					data-options="align:'right',precision:0,groupSeparator:',',"
+				>
+			</div>
+			<div class="fitem">
+				<label>BUSETA (19-24 PAX)</label>
+				<input name="buseta1924" class="easyui-numberbox" 
+					data-options="align:'right',precision:0,groupSeparator:',',"
+				>
+			</div>
+			<div class="fitem">
+				<label>MICRO (16-11 PAX)</label>
+				<input name="micro1611" class="easyui-numberbox" 
+					data-options="align:'right',precision:0,groupSeparator:',',"
+				>
+			</div>			
+			<div class="fitem">
+				<label>H1 (10 PAX)</label>
+				<input name="h110" class="easyui-numberbox" 
+					data-options="align:'right',precision:0,groupSeparator:',',"
+				>
+			</div>			
+			<div class="fitem">
+				<label>CAMIONETA (4 PAX)</label>
+				<input name="camioneta4" class="easyui-numberbox" 
+					data-options="align:'right',precision:0,groupSeparator:',',"
+				>
+			</div>			
+			<div class="fitem">
+				<label>DUXTER (4 PAX) IDA</label>
+				<input name="duxter40idareg" class="easyui-numberbox" 
+					data-options="align:'right',precision:0,groupSeparator:',',"
+				>
+			</div>
+			<div class="fitem">
+				<label>DUXTER (4 PAX) TRA </label>
+				<input name="duxter40tray" class="easyui-numberbox" 
+					data-options="align:'right',precision:0,groupSeparator:',',"
+				>
+			</div>
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveTarifa()" style="width:90px">OK</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
+	</div>
+
+	<!-- SCRIPT onchange ////////////////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+		$("#cmbproductos").combobox({
+			onChange: function(row){
+				mostrarTarifas();
+			}
+		});
+
+		$("#descripcion").textbox({
+			onChange: function(ROW){
+				mostrarTarifas();
+			}
+		})
+	</script>
+
+	<!-- SCRIPT function ////////////////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+		function mostrarTarifas(){
+			var xproducto = $("#cmbproductos").combobox('getValue');
+			var xdescripcion = $("#descripcion").textbox('getValue');
+
+			// alert(xproducto+' '+xdescripcion);
+
+			$("#dg").datagrid('load',{
+				producto: xproducto,
+				descripcion: xdescripcion
+			});
+
+			cambiarTitulos(xproducto);
+
+		}
+
+		function cambiarTitulos(pproducto){
+			
+			var dg = $('#dg');
+			var columns = dg.datagrid('options').columns;
+
+			// reemplazar titulos desde la columna 2 
+			var qcolumna = 3;
+			var url='lista_txautomotores.php?producto='+pproducto;
+			$.getJSON(url,function(registros){
+				$.each(registros, function(i,registro){
+					columns[0][qcolumna].title = registro.nombre;
+					dg.datagrid({columns:columns});
+					qcolumna = qcolumna + 1;					
+
+				});
+
+			});
+		}
+
+		function limpiarFiltro(){
+			$("#descripcion").textbox('setValue','');
+		}
+
+	</script>
+
+	<!-- FUNCTION mantenimiento tbtarifas ///////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+		var url;
+
+		// asignar valor de combo general a combo de tarifa
+		function valorComboTarifas(){
+			var xproducto = $("#cmbproductos").combobox('getValue');
+			$("#producto").combobox('setValue', xproducto);
+
+		}
+
+		function newTarifa(){
+			$('#dlg').dialog('open').dialog('setTitle','Nueva TARIFA');
+			$('#fm').form('clear');
+
+			valorComboTarifas();
+			url = 'tarifa_save.php';
+
+		}
+
+		function editTarifa(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$('#dlg').dialog('open').dialog('setTitle','Editar TARIFA');
+				$('#fm').form('load',row);
+
+				valorComboTarifas();
+				url = 'tarifa_update.php?id='+row.id;
+
+			}
+		}
+
+		function saveTarifa(){
+			$('#fm').form('submit',{
+				url: url,
+				onSubmit: function(){
+					return $(this).form('validate');
+				},
+				success: function(result){
+					//var result = eval('('+result+')');
+					if (result.errorMsg){
+						$.messager.show({
+							title: 'Error',
+							msg: result.errorMsg
+						});
+					} else {
+						$('#dlg').dialog('close');		// close the dialog
+						$('#dg').datagrid('reload');	// reload the user data
+					}
+				}
+			});
+		}
+
+		function destroyTarifa(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$.messager.confirm('Confirm','Esta seguro de remover la tarifa: ' + row.nombre,function(r){
+					if (r){
+						$.post('tarifa_destroy.php',{id:row.id},function(result){
+							if (result.success){
+								$('#dg').datagrid('reload');	// reload the user data
+							} else {
+								$.messager.show({	// show error message
+									title: 'Error',
+									msg: result.errorMsg
+								});
+							}
+						},'json');
+					}
+				});
+			}
+		}
+	</script>
+
+	<!-- STYLE formato de pantalla edicion //////////////////////////////////////////////////////// -->
+	<style type="text/css">
+		#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			display:inline-block;
+			width:150px;
+		}
+		.fitem input{
+			width:100px;
+		}
+	</style>
+
+	<!-- SCRIPT: reporte tarifas excel //////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+		function tarifasXLS(){
+			var xproducto = $("#cmbproductos").combobox('getValue');
+			var nproducto = $("#cmbproductos").combobox('getText');
+
+			location.assign("tarifasExcel.php?producto="+xproducto+"&nproducto="+nproducto);
+
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* tooltips --------------------------------------------------------*/
+/* .tdivg - division botones editar guia - texto -120%              */
+.tdiv, .tdivg {
+    position: relative;
+    display: inline-block;
+	float:left;
+	margin-left:5px;
+	margin-right: 5px;			    
+}
+
+.tdiv .tooltiptext, .tdivg .tooltiptext  {
+    position: absolute;
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 50;
+    left: 50%;
+    margin-left: -60px;
+
+}
+
+.tdiv .tooltiptext {
+    top: 150%;
+}
+
+.tdivg .tooltiptext {
+    top: -120%;   
+}
+
+.tdiv .tooltiptext::after {    
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+
+.tdivg .tooltiptext::after {    
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+
+.tdiv .tooltiptext::after {
+    content: "";
+}
+
+.tdivg .tooltiptext::after {
+    content: "";
+    bottom: -25%;
+}
+
+
+.tdiv:hover .tooltiptext, .tdivg:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* botones ----------------------------------------------------------*/
+.boton_apagado {
+   	display:block;
+    width:30px;
+    height:30px;
+    line-height:30px;
+    border: 3px solid #f5f5f5;
+    border-radius: 50%;
+    color:#fff;
+    background: #BF3D3D;
+    box-shadow: 2px 2px 1px #000;
+    opacity: 0.3;
+	pointer-events: none;
+		cursor: default;
+}
+
+.boton {
+   	display:block;
+    width:32px;
+    height:32px;
+    line-height:30px;
+    border: 3px solid #848484;
+    border-radius: 15%;
+    color:#fff;
+    background: #;
+    box-shadow: 2px 2px 1px #000;
+
+}
+
+.boton:hover {
+    background: #EF3C39;
+    border: 3px solid #ff0;
+    box-shadow: 0 0 20px #ff0;
+
+}	
+
+.bordes {
+	float:left;
+	border:solid 1px silver;				
+	/* EF3C39 */
+	padding:2px 10px 5px 5px;
+}
+
+.ldiv {
+	float:left;
+	margin-left:10px;
+	margin-right: 10px;
+
+}
+.rdiv {
+	float:right;				
+}
+.img {
+	width:30px;
+}

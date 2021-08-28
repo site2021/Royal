@@ -1,0 +1,46 @@
+<?php
+
+$vigencia = htmlspecialchars($_REQUEST['vigencia']);
+$colegio = htmlspecialchars($_REQUEST['colegio']);
+$barrio = htmlspecialchars($_REQUEST['barrio']);
+$comuna = htmlspecialchars($_REQUEST['comuna']);
+$ciudad = htmlspecialchars($_REQUEST['ciudad']);
+$tarifavigente = htmlspecialchars($_REQUEST['tarifavigente']);
+$tarifabl = htmlspecialchars($_REQUEST['tarifabl']);
+$tarifaaso = htmlspecialchars($_REQUEST['tarifaaso']);
+$mediatv = htmlspecialchars($_REQUEST['mediatv']);
+$mediabl = htmlspecialchars($_REQUEST['mediabl']);
+$mediata = htmlspecialchars($_REQUEST['mediata']);
+$dosdirtv = htmlspecialchars($_REQUEST['dosdirtv']);
+$dosdirbl = htmlspecialchars($_REQUEST['dosdirbl']);
+$dosdirta = htmlspecialchars($_REQUEST['dosdirta']);
+
+include '../../control/conex.php';
+
+$sql = "INSERT INTO tbdatosnew(vigencia,colegio,barrio,comuna,ciudad,tarifavigente,tarifabl,tarifaaso,mediatv,mediabl,mediata,dosdirtv,dosdirbl,dosdirta)
+		VALUES('$vigencia','$colegio','$barrio','$comuna','$ciudad','$tarifavigente','$tarifabl','$tarifaaso','$mediatv','$mediabl','$mediata','$dosdirtv','$dosdirbl','$dosdirta')";
+
+$result = @mysqli_query($conexion, $sql);
+
+if ($result){
+	echo json_encode(array(
+		'id' => mysqli_insert_id(),
+		'vigencia' => $vigencia,
+		'colegio' => $colegio,
+		'barrio' => $barrio,
+		'comuna' => $comuna,
+		'ciudad' => $ciudad,
+		'tarifavigente' => $tarifavigente,
+		'tarifabl' => $tarifabl,
+		'tarifaaso' => $tarifaaso,
+		'mediatv' => $mediatv,
+		'mediabl' => $mediabl,
+		'mediata' => $mediata,
+		'dosdirtv' => $dosdirtv,
+		'dosdirbl' => $dosdirbl,
+		'dosdirta' => $dosdirta,
+	));
+} else {
+	echo json_encode(array('errorMsg'=>'Some errors occured.'));
+}
+?>

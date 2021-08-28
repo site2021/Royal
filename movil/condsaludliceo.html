@@ -1,0 +1,206 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
+	<link rel="stylesheet" type="text/css" href="../app/jeasyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../app/jeasyui/themes/icon.css">
+
+	<link rel="stylesheet" type="text/css" href="../app/css/estilo.css">
+	<link rel="stylesheet" type="text/css" href="../app/css/estilotabla.css">
+	<script type="text/javascript" src="../app/jeasyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../app/jeasyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../app/jeasyui/locale/easyui-lang-es.js"></script>
+
+	<script type="text/javascript" src="lib/datagrid-filter.js"></script>
+	<script type="text/javascript" src="lib/accounting.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/tooltips.css">
+
+	<!-- Busqueda x Contenido /////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+		$.fn.combobox.defaults.filter = function(q,row){
+		      var opts = $(this).combobox('options');
+		      return row[opts.textField].toUpperCase().indexOf(q.toUpperCase()) >= 0;
+		};
+	</script>	
+
+	<style type="text/css">
+		body {
+			height: 100%;
+			padding: 1%;
+		}	
+		.botonera {		
+			background:#D8D8D8;
+			margin-top:1px;
+			margin-bottom:1px;
+			width:100%;
+			height:36px;	
+
+		}
+		.hc {
+			background: #92D050;
+		}
+		#dlgregistro, #dlgrutas {
+			overflow: hidden;
+		}
+
+	</style>
+
+	<!-- filter Lib - /////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript">
+		$(function(){
+			$("#dgmantenimiento").datagrid('enableFilter');
+			$("#dgalista").datagrid('enableFilter');			
+			$("#dgvehiculos").datagrid('enableFilter');			
+		})
+	</script>
+
+</head>
+<body>
+	<!-- botones para acciones principales //////////////////////////////////////////////////////// -->
+	<div class="botonera">
+	 
+	    <div class="bordes" style="margin-left:10px">
+	    	<div class="tdiv">
+	         	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-excel" plain="true" onclick="printEncuestaLiceo()">Descargar EXCEL</a>
+	        </div>
+	        
+	    </div>
+	</div>
+		<table id="dgcondsaludliceo" class="easyui-datagrid" title="CONDICIONES DE SALUD" style="width:100%;height:500px;margin-top:50px;"
+			url="json/condsaludliceo_get.php"
+			headerCls="hc"
+			rownumbers="true" fitColumns="false" singleSelect="true">
+			<thead>
+				<tr>					
+	            <th field="fechaencuesta" width="300">Fecha</th>
+				<th field="nombreencuesta" width="300">Nombre</th>
+				<th field="entidadencuesta" width="300">Entidad</th>
+				<th field="rutaencuesta" width="200">Ruta</th>
+				<th field="internoencuesta" width="200">Interno</th>
+				<th field="jornadaencuesta" width="200">Jornada</th>
+				<th field="temperaturacasa" width="200" formatter="formatPrice">Temp Casa</th>	
+				<th field="temperaturaaux" width="200" formatter="formatPrice">Temp Aux</th>	
+				<th field="tos" width="200" formatter="formatPrice2">Tos</th>			
+				<th field="malestar" width="200" formatter="formatPrice2">Malestar</th>
+				<th field="difrespirar" width="200" formatter="formatPrice2">Dificultad para respirar</th>	
+				<th field="diarrea" width="200" formatter="formatPrice2">Diarrea</th>		
+				<th field="olfatogusto" width="200" formatter="formatPrice2">Perdida olfato o gusto</th>	
+				<th field="fuerapais" width="200" formatter="formatPrice2">Fuera Pais</th>	
+				<th field="contactosospechoso" width="200" formatter="formatPrice2">Contacto sospechoso</th>
+				<th field="cuarentena" width="200" formatter="formatPrice2">Cuarentena</th>	
+				<th field="personacuarentena" width="200" formatter="formatPrice2">Persona en cuarentena</th>	
+				<th field="compromiso" width="200">Compromiso</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+
+	
+
+	<script type="text/javascript">
+        function myformatter(date){
+            var y = date.getFullYear();
+            var m = date.getMonth()+1;
+            var d = date.getDate();
+            return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+        }
+        function myparser(s){
+            if (!s) return new Date();
+            var ss = (s.split('-'));
+            var y = parseInt(ss[0],10);
+            var m = parseInt(ss[1],10);
+            var d = parseInt(ss[2],10);
+            if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+                return new Date(y,m-1,d);
+            } else {
+                return new Date();
+            }
+        }
+
+        function formatPrice(temperaturacasa,row){
+            // if (tos == 'SI'){
+            //     return '<span style="color:red;">('+tos+')</span>';
+            // } else {
+            //     return tos;
+            // }
+            if (temperaturacasa >= 37.6){
+                return '<span style="color:red;">('+temperaturacasa+')</span>';
+            } else {
+                return temperaturacasa;
+            }
+        }
+
+        function formatPrice2(tos,row){
+            // if (tos == 'SI'){
+            //     return '<span style="color:red;">('+tos+')</span>';
+            // } else {
+            //     return tos;
+            // }
+            if (tos =='SI'){
+                return '<span style="color:red;">('+tos+')</span>';
+            } else {
+                return tos;
+            }
+        }
+
+        function printEncuestaLiceo(){
+			// location.assign("activosExcel.php?colegio="+xcolegio);
+			location.assign("condsaludLiceoExcel.php");			
+
+		}
+	</script>
+
+	<style type="text/css">
+		.hc {
+			background: #92D050;				
+		}
+		#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem1{
+			margin-bottom:5px;
+		}
+		.fitem1 label{
+			display:inline-block;
+			width:80px;
+		}
+		.fitem1 input{
+			width:160px;
+		}
+		.ftitle2{
+			font-size:14px;
+			font-weight:inherit;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+
+
+		.fitem{
+			margin-bottom:5px;
+			margin-top: 14px;
+		}
+		.fitem label{
+			font-size: 14px;
+			text-align: right;
+			display:inline-block;
+			width:95px;
+		}
+		.fitem input{
+			width:200px;
+
+		}
+	</style>
+
+</body>
+</html>

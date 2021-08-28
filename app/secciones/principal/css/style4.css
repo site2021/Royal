@@ -1,0 +1,154 @@
+html, body {
+	height:100%;
+}
+body {
+	width: 100%;
+	background: #72ABDF;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	background: red; /* For browsers that do not support gradients */
+  	background: -webkit-radial-gradient(red 5%, yellow 15%, green 60%); /* Safari 5.1-6.0 */
+  	background: -o-radial-gradient(red 5%, yellow 15%, green 60%); /* For Opera 11.6-12.0 */
+  	background: -moz-radial-gradient(red 5%, yellow 15%, green 60%); /* For Firefox 3.6-15 */
+  	background: radial-gradient(#fff 30%, #fff 15%, #72ABDF 80%); /* Standard syntax */	
+}
+#header{
+	position: absolute;
+	z-index: 2000;
+	width: 235px;
+	top: 130px;
+}
+#header h1{
+	font-size: 30px;
+	font-weight: 400;
+	text-transform: uppercase;	
+	color: rgba(255,255,255,0.9);
+	text-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+	padding: 0px 0px 0px 0px;
+	background: #000;
+}
+#navigation {
+	margin-top: 45px;
+	margin-left: 20px;
+	width: 235px; 
+	display:block;
+	list-style:none;
+	z-index:3;
+}
+#navigation a{
+	color: #444;
+	display: block;
+	background: #fff;
+	background: rgba(255,255,255,0.9);
+	line-height: 30px;
+	padding: 0px 0px 0px 20px;
+	/*text-transform: uppercase;*/
+	margin-bottom: 15px;
+	border-style: solid;
+	border-radius: 15px 15px 15px 15px;	
+	border-color: #ccc;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: Arial;
+
+}
+
+/*color botones de mision, vision...*/
+#navigation a:hover {
+	background: #088A08;
+	color: #fff;
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.7);
+	border-style: outset;
+    /*border-color: #ccc #646464;*/
+    border-color: #ccc;
+    border-radius: 15px 15px 15px 15px;
+
+}
+
+.content{
+	right: 50px;
+	left: 300px;
+	top: 0px;
+	position: absolute;
+	padding-bottom: 30px;	
+}
+.content h2{
+	font-size: 80px;
+	padding: 10px 0px 20px 0px;
+	margin-top: 52px;
+	color: #fff;
+	color: rgba(255,255,255,0.9);
+	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+}
+.content p{
+	font-size: 24px;
+	font-style: italic;	
+	font-family: Arial;
+	line-height: 40px;
+	color: #000;
+	display: inline-block;
+	background: #848484;
+	padding: 20px;
+	margin: 3px 0px;
+	
+}
+.panel{
+	width: 98%;
+	min-height: 100%;
+	position: absolute;
+	background-color: #000;
+	box-shadow: 4px -4px 4px rgba(0,0,0,0.2);
+	margin-left: -102%;
+	z-index:2;
+	-webkit-transition: all .6s ease-in-out;
+	-moz-transition: all .6s ease-in-out;
+	-o-transition: all .6s ease-in-out;
+	-ms-transition: all .6s ease-in-out;
+	transition: all .6s ease-in-out;
+}
+.panel:target{
+	margin-left: 0%;
+	background-color: #c0c0c0;
+}
+#home:target ~ #header #navigation #link-home,
+#mision:target ~ #header #navigation #link-mision,
+#vision:target ~ #header #navigation #link-vision,
+#politica:target ~ #header #navigation #link-politica,
+#objetivos:target ~ #header #navigation #link-objetivos{
+	background: #848484;
+	color: #fff;
+}
+#works {
+	padding: 15px 0px;
+}
+#works li{
+	display: inline;
+}
+#works li a{
+	padding-right: 10px;
+}
+#works img {
+	box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+	padding: 12px; 
+	background: rgba(255,255,255,0.9);
+}
+#form p{
+	background: #fff;
+	color: #000;
+}
+#form input, #form textarea{
+	background: #000;
+	color: #fff;
+	border: none;
+}
+#form textarea{
+	width: 493px;
+	height: 100px;
+}
+#form label{
+	padding-right: 10px;
+	float: left;
+}
+.footnote a{
+	color: #ddd;
+}

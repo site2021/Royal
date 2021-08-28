@@ -1,0 +1,233 @@
+	<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-8">		
+		<title>RG-datos</title>
+
+		<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/default/easyui.css">		
+		<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="rg.css">		
+		<script type="text/javascript" src="../../jeasyui/jquery.min.js"></script>
+		<script type="text/javascript" src="../../jeasyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../jeasyui/locale/easyui-lang-es.js"></script>
+		<style type="text/css">
+			.containerFiltros {
+				width:680px;
+				height:auto;
+				border:2px solid red;
+				padding:10px;
+				background:silver;
+			}
+			.inside {
+				width:650px;
+				height:25px;
+				border:3px solid blue;				
+				padding:10px;
+				background:white;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<a href="javascript:void(0)" class="easyui-linkbutton" 
+			   style="background:#E6E6E6;color:#000;border-color:#BDBDBD;width:100px;height:35px" 
+			   onclick="addWin()" data-options="iconCls:'icon-add'">Add</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton" 
+			   style="background:#E6E6E6;color:#000;border-color:#BDBDBD;width:100px;height:35px" 
+			   onclick="removeInput()" data-options="iconCls:'icon-cancel'">Remove</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton" 
+			   style="background:#E6E6E6;color:#000;border-color:#BDBDBD;width:100px;height:35px" 
+			   onclick="showListaFiltros()" data-options="iconCls:'icon-more'">ShosList</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton" 
+			   style="background:#E6E6E6;color:#000;border-color:#BDBDBD;width:100px;height:35px" 
+			   onclick="mostrarOtros()" data-options="iconCls:'icon-more'">mostrarOtros</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton" 
+			   style="background:#E6E6E6;color:#000;border-color:#BDBDBD;width:100px;height:35px" 
+			   onclick="listadiv()" data-options="iconCls:'icon-more'">div</a>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton" 
+			   style="background:#E6E6E6;color:#000;border-color:#BDBDBD;width:100px;height:35px" 
+			   onclick="listasacar()" data-options="iconCls:'icon-more'">sacar</a>
+
+		</div>	
+
+		<div id='foo' class="containerFiltros">
+
+		</div>
+
+		<!-- adicionar nueva ventana INSIDE a containerFiltros -->
+		<script type="text/javascript">
+			var listaFiltros = [];
+			var r1=0;
+			var r2=70;
+			var r3=90;
+			var r4=100;
+			var	otros  = [
+					{ from : r1, to : r2, color : 'rgba(254, 46, 46, .3)' },
+					{ from : r2, to : r3, color : 'rgba(250, 204, 16, .5)' },
+					{ from : r3, to : r4, color : 'rgba(46, 254,  46, .5)' }
+				];
+
+			function addWin(){
+				var xindice = listaFiltros.length;
+
+				// definir lista de campos a sacar
+				var xl = listasacar();
+				//alert('sacar:'+xl);
+
+				//validar valor del filtro
+				if(xindice!=0){
+					var xcombo = $("#combo"+(xindice-1)).combobox('getValue');
+					if(xcombo==''){
+						return;
+					}
+				}
+
+				var xcombo = 'combo'+xindice;
+				var xdesde = 'd'+xindice;
+				var xhasta = 'h'+xindice;
+
+				listaFiltros.push({combo:xcombo, desde:xdesde, hasta:xhasta});
+
+				var $newdiv1 = $("<div id='f"+xindice+"' class='inside'></div>" );
+  				newdiv2 = document.createElement( "div" ),
+  				existingdiv1 = document.getElementById( "foo" );
+
+ 				// adicionar DIV a DIV -->foo
+				$( "#foo" ).append( $newdiv1, newdiv2);
+				addInput(xindice);
+				changeClassInput(xindice,xl);
+
+			}
+
+			// add combobox, textbox
+			function addInput(nindice){	
+				var $newinput1 = $("<input id='combo"+nindice+"' type='text'/>")
+				var $newinput2 = $("<input id='d"+nindice+"' type='text' />")
+				var $newinput3 = $("<input id='h"+nindice+"' type='text' />")
+
+				$("#f"+nindice).append($newinput1);
+				$("#f"+nindice).append($newinput2);
+				$("#f"+nindice).append($newinput3);
+			}			
+
+			// cambiar clases despues de adicionar
+			function changeClassInput(nindice, nurl){
+				// sacar los que ya escogidos 
+				var xurl='combocamposJSON.php?'+nurl;
+
+				$('#combo'+nindice).combobox({
+				    width:250,
+				    label:'desde',
+				    editable: false,
+				    url:xurl,
+				    valueField:'codigo',
+				    textField:'nombre',
+				    onSelect: function(row){
+				    	var opts = $(this).combobox('options');
+						//alert(row[opts.textField]);						
+						//alert(this.id);
+				    	//alert('hola');    	
+				    }
+				});										
+				$('#d'+nindice).textbox({ 
+					width:200,
+					prompt:'desde',
+					iconWidth:22,
+					iconAlign:'right',
+					icons: [{
+						iconCls: 'icon-cancel',
+						handler: function(e){
+					        	$(e.data.target).textbox('clear');                	
+						}
+					}]	
+				});
+				$('#h'+nindice).textbox({ 
+					width:200,
+					prompt:'hasta',
+					iconWidth:22,
+					iconAlign:'right',
+					icons: [{
+						iconCls: 'icon-cancel',
+						handler: function(e){
+					        	$(e.data.target).textbox('clear');                	
+						}
+					}]
+				});
+			}
+
+			// remove fx - con todos los hijos 			
+			function removeInput(){
+				var xindice = listaFiltros.length-1;
+				$("#f"+xindice).remove();
+				var removeItem = listaFiltros.splice(xindice,1);				
+
+			}
+
+		</script>
+
+		<script type="text/javascript">
+			function showListaFiltros(){
+				for(i=0;i<listaFiltros.length;i++){					
+					alert(listaFiltros[i].combo+' '+listaFiltros[i].desde+' '+listaFiltros[i].hasta);
+				}
+			}
+
+			function mostrarOtros(){
+				alert("otros");
+				
+				for(i=0;i<otros.length;i++){
+					alert(otros[i].from+' '+otros[i].to+' '+otros[i].color);
+				}
+			}
+
+			function listadiv(){				
+				var divs = document.getElementById("foo")
+				var cuantas = divs.getElementsByTagName("input");
+				alert(cuantas.length);
+
+				for(i=0;i<cuantas.length;i++){
+					var xid = cuantas[i].id;
+					if(xid.substring(xid,1,1)=='c'){
+						var xvalor = $("#"+xid).combobox('getValue');
+						alert(xid+' '+xvalor);
+					}
+					if(xid.substring(xid,1,1)=='d' || xid.substring(xid,1,1)=='h'){
+						var xvalor = $("#"+xid).textbox('getValue');
+						alert(xid+' '+xvalor);
+					}
+					
+				
+				}
+
+			}
+
+			function listasacar(){
+				var divs = document.getElementById("foo")
+				var cuantas = divs.getElementsByTagName("input");
+
+				// armar cadena para sacar campos ya usados
+				var xsacar = '';
+				for(i=0;i<cuantas.length;i++){
+					var xid = cuantas[i].id;
+					if(xid.substring(xid,1,1)=='c'){
+						var xvalor = $("#"+xid).combobox('getValue');
+						if(xsacar!=''){
+							xsacar = xsacar+'&';
+						}	
+						xsacar = xsacar + 'sacar[]='+xvalor;
+					}					
+				
+				}
+
+				return xsacar;
+
+			}
+		</script>
+
+	</body>
+
+</html>

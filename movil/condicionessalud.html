@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache">
+ 	<meta http-equiv="Pragma" CONTENT="no-cache">
+
+	<link href="img/royal_ico.ico" type="image/x-icon" rel="shortcut icon" />
+	<title>ROYAL-Movil</title>
+
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/metro/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/mobile.css"> 
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/color.css"> 
+    <link rel="stylesheet" type="text/css" href="jeasyui/themes/icon.css">  
+
+	<link rel="stylesheet" type="text/css" href="css/movil.css">
+
+    <script type="text/javascript" src="jeasyui/jquery.min.js"></script>
+    <script type="text/javascript" src="jeasyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="jeasyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="jeasyui/locale/easyui-lang-es.js"></script>
+
+	<script type="text/javascript" src="lib/datagrid-detailview.js"></script>
+	<script type="text/javascript" src="lib/datagrid-filter.js"></script>
+	<script type="text/javascript" src="lib/accounting.js"></script>
+	<script type="text/javascript" src="lib/movil.js"></script>
+	<script type="text/javascript" src="lib/usuarios.js"></script>
+	<script type="text/javascript" src="lib/alistamientos.js"></script>
+
+	<script type="text/javascript">
+        function cellStyler(value,row,index){
+            if (value == 0){
+                return 'color:#cffccf';
+            }
+        }
+
+    </script>	
+
+    <style type="text/css">
+		#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			display:inline-block;
+			width:80px;
+		}
+		.fitem input{
+			width:160px;
+		}
+	</style>
+
+</head>
+<body>
+
+	<p>fhdfdhfjdhfhjdjfjdfhjfdfjhfd</p>
+	<div id="dlgcovid" class="easyui-dialog"title="<font color=white>DATOS</font>"
+		data-options="modal:true,closable:true"
+		style="font-family:Arial;margin:0 0 0 0;width:100%;height: 470px"
+		closed="true" buttons="#encuestacovid-buttons">		
+
+		<form id="fmcovid" method="post" novalidate>	
+			<div style="float:left; margin-top: 2%; margin-left: 11.5%">
+				<label>Código:</label>
+				<input id="codigoencuesta" name="codigoencuesta" class="easyui-textbox">
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 11.5%">
+		   		<label>Fecha:</label>
+				<input id="fechaencuesta" name="fechaencuesta" class="easyui-datebox"
+				data-options="disabled:false,editable:true,formatter:myformatter,parser:myparser">
+			</div>
+
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+		   onclick="traerDatosEncuesta()" style="width:90px;margin-left: 120px">Buscar</a><br>
+
+			<div style="float:left; margin-top: 2%; margin-left: 9%">
+				<label>Nombre:</label>
+				<input id="nombreencuesta" name="nombreencuesta" class="easyui-textbox">
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 10%">
+				<label>Entidad:</label>
+				<select id="entidadencuesta" name="entidadencuesta"  class="easyui-combobox" style="width: 175px;">
+					<option value=""></option>
+					<option value="LICEO INGLES">LICEO INGLES</option>
+				    <option value="CALL CENTER">CALL CENTER</option>
+				    <option value="COATS CADENA">COATS CADENA</option>
+				    <option value="CARTAMA">CARTAMA</option>
+				</select> 
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 15%">
+				<label>Ruta:</label>
+				<input id="rutaencuesta" name="rutaencuesta" class="easyui-textbox">
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 11%">
+				<label>Interno:</label>
+				<input id="internoencuesta" name="internoencuesta" class="easyui-textbox">
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 9%">
+				<label>Jornada:</label>
+				<input id="jornadaencuesta" name="jornadaencuesta" class="easyui-textbox">
+			</div>
+
+			<!-- <div style="float:left; margin-top: 2%; margin-left: 14%">
+				<label>Temp:</label>
+				<input id="temperatura" name="temperatura" class="easyui-numberbox" precision="1">
+			</div> -->
+			<div style="float:left; margin-top: 2%; margin-left: 5%">
+				<label>TOS Y/O EXPECTORACIÓN:</label>
+				<select id="tos" name="tos"  class="easyui-combobox" style="width: 175px;">
+					<option value="NO" selected>NO</option>
+				    <option value="SI">SI</option>
+				</select>
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 5%">
+				<label>MALESTAR GENERAL, DOLOR MUSCULAR O FATIGA:</label><br>
+				<select id="malestar" name="malestar"  class="easyui-combobox" style="width: 175px;">
+					<option value="NO" selected>NO</option>
+				    <option value="SI">SI</option>
+				</select>
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 5%">
+				<label>DIFICULTAD PARA RESPIRAR:</label><br>
+				<select id="difrespirar" name="difrespirar"  class="easyui-combobox" style="width: 175px;">
+					<option value="NO" selected>NO</option>
+				    <option value="SI">SI</option>
+				</select>
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 5%">
+				<label>DIARREA:</label><br>
+				<select id="diarrea" name="diarrea"  class="easyui-combobox" style="width: 175px;">
+					<option value="NO" selected>NO</option>
+				    <option value="SI">SI</option>
+				</select>
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 5%">
+				<label>DISMINUCIÓN DEL GUSTO U OLFATO:</label><br>
+				<select id="olfatogusto" name="olfatogusto"  class="easyui-combobox" style="width: 175px;">
+					<option value="NO" selected>NO</option>
+				    <option value="SI">SI</option>
+				</select>
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 5%">
+				<label>¿HA ESTADO FUERA DEL PAÍS O HA ESTADO CON PERSONAS PROCEDENTES DEL EXTRANJERO EN LOS ÚLTIMOS 14 DÍAS?</label><br>
+				<select id="fuerapais" name="fuerapais"  class="easyui-combobox" style="width: 175px;">
+					<option value="NO" selected>NO</option>
+				    <option value="SI">SI</option>
+				</select>
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 5%">
+				<label>¿HA ESTADO EN CONTACTO CON UNA PERSONA POSITIVA O SOSPECHOSA PARA COVID-19 SIN MEDIDAS DE PROTECCIÓN ADECUADAS EN LOS ÚLTIMOS 14 DÍAS?</label><br>
+				<select id="contactosospechoso" name="contactosospechoso"  class="easyui-combobox" style="width: 175px;">
+					<option value="NO" selected>NO</option>
+				    <option value="SI">SI</option>
+				</select>
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 5%">
+				<label>¿SE ENCUENTRA EN PERIODO DE CUARENTENA POR COVID-19?</label><br>
+				<select id="cuarentena" name="cuarentena"  class="easyui-combobox" style="width: 175px;">
+					<option value="NO" selected>NO</option>
+				    <option value="SI">SI</option>
+				</select>
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 5%">
+				<label>¿ALGUNA PERSONA CON LA QUE VIVE SE ENCUENTRA EN CUARENTENA POR COVID-19?</label><br>
+				<select id="personacuarentena" name="personacuarentena"  class="easyui-combobox" style="width: 175px;">
+					<option value="NO" selected>NO</option>
+				    <option value="SI">SI</option>
+				</select>
+			</div>
+
+			<div style="float:left; margin-top: 2%; margin-left: 5%">
+				<label>COMPROMISO Declaro en el presente formulario, que la información diligenciada es veraz, así mismo manifiesto que entiendo que el propósito de diligenciar este formulario es cuidar de mi salud y la de los demás. Por lo cual, me comprometo a diligenciar esta encuesta antes de iniciar iniciar recorrido en el transporte.</label><br>
+				<select id="compromiso" name="compromiso"  class="easyui-combobox" style="width: 175px;">
+					<option value="ACEPTO" selected>ACEPTO</option>
+				</select><br><br>
+			</div>
+		</form>
+
+		<div id="toolbarencuestacovid">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" 
+				style="margin-left:5%"
+				onclick="newTemperatura()">Añadir Temperatura</a>
+		</div>
+
+		<table id="dgencuestacovid" class="easyui-datagrid" style="width:100%;height:300px"
+			toolbar="#toolbarencuestacovid"
+			url="json/encuestasrealizadas.php"
+			pagination="false"
+			rownumbers="false" fitColumns="false" singleSelect="true">
+			<thead>
+				<tr>					
+	            	<th field="codigoencuesta" width="95px">codigo</th>					
+	            	<th field="fechaencuesta" width="100px">fecha</th>
+
+	            	<th field="temperatura" width="100px">Temperatura</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+	<div id="encuestacovid-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+		   onclick="saveEncuestaCovid()" style="width:90px">OK</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" 
+		   onclick="cerrar('#dlgcovid')" style="width:90px">Cancelar</a>
+	</div>
+	
+
+	<div id="dlgTemperatura" class="easyui-dialog"title="<font color=white>TEMPERATURA</font>"
+		data-options="modal:true,closable:true"
+		style="font-family:Arial;margin:0 0 0 0;width:100%;height: 130px"
+		closed="true" buttons="#temperaturas-buttons">	
+
+		<form id="fmTemperatura" method="post" novalidate>	
+
+			<div style="float:left; margin-top: 2%; margin-left: 13%">
+				<label>Temperatura:</label><br>
+				<input id="temperatura" name="temperatura" class="easyui-numberbox" precision="1">
+			</div>
+
+		</form>
+	</div>
+
+	<div id="temperaturas-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+		   onclick="saveTemperatura()" style="width:90px">OK</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" 
+		   onclick="cerrar('#dlgTemperatura')" style="width:90px">Cancelar</a>
+	</div>
+
+	<script type="text/javascript">
+		// function covid19(){
+  //   		$('#dlgcovid').dialog('open');
+  //   		setVar('fechaencuesta', 0, hoyhora());
+  //   		// setVar('temperatura', 0, 0);
+  //   	}
+
+    	function saveEncuestaCovid(){
+		$.messager.confirm('Confirm', 'Esta seguro de GRABAR registro?', function(r){
+			if (r){
+				var xaccion = 'I';
+				var xtabla = 'tbencuestacovid';
+
+				var xcodigoencuesta = getVar('codigoencuesta',0);
+				var xfechaencuesta = getVar('fechaencuesta',0);
+				var xnombreencuesta = getVar('nombreencuesta',0);
+				var xentidadencuesta = getVar('entidadencuesta',0);
+				var xrutaencuesta = getVar('rutaencuesta',0);
+				var xinternoencuesta = getVar('internoencuesta',0);
+				var xjornadaencuesta = getVar('jornadaencuesta',0);
+				var xtemperatura = getVar('temperatura',1);
+				var xtos = getVar('tos',0);
+				var xmalestar = getVar('malestar',0);
+				var xdifrespirar = getVar('difrespirar',0);
+				var xdiarrea = getVar('diarrea',0);
+				var xolfatogusto = getVar('olfatogusto',0);
+				var xfuerapais = getVar('fuerapais',0);
+				var xcontactosospechoso = getVar('contactosospechoso',0);
+				var xcuarentena = getVar('cuarentena',0);
+				var xpersonacuarentena = getVar('personacuarentena',0);
+				var xcompromiso = getVar('compromiso',0);
+
+				var xcampos = ['codigoencuesta','fechaencuesta','nombreencuesta','entidadencuesta','rutaencuesta','internoencuesta','jornadaencuesta','temperatura','tos','malestar','difrespirar','diarrea','olfatogusto','fuerapais','contactosospechoso','cuarentena','personacuarentena','compromiso'];
+				var xvalores = [xcodigoencuesta,xfechaencuesta,xnombreencuesta,xentidadencuesta,xrutaencuesta,xinternoencuesta,xjornadaencuesta,xtemperatura,xtos,xmalestar,xdifrespirar,xdiarrea,xolfatogusto,xfuerapais,xcontactosospechoso,xcuarentena,xpersonacuarentena,xcompromiso];
+
+				$.post('json/myFileDB.php',
+					{accion:xaccion, tabla:xtabla, campos:xcampos, valores:xvalores},
+					function(result){
+					if (result.success){
+						$.messager.alert('Mensaje', 'Registro grabado EXITOSAMENTE!!!');
+						$('#dlgcovid').dialog('close');
+
+						refreshdg(xinterno);
+						updateDgMtos();									
+											
+					} else {
+
+						$.messager.alert('Mensaje', 'problemas!!!-grabar registro');
+	
+					}
+				},'json');
+
+			}
+		});
+	}
+
+	function traerDatosEncuesta(){
+    		var xcodigoencuesta = $("#codigoencuesta").textbox('getText');
+    		// alert(xcedula);
+
+    		//alert("buscar interno="+xinterno);
+    		setVar('nombreencuesta',0,'');
+    		setVar('entidadencuesta',0,'');
+    		setVar('rutaencuesta',0,'');
+    		setVar('internoencuesta',0,'');
+    		setVar('jornadaencuesta',0,'');
+
+			var url="json/datosencuesta.php?codigoencuesta="+xcodigoencuesta;
+
+			$.getJSON(url,function(registros){
+				if (registros.length == 0){
+					$.messager.alert("No existen datos de RUTA");
+				}		
+				else {
+					$.each(registros, function(i,registro){
+
+						setVar('nombreencuesta', 0, registro.nombreencuesta);
+						setVar('entidadencuesta', 0, registro.entidadencuesta);
+						setVar('rutaencuesta', 0, registro.rutaencuesta);
+						setVar('internoencuesta', 0, registro.internoencuesta);
+						setVar('jornadaencuesta', 0, registro.jornadaencuesta);
+
+						mostrarDetalle();
+
+					});
+				}
+			});
+
+    	}
+
+	function mostrarDetalle(){
+		var xcodigoencuesta = $("#codigoencuesta").val();			
+		
+		$("#dgencuestacovid").datagrid('load',{
+			codigoencuesta:xcodigoencuesta				
+		})
+	}
+
+	function newTemperatura(){
+		var row = $('#dgencuestacovid').datagrid('getSelected');
+		if (row){
+			$('#dlgTemperatura').dialog('open');
+			$('#fmTemperatura').form('load',row);
+			url = 'json/temperaturas_update.php?id='+row.id;
+		}
+	}
+
+	function saveTemperatura(){
+		$('#fmTemperatura').form('submit',{
+			url: url,
+			onSubmit: function(){
+				return $(this).form('validate');
+			},
+			success: function(result){
+				//var result = eval('('+result+')');
+				if (result.errorMsg){
+					$.messager.show({
+						title: 'Error',
+						msg: result.errorMsg
+					});
+				} else {
+					$.messager.alert('Mensaje','Temperatura Guardada');
+					$('#dlgTemperatura').dialog('close');		// close the dialog
+					$('#dgencuestacovid').datagrid('reload');	// reload the user data
+				}
+			}
+		});
+	}
+	</script>
+
+	<script type="text/javascript">
+		function getVar(pnombre,ptipo){
+			if(ptipo==0){
+				return $("#"+pnombre).textbox('getValue');
+			}else if(ptipo==1){
+				return $("#"+pnombre).numberbox('getValue');
+			}else if(ptipo==2){
+				return $("#"+pnombre).datebox('getValue');
+			}
+		}
+
+		function setVar(pnombre, ptipo, pvalor){
+			if(ptipo==0){
+				$("#"+pnombre).textbox('setValue', pvalor);
+			}else if(ptipo==1){
+				$("#"+pnombre).numberbox('setValue', pvalor);
+			}else if(ptipo==2){
+				$("#"+pnombre).datebox('setValue'. pvalor);
+			}			
+		}
+	</script>
+</body>
+</html>

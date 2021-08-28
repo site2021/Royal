@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Administracion-MAESTRAS</title>
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/color.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/demo/demo.css">
+	
+	<link rel="stylesheet" type="text/css" href="../../css/estilo.css">
+	<script type="text/javascript" src="../../jeasyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../jeasyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../jeasyui/locale/easyui-lang-es.js"></script>
+	
+</head>
+<body>
+
+	<label>Tabla MAESTRA: </label>
+	<select id="tabla" class="easyui-combobox" 
+			style="width:150px;height:24px;border: 2px solid blue;">
+		<option value="" ></option>	
+		<option value="txproductos" >PRODUCTOS</option>
+		<option value="txautomotores" >AUTOMOTORES</option>
+		<option value="txempresas" >EMPRESAS</option>
+		<option value="tbgrados" >GRADOS</option>
+		<option value="txcolegios" >COLEGIOS</option>
+	</select>
+	<br>
+	<br>
+
+	<table id="dg" class="easyui-datagrid" style="width:700px;height:375px"
+			title= "MAESTRA"
+			url="get_maestra.php?tabla=xxx"
+			toolbar="#toolbar" pagination="true"
+			rownumbers="false" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr>
+				<th field="id" width="20">ID</th>
+				<th field="nombre" width="100">Nombre</th>
+			</tr>
+		</thead>
+	</table>
+	<span><b>Última actualizacion: 27/07/2018</b></span>
+	<div id="toolbar">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Nuevo</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Editar</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remover</a>
+	</div>
+	
+	<div id="dlg" class="easyui-dialog" style="width:50%;height:330px;padding:10px 20px"
+			closed="true" buttons="#dlg-buttons">
+		<form id="fm" method="post" novalidate>
+			<div class="ftitle">Datos MAESTRA
+				<input name="xtabla" class="easyui-textbox" data-options="readonly:'true'">
+			</div>		
+			<div class="fitem">
+				<label>id</label>
+				<input name="id" class="easyui-textbox" 
+					data-options="readonly:'true'"
+				>
+			</div>
+			<div class="fitem">
+				<label>Nombre</label>
+				<input name="nombre" class="easyui-textbox" style="width:400px" required="true">
+			</div>
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" 
+			onclick="saveUser()" style="width:90px">OK</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" 
+			onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
+	</div>
+
+	<script type="text/javascript">			
+		function generar(){	
+			var e = $('#tabla').combobox('getValue');
+			var t = $('#tabla').combobox('getText');
+			var titulo = 'MAESTRA ('+t+')';
+
+			var xurl='maestra_get.php?tabla='+e;
+			$(function(){
+				$('#dg').datagrid({
+					url:xurl,
+					title: titulo
+				});
+				$('#dg').datagrid('reload');
+			});
+
+		}
+	</script>
+	
+	<script type="text/javascript">
+		$('#tabla').combobox({
+			onSelect: function(param){
+				var e = $('#tabla').combobox('getValue');
+				var t = $('#tabla').combobox('getText');
+				var titulo = 'MAESTRA('+t+')';
+
+				var xurl='maestra_get.php?tabla='+e;
+				$(function(){
+					$('#dg').datagrid({
+						url:xurl,
+						title: titulo
+					});
+					$('#dg').datagrid('reload');
+				});
+			}
+		});
+	</script>
+
+	<script type="text/javascript">
+		var url;
+		function newUser(){			
+			var xt = $('#tabla').combobox('getValue');
+			
+			$('#fm').form('clear');
+			$('#fm').form('load', {
+				xtabla: xt
+			})			
+			$('#dlg').dialog('open').dialog('setTitle','Nuevo REGISTRO');
+			url = 'maestra_save.php?tabla='+xt;
+		}
+		function editUser(){
+			var xt = $('#tabla').combobox('getValue');
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$('#dlg').dialog('open').dialog('setTitle','Editar REGISTRO');
+				$('#fm').form('load',row);
+				url = 'maestra_update.php?tabla='+xt;
+			}
+		}
+		function saveUser(){
+			$('#fm').form('submit',{
+				url: url,
+				onSubmit: function(){
+					return $(this).form('validate');
+				},
+				success: function(result){
+					//var result = eval('('+result+')');
+					if (result.errorMsg){
+						$.messager.show({
+							title: 'Error',
+							msg: result.errorMsg
+						});
+					} else {
+						$('#dlg').dialog('close');		// close the dialog
+						$('#dg').datagrid('reload');	// reload the user data
+					}
+				}
+			});
+		}
+		function destroyUser(){
+			var xt = $('#tabla').combobox('getValue');
+			var row = $('#dg').datagrid('getSelected');
+
+			// alert("id="+row.id+" nombre="+row.nombre);
+			// return;
+
+			if (row){
+				$.messager.confirm('Confirm','Esta seguro de remover el REGISTRO: ' + row.id,
+					function(r){
+					if (r){
+						$.post('maestra_destroy.php',{id:row.id, nombre:row.nombre, tabla:xt},function(result){
+							if (result.success){
+								$('#dg').datagrid('reload');	// reload the user data
+							} else {
+								$.messager.show({	// show error message
+									title: 'Error',
+									msg: result.errorMsg
+								});
+							}
+						},'json');
+					}
+				});
+			}
+		}	
+	</script>
+
+	<style type="text/css">
+		#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			display:inline-block;
+			width:80px;
+		}
+		.fitem input{
+			width:160px;
+		}
+	</style>
+</body>
+</html>

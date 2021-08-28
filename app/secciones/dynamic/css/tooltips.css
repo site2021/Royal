@@ -1,0 +1,145 @@
+/* Style generales -------------------------------------------------------------------------------- */
+html, body {
+    overflow: hidden;
+    height: 100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* tooltips --------------------------------------------------------------------------------------- */
+.botonera {
+    position: absolute;
+    /* c0c0c0 90% */
+    background: #e6e6e6;
+    width:98%;
+    height: 7%;
+    top: 2%;
+    left: 1%;
+}
+.container {
+    position: absolute;
+    width: 97.9%;
+    height: auto;
+    top: 9.4%;
+    left: 1%;
+}
+.tdiv, .tdivg {
+    position: relative;
+    display: inline-block;
+    float:left;
+    margin-left:5px;
+    margin-right: 5px;              
+}
+.tdiv .tooltiptext, .tdivg .tooltiptext  {
+    position: absolute;
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 50;
+    left: 50%;
+    margin-left: -60px;
+}
+.tdiv .tooltiptext {
+    top: 150%;
+}
+.tdivg .tooltiptext {
+    top: -120%;   
+}
+.tdiv .tooltiptext::after {    
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+.tdivg .tooltiptext::after {    
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+.tdiv .tooltiptext::after {
+    content: "";
+}
+.tdivg .tooltiptext::after {
+    content: "";
+    bottom: -25%;
+}
+.tdiv:hover .tooltiptext, .tdivg:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* botones ---------------------------------------------------------------------------------------- */
+.boton_apagado {
+   	display:block;
+    width:30px;
+    height:30px;
+    line-height:30px;
+    border: 3px solid #f5f5f5;
+    border-radius: 50%;
+    color:#fff;
+    background: #BF3D3D;
+    box-shadow: 2px 2px 1px #000;
+    opacity: 0.3;
+	pointer-events: none;
+		cursor: default;
+}
+.boton {
+   	display:block;
+    width:30px;
+    height:30px;
+    border: 2px solid #848484;
+    border-radius: 50%;
+    color:#fff;
+    box-shadow: 2px 2px 1px #000;
+}
+.boton:hover {
+    background: #EF3C39;
+    border: 3px solid #ff0;
+    box-shadow: 0 0 20px #ff0;
+
+}	
+.bordes {
+    position: relative;
+	float:left;
+    display: flex;
+    align-items: center;
+	border: solid 1px #999999;
+    height: 97%;
+    padding-left: 0.3%;
+    padding-right: 0.3%;
+}
+.bordes-left {
+    margin-left: 1%;
+}
+.boton img {
+	width: 32px;
+}
+
+/* style para el release <N> ---------------------------------------------------------------------- */
+.trelease {
+    position: absolute;
+    width: 3%;
+    height: 100%;
+    right: 0.5%;
+    display: flex;
+    align-items: center;
+}
+.trelease span {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: rgba(192,192,192,.1);
+    font: bold 4.5vw helvetica;
+}
+

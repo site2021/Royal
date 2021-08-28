@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Clientes</title>
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/color.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/demo/demo.css">
+	
+	<script type="text/javascript" src="../../jeasyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../jeasyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../jeasyui/locale/easyui-lang-es.js"></script>
+
+	<script type="text/javascript" src="../js/accounting.js"></script>
+	<script type="text/javascript" src="../js/datagrid-filter.js"></script>
+
+	<!-- script manejo de filtro -->
+    <script type="text/javascript">
+		$(function(){
+			$("#dg").datagrid('enableFilter');	
+		})
+
+    </script>
+
+	<style>
+		.numberbox .textbox-text{
+		  text-align: right;		  
+		}
+	</style>    
+
+	
+</head>
+<body>
+	<table id="dg" title=" CLIENTES" class="easyui-datagrid" style="width:70%;height:400px"			
+		url="clientes_get.php"
+		toolbar="#toolbar" singleSelect="true">
+		<thead data-options="frozen:true">
+			<tr>
+				<th field="id" width="20" hidden="true">ID</th>				
+				<th field="nit" width="150">NIT</th>
+			</tr>
+		</thead>
+		<thead>
+			<tr>
+				<th field="contacto" width="300">Contacto</th>
+				<th field="empresa" width="300">Empresa</th>
+				<th field="direccion" width="300">Direccion</th>
+				<th field="telefono" width="200">Telefono</th>
+				<th field="ciudad" width="200">Ciudad</th>
+				<th field="correo" width="200">Correo</th>				
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newCliente()">Nuevo</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editCliente()">Editar</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyCliente()">Remover</a>
+	</div>
+	
+	<div id="dlg" class="easyui-dialog" style="width:50%;height:450px;padding:10px 20px"
+			closed="true" buttons="#dlg-buttons">
+		<div class="ftitle">Datos CLIENTE</div>
+		<form id="fm" method="post" novalidate>
+			<div class="fitem">
+				<label>NIT:</label>
+				<input name="nit" class="easyui-textbox"  style="width:150px" >
+			</div>
+			<div class="fitem">	
+				<label>Contacto: </label>
+				<input name="contacto" class="easyui-textbox"  style="width:350px" >
+			</div>
+			<div class="fitem">
+				<label>Empresa:</label>
+				<input name="empresa" class="easyui-textbox"  style="width:350px" >
+			</div>
+			<div class="fitem">	
+				<label>Direccion:</label>
+				<input name="direccion" class="easyui-textbox"  style="width:350px" >
+			</div>
+			<div class="fitem">	
+				<label>Telefono:</label>
+				<input name="telefono" class="easyui-textbox"  style="width:150px" >
+			</div>
+			<div class="fitem">	
+				<label>Ciudad:</label>
+				<input name="ciudad" class="easyui-textbox"  style="width:300px" >
+			</div>
+			<div class="fitem">	
+				<label>Correo</label>
+				<input name="correo" class="easyui-textbox"  style="width:300px" >
+			</div>
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveCliente()" style="width:90px">OK</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
+	</div>
+
+	<!-- FUNCTION: scrip new,edit,destroy tabla ///////////////////////////////////////// -->
+	<script type="text/javascript">
+		var url;
+		function newCliente(){
+			$('#dlg').dialog('open').dialog('setTitle','Nuevo CLIENTE');
+			$('#fm').form('clear');
+			url = 'cliente_save.php';
+		}
+		function editCliente(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$('#dlg').dialog('open').dialog('setTitle','Editar CLIENTE');
+				$('#fm').form('load',row);
+				url = 'cliente_update.php?id='+row.id;
+			}
+		}
+		function saveCliente(){
+			$('#fm').form('submit',{
+				url: url,
+				onSubmit: function(){
+					return $(this).form('validate');
+				},
+				success: function(result){
+					//var result = eval('('+result+')');
+					if (result.errorMsg){
+						$.messager.show({
+							title: 'Error',
+							msg: result.errorMsg
+						});
+					} else {
+						$('#dlg').dialog('close');		// close the dialog
+						$('#dg').datagrid('reload');	// reload the user data
+					}
+				}
+			});
+		}
+		function destroyCliente(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$.messager.confirm('Confirm','Esta seguro de remover el Cliente: ' + row.nit,function(r){
+					if (r){
+						$.post('cliente_destroy.php',{id:row.id},function(result){
+							if (result.success){
+								$('#dg').datagrid('reload');	// reload the user data
+							} else {
+								$.messager.show({	// show error message
+									title: 'Error',
+									msg: result.errorMsg
+								});
+							}
+						},'json');
+					}
+				});
+			}
+		}
+	</script>
+
+	<!-- FUNCTION: formatos de pantalla ///////////////////////////////////////////////// -->
+	<style type="text/css">
+		#fm{
+			margin:0;
+			padding:5px 5px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			text-align: right;
+			font-weight: bold;
+			display:inline-block;
+			width:80px;
+		}
+		.fitem input{
+			width:100px;
+		}
+	</style>
+</body>
+</html>

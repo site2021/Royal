@@ -1,0 +1,1 @@
+<iframe id="ipage" src="secciones/escolar/rutasliquidar.php?usuario=#USUARIO#" frameborder="0" width=100% height=99%></iframe>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Administracion-Perfiles</title>
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/themes/color.css">
+	<link rel="stylesheet" type="text/css" href="../../jeasyui/demo/demo.css">
+	
+	<script type="text/javascript" src="../../jeasyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../jeasyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../jeasyui/locale/easyui-lang-es.js"></script>
+
+	<script type="text/javascript">
+		function doSearch(){
+			$('#dg').datagrid('load',{		
+				xperfil: $('#xperfil').val(),
+				xopcion: $('#xopcion').val()
+			});
+		}
+		
+		function cancel(){
+			$("#xperfil").val('');			
+			$("#xopcion").val('');			
+			$('#dg').datagrid('load',{		
+				xperfil: $('#xperfil').val(),
+				xopcion: $('#xopcion').val()
+			});
+			
+		}
+	</script>
+
+	
+</head>
+<body>
+
+	<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'"
+	style="width:100px; height:25px" 
+	onclick="WriteToFile()"><span style="font-size:12px">Generar</span></a>
+
+	<br><br>
+
+	<table id="dg" title=" PERFILES " class="easyui-datagrid" style="width:1000px;height:375px"
+			url="pers_get.php"
+			toolbar="#toolbar" pagination="true"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr>				
+				<th field="id" width="50">ID</th>
+				<th field="perfil" width="50">Perfil</th>
+				<th field="orden" width="50">Orden</th>
+				<th field="opcion" width="50">Opcion</th>
+				<th field="etiqueta" width="50">Etiqueta</th>
+				<th field="nivel" width="50">Nivel</th>
+				<th field="accion" width="50">Accion</th>
+				<th field="onclick" width="50">Onclick</th>
+				<th field="icono" width="50">Icono</th>
+			</tr>
+		</thead>
+	</table>
+
+	<div id="toolbar">
+		<table>
+		<tr>
+			<td style="width:30%;">
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newRec()">Nuevo</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editRec()">Editar</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyRec()">Remover</a>					
+			</td>
+			<td style="width:50%;">
+				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" 
+					onclick="cancel() ">
+				</a>
+
+				<label>Perfil:</label>
+				<input id="xperfil" style="width:50px;line-height:20px;border:1px solid #ccc">
+
+				<label>Opcion</label>
+				<input id="xopcion" style="width:50px;line-height:20px;border:1px solid #ccc">
+
+				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" 
+					onclick="doSearch() ">
+				</a>
+
+			</td>				
+		</tr>	
+		</table>
+
+	</div>
+	
+
+	<div id="dlg" class="easyui-dialog" 
+		style="margin:0 0 0 0;width:400px;height:400px;padding:10px 20px;"
+		closed="true" buttons="#dlg-buttons">				
+		<form id="fm" method="post" novalidate>
+			<div class="fitem">
+				<label>ID</label>
+				<input name="id" class="easyui-textbox">
+			</div>								
+			<div class="fitem">
+				<label>Perfil</label>
+				<input name="perfil" class="easyui-textbox">
+			</div>					
+			<div class="fitem">
+				<label>Orden</label>
+				<input name="orden" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>Opcion</label>
+				<input name="opcion" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>Etiqueta</label>
+				<input name="etiqueta" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>Nivel</label>
+				<input name="nivel" class="easyui-textbox" >
+			</div>
+			<div class="fitem">
+				<label>Accion</label>
+				<input name="accion" class="easyui-textbox" >
+			</div>			
+			<div class="fitem">
+				<label>Onclick</label>
+				<input name="onclick" class="easyui-textbox" >
+			</div>						
+			<div class="fitem">
+				<label>icono</label>
+				<input name="icono" class="easyui-textbox" >
+			</div>									
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveRec()" style="width:90px">OK</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
+	</div>
+
+	<script type="text/javascript">
+		var url;
+		function newRec(){
+			$('#dlg').dialog('open').dialog('setTitle','Nuevo REGISTRO');
+			$('#fm').form('clear');
+
+			url = 'per_save.php';
+
+		}
+		function editRec(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$('#dlg').dialog('open').dialog('setTitle','Editar REGISTRO');
+				$('#fm').form('load',row);
+
+				url = 'per_update.php?id='+row.id;
+
+			}
+		}
+		function saveRec(){			
+			$('#fm').form('submit',{				
+				url: url,
+				onSubmit: function(){
+					return $(this).form('validate');
+				},
+				success: function(result){
+					//var result = eval('('+result+')');
+					if (result.errorMsg){
+						$.messager.show({
+							title: 'Error',
+							msg: result.errorMsg
+						});
+					} else {
+						$('#dlg').dialog('close');		// close the dialog
+						$('#dg').datagrid('reload');	// reload the user data
+					}
+				}
+			});				
+			
+
+		}
+
+		function destroyRec(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$.messager.confirm('Confirm','Esta seguro de remover el REGISTRO: ' + row.id,function(r){
+					if (r){
+						$.post('per_destroy.php',{id:row.id},function(result){
+							if (result.success){
+								$('#dg').datagrid('reload');	// reload the user data
+							} else {
+								$.messager.show({	// show error message
+									title: 'Error',
+									msg: result.errorMsg
+								});
+							}
+						},'json');
+					}
+				});
+			}
+		}
+	</script>
+
+	<style type="text/css">
+		#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			display:inline-block;
+			width:80px;
+		}
+		.fitem input{
+			width:160px;
+		}
+	</style>
+
+	<script type="text/javascript">
+        function myformatter(date){
+            var y = date.getFullYear();
+            var m = date.getMonth()+1;
+            var d = date.getDate();
+            return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+        }
+        function myparser(s){
+            if (!s) return new Date();
+            var ss = (s.split('-'));
+            var y = parseInt(ss[0],10);
+            var m = parseInt(ss[1],10);
+            var d = parseInt(ss[2],10);
+            if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+                return new Date(y,m-1,d);
+            } else {
+                return new Date();
+            }
+        }
+	 </script>
+
+	<!-- crear srchivo plano !-->
+	<script type="text/javascript">
+		function WriteToFile() {
+			var xperfil = $('#xperfil').val();
+			if (xperfil!=''){
+				$.messager.confirm('Confirm','Esta seguro??? ',function(r){
+					if (r){
+						$.post('menu.php',{perfil:xperfil},function(result){
+							if (result.success){
+								$.messager.show({
+									title: 'Mensaje',
+									msg: 'Archivo creado EXITOSAMENTE!!!'
+								});
+							} else {
+								$.messager.show({	// show error message
+									title: 'Error',
+									msg: result.errorMsg
+								});
+							}
+						},'json');
+					}
+				});	
+			} else {
+				$.messager.alert('Mensaje','Perfil VACIO!!!');
+			}	
+		}			
+
+
+	</script>	
+
+
+</body>
+</html>
