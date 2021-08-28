@@ -1,25 +1,30 @@
 <?php
+session_start();
 
-$nit = htmlspecialchars($_REQUEST['nit']);
-$contacto = htmlspecialchars($_REQUEST['contacto']);
-$empresa = htmlspecialchars($_REQUEST['empresa']);
-$direccion = htmlspecialchars($_REQUEST['direccion']);
-$telefono = htmlspecialchars($_REQUEST['telefono']);
-$ciudad = htmlspecialchars($_REQUEST['ciudad']);
-$correo = htmlspecialchars($_REQUEST['correo']);
+if ( $_SESSION ){
+	$nit = htmlspecialchars($_REQUEST['nit']);
+	$contacto = htmlspecialchars($_REQUEST['contacto']);
+	$empresa = htmlspecialchars($_REQUEST['empresa']);
+	$direccion = htmlspecialchars($_REQUEST['direccion']);
+	$telefono = htmlspecialchars($_REQUEST['telefono']);
+	$ciudad = htmlspecialchars($_REQUEST['ciudad']);
+	$correo = htmlspecialchars($_REQUEST['correo']);
 
-include '../../control/conex.php';
+	include '../../control/conex.php';
 
-$sql = "INSERT INTO tbclientes (nit,contacto,empresa,direccion,telefono,ciudad,correo) 
-		VALUES ('$nit','$contacto','$empresa','$direccion','$telefono','$ciudad','$correo')";
+	$sql = "INSERT INTO tbclientes (nit,contacto,empresa,direccion,telefono,ciudad,correo) 
+			VALUES ('$nit','$contacto','$empresa','$direccion','$telefono','$ciudad','$correo')";
 
-$result = @mysqli_query($conexion, $sql);
+	$result = @mysqli_query($conexion, $sql);
 
-if ($result){
-	echo json_encode(array('success'=>true));
+	if ($result){
+		echo json_encode(array('success'=>true));
 
+	} else {
+		echo json_encode(array('errorMsg'=>'Some errors occured.'));
+	}
 } else {
-	echo json_encode(array('errorMsg'=>'Some errors occured.'));
+	header("Location: /royal/index.php");
+	die();
 }
-
 ?>

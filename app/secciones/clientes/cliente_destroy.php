@@ -1,16 +1,22 @@
 <?php
+session_start();
 
-$id = intval($_REQUEST['id']);
+if ( $_SESSION ){
+	$id = intval($_REQUEST['id']);
 
-include '../../control/conex.php';
+	include '../../control/conex.php';
 
-$sql = "DELETE FROM tbclientes WHERE id=$id";
+	$sql = "DELETE FROM tbclientes WHERE id=$id";
 
-$result = @mysqli_query($conexion, $sql);
+	$result = @mysqli_query($conexion, $sql);
 
-if ($result){
-	echo json_encode(array('success'=>true));
+	if ($result){
+		echo json_encode(array('success'=>true));
+	} else {
+		echo json_encode(array('errorMsg'=>'Some errors occured.'));
+	}
 } else {
-	echo json_encode(array('errorMsg'=>'Some errors occured.'));
+	header("Location: /royal/index.php");
+	die();
 }
 ?>
