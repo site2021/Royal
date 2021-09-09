@@ -84,7 +84,7 @@
 							<th style="width:50%">
 								<div style="float:right;margin-left:10px;padding-top:3px">
 									<a href="#" class="easyui-linkbutton" style='width:110px;height:26px' 
-										onclick="regresar()"><b>Cerrar Sesion</b></a>								
+										onclick="document.getElementById('logout-form').submit();"><b>Cerrar Sesion</b></a>								
 								</div>
 								<div style="float:right;margin-left:5px;padding-top:7px">
 									<p>#NOMBRE#</p>
@@ -99,8 +99,11 @@
 							</th>
 						</tr>
 					</table>
-					
+					<form id="logout-form" action="/Royal/app/index.php?action=cerrar_sesion" method="POST" class="d-none">
+                            
+					</form>
 					<div style="display:none">
+					
 						<input id="usuario" class="textbox" name="usuario" value="#USUARIO#">						
 						<input id="nombre" class="easyui-textbox" value="#NOMBRE#">
 						<input id="perfil" class="easyui-textbox" value="#PERFIL#">

@@ -1,26 +1,9 @@
 <?php
+
 	session_start();
-	$usuario=$_GET['usuario'];
-	$estado=$_GET['estado'];
-
+	if ($_SESSION )
+		header ('Location: /Royal/app/index.php');
 	
-	if ( $_GET['action'] == 'cerrar_sesion'){
-		if ( $_SESSION )
-			session_destroy();
-	}
-
-	if ($usuario!=''){
-		include 'app/control/conex.php';
-		
-		//Creamos la conexión
-		//$conexion = mysqli_connect($server, $user, $pass, $bd)
-		//or die("Ha sucedido un error inexperado en la conexion de la base de datos");
-
-		//generamos la consulta
-		$sql = "UPDATE tbusuarios SET estado=".$estado." WHERE usuario='".$usuario."'";
-		$result = mysqli_query($conexion, $sql);
-
-	}
 
 ?>
 
@@ -447,24 +430,27 @@
 				<input id="clave" name="clave" class="easyui-textbox" type="password" value="" 
 					data-options="prompt:'digitar CLAVE',iconCls:'icon-lock'">			
 			</div> -->
-			<div class="fitem">			
-				<input id="usuariose" name="usuariose" class="easyui-textbox" value=""
+
+			<form action="app/control/usuarioJSON.php" method="POST" >
+				<div class="fitem">			
+					<input type ="text" id="usuariose" name="usuario" class="easyui-textbox"
 					data-options="prompt:'digitar USUARIO',iconCls:'icon-man'" >			
-			</div>
+				</div>
 			
-			<div class="fitem">
-				<input id="clavese" name="clavese" class="easyui-textbox" type="password" value="" 
+				<div class="fitem">
+					<input id="clavese" name="clave" class="easyui-textbox" type="password" 
 					data-options="prompt:'digitar CLAVE',iconCls:'icon-lock'">			
-			</div>
+				</div>
 
-			<div style="text-size:10px; text-align:center;margin-top:35px">
-				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" style="width:100px; height:30px" 
-					onclick="cargarPrincipal()"><span style="font-size:12px">Entrar</span></a>
+				<div style="text-size:10px; text-align:center;margin-top:35px">
+					<button type="submit" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" style="width:100px; height:30px">
+						<span style="font-size:12px">Entrar</span></button>
 					
-				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" style="width:100px; height:30px" 
-					onclick="clearForm()"><span style="font-size:12px">Limpiar</span></a>
+					<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" style="width:100px; height:30px" 
+						onclick="clearForm()"><span style="font-size:12px">Limpiar</span></a>
+				</div>
+			</form>
 
-			</div>
 			<br>
 
 			<div id="variables" style="display:none">					
@@ -1574,33 +1560,36 @@
 			document.getElementById('usuariose').focus();
 		}
 
-		function cargarPrincipal(){
-			var xusuario = $("#usuariose").val();
-			var xclave = $("#clavese").val();
-			var aleatorio = Math.floor(Math.random() * 100) + 25;												
-			var url="app/control/usuarioJSON.php?clave="+xclave+"&usuario="+xusuario;
-			$.getJSON(url,function(dlgSesion){
-					if (dlgSesion.length == 0){
-						$('#dlgSesion').form('load',{
-							xvalor: aleatorio							
-						});							
-					}		
-					else {
-					$.each(dlgSesion, function(i,usuario){
-					var newRow = usuario.nombre;
-					var newEstado = usuario.estado;
-					var newPerfil = usuario.perfil;						
-					var newValor = 1;						
-					$('#dlgSesion').form('load',{
-						xnombre: newRow,
-						xestado: newEstado,
-						xperfil: newPerfil,							
-						xvalor: newValor							
-					});						
-					});							
-					}
-			});
-		}
+		// /*function cargarPrincipal(){
+
+		// 	$_POST['usuario'] = $("#usuariose").val();
+		// 	$_POST['clave'] = $("#clavese").val();
+		// 	var aleatorio = Math.floor(Math.random() * 100) + 25;	
+
+		// 	var url="app/control/usuarioJSON.php";
+
+		// 	$.getJSON(url,function(dlgSesion){
+		// 			if (dlgSesion.length == 0){
+		// 				$('#dlgSesion').form('load',{
+		// 					xvalor: aleatorio							
+		// 				});							
+		// 			}		
+		// 			else {
+		// 			$.each(dlgSesion, function(i,usuario){
+		// 			var newRow = usuario.nombre;
+		// 			var newEstado = usuario.estado;
+		// 			var newPerfil = usuario.perfil;						
+		// 			var newValor = 1;						
+		// 			$('#dlgSesion').form('load',{
+		// 				xnombre: newRow,
+		// 				xestado: newEstado,
+		// 				xperfil: newPerfil,							
+		// 				xvalor: newValor							
+		// 			});						
+		// 			});							
+		// 			}
+		// 	});*/
+		// }
 		
 		$('#xvalor').textbox({
 		  onChange: function(value){

@@ -1,152 +1,429 @@
 <?php
-
+session_start();
 	require 'control/corIndice.php';
 	
-	include 'control/conex.php';
-	
-	$qusuario=$_GET['usuario'];
-	$qnombre=$_GET['nombre'];
-	$qestado=$_GET['estado'];
-	$qperfil=$_GET['perfil'];
-	
-	//Creamos la conexi�n
-	$conexion = mysqli_connect($server,$user,$pass,$bd) 
-	or die("Ha sucedido un error inexperado en la conexion de la base de datos");
+	if(!$_SESSION)
+		header ('Location: /Royal/index.php');
 
-	//generamos la consulta
-	$sql = "UPDATE tbusuarios SET estado=".$qestado." WHERE usuario='".$qusuario."'";
-	$result = mysqli_query($conexion, $sql);	
+	$qusuario	=	$_SESSION['usuario'];
+	$qnombre	=	$_SESSION['nombre'];
+	$qestado	=	$_SESSION['estado'];
+	$qperfil	=	$_SESSION['perfil'];
 
-	/*	
-	session_start();
-	if(isset($_GET['usuario'])){		
-		$_SESSION['nickname']=$_GET['usuario'];
-		$_SESSION['usuario']=$_GET['usuario'];		
-		$_SESSION['nombre']=$_GET['nombre'];
-		$_SESSION['perfil']=$_GET['perfil'];
-	}	
-	
-	if($_SESSION['nickname']){		
-		$qusuario=$_SESSION['usuario'];		
-		$qnombre=$_SESSION['nombre'];
-		$qperfil=$_SESSION['perfil'];		
+
+	if ( $_GET['action'] == 'cerrar_sesion'){
+		if ( $_SESSION ){
+			unset($_SESSION["id"]);
+			unset($_SESSION["usuario"]);
+			unset($_SESSION['nombre']);
+			unset($_SESSION['estado']);
+			unset($_SESSION['perfil']);
+			header ('Location: /Royal/index.php');
+		}
 	}
-
-	*/
 
 	$indice = new clsIndice();
 	
-	if ( $_GET['action'] == 'usuarios'){
-		$indice->usuarios($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'alistamientos' ){
-			$indice->alistamientos($qusuario,$qnombre,$qperfil);
-	}		
-	else if ( $_GET['action'] == 'rutasliquidar' ){
-			$indice->rutasliquidar($qusuario,$qnombre,$qperfil);
-	}	
-	else if ( $_GET['action'] == 'datosliquidar' ){
+	if($qperfil == '00'){
+
+		//NUESTRA EMPRESA
+		if ( $_GET['action'] == 'estrategico' ){
+			$indice->estrategico($qusuario,$qnombre,$qperfil);
+		}
+
+		//CONDUCTORES
+		else if ( $_GET['action'] == 'conductores' ){
+			$indice->conductores($qusuario,$qnombre,$qperfil);
+		}
+
+		//FUEC
+		else if ( $_GET['action'] == 'vehiculos' ){
+			$indice->vehiculos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'pqautomotorre' ){
+			$indice->pqautomotorre($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'contratos' ){
+			$indice->contratos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'contradigitalre' ){
+			$indice->contradigitalre($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'extractos' ){
+			$indice->extractos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'rutas_extractos' ){
+			$indice->rutas_extractos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'colaboracion_empresarial' ){
+			$indice->colaboracion_empresarial($qusuario,$qnombre,$qperfil);
+		}
+
+		//GESTIÓN HUMANA
+		else if ( $_GET['action'] == 'certificados' ){
+			$indice->certificados($qusuario,$qnombre,$qperfil);
+		}
+
+		//ASOCIADOS
+		else if ( $_GET['action'] == 'asociados' ){
+			$indice->asociados($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'importarTer' ){
+			$indice->importarTer($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'importarMov' ){
+			$indice->importarMov($qusuario,$qnombre,$qperfil);
+		}
+
+		//VENTAS
+		else if ( $_GET['action'] == 'ventas' ){
+			$indice->ventas($qusuario,$qnombre,$qperfil);
+		}	
+		else if ( $_GET['action'] == 'clientes' ){
+			$indice->clientes($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'tarifas' ){
+			$indice->tarifas($qusuario,$qnombre,$qperfil);
+		}
+
+		//ESCOLAR
+		else if ( $_GET['action'] == 'datosliquidar' ){
 			$indice->datosliquidar($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'listageneral' ){
+		}
+		else if ( $_GET['action'] == 'rutasliquidar' ){
+			$indice->rutasliquidar($qusuario,$qnombre,$qperfil);
+		}	
+		else if ( $_GET['action'] == 'listageneral' ){
 			$indice->listageneral($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'estudiantecontrato' ){
+		}
+		else if ( $_GET['action'] == 'estudiantecontrato' ){
 			$indice->estudiantecontrato($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'datosveh' ){
-			$indice->datosveh($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'datosvehcliente' ){
-			$indice->datosvehcliente($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'mantenimientos' ){
-			$indice->mantenimientos($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'encuestacovid' ){
+		}
+		else if ( $_GET['action'] == 'datos' ){
+			$indice->datos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'reconocruta' ){
+			$indice->reconocruta($qusuario,$qnombre,$qperfil);
+		}
+
+		//ENCUESTA
+		else if ( $_GET['action'] == 'encuestacovid' ){
 			$indice->encuestacovid($qusuario,$qnombre,$qperfil);
+		}
+
+		//ALISTAMIENTO
+		else if ( $_GET['action'] == 'alistamientos' ){
+			$indice->alistamientos($qusuario,$qnombre,$qperfil);
+		}
+
+		//MANTENIMIENTOS
+		else if ( $_GET['action'] == 'mantenimientos' ){
+			$indice->mantenimientos($qusuario,$qnombre,$qperfil);
+		}
+
+		// DATOS VEH
+		else if ( $_GET['action'] == 'datosveh' ){
+			$indice->datosveh($qusuario,$qnombre,$qperfil);
+		}
+
+		// REPORTES
+		
+
+		// ADMINISTRACIÓN
+		else if ( $_GET['action'] == 'usuarios'){
+			$indice->usuarios($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'perfiles' ){
+			$indice->perfiles($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'maestras' ){
+			$indice->maestras($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'dynamic' ){
+			$indice->dynamic($qusuario,$qnombre,$qperfil);
+		}	
+
+		//NO AL ESTRESS
+		else if ( $_GET['action'] == 'pingpong' ){
+			$indice->pingpong($qusuario,$qnombre,$qperfil);
+		}		
+		else if ( $_GET['action'] == 'puzzle' ){
+			$indice->puzzle($qusuario,$qnombre,$qperfil);
+		}
 	}
+	else if($qperfil == 02){
+		//NUESTRA EMPRESA
+		if ( $_GET['action'] == 'estrategico' ){
+			$indice->estrategico($qusuario,$qnombre,$qperfil);
+		}
+
+		//FUEC
+		else if ( $_GET['action'] == 'vehiculos' ){
+			$indice->vehiculos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'contratos' ){
+			$indice->contratos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'contradigitalre' ){
+			$indice->contradigitalre($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'extractos' ){
+			$indice->extractos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'rutas_extractos' ){
+			$indice->rutas_extractos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'colaboracion_empresarial' ){
+			$indice->colaboracion_empresarial($qusuario,$qnombre,$qperfil);
+		}
+
+		//VENTAS
+		else if ( $_GET['action'] == 'ventas' ){
+			$indice->ventas($qusuario,$qnombre,$qperfil);
+		}
+
+		//ESCOLAR
+		else if ( $_GET['action'] == 'datosliquidar' ){
+			$indice->datosliquidar($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'rutasliquidar' ){
+			$indice->rutasliquidar($qusuario,$qnombre,$qperfil);
+		}	
+		else if ( $_GET['action'] == 'listageneral' ){
+			$indice->listageneral($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'estudiantecontrato' ){
+			$indice->estudiantecontrato($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'datos' ){
+			$indice->datos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'reconocruta' ){
+			$indice->reconocruta($qusuario,$qnombre,$qperfil);
+		}
+
+		// DATOS VEH
+		else if ( $_GET['action'] == 'datosveh' ){
+			$indice->datosveh($qusuario,$qnombre,$qperfil);
+		}
+
+		//NO AL ESTRESS
+		else if ( $_GET['action'] == 'pingpong' ){
+			$indice->pingpong($qusuario,$qnombre,$qperfil);
+		}		
+		else if ( $_GET['action'] == 'puzzle' ){
+			$indice->puzzle($qusuario,$qnombre,$qperfil);
+		}
+	}
+	else if($qperfil == '03'){	
+
+		//INFORMACIÓN VEHÍCULOS
+		if ( $_GET['action'] == 'infovehiculos' ){
+			$indice->infovehiculos($qusuario,$qnombre,$qperfil);
+		}
+
+		//CONDICIONES SALUD
+		else if ( $_GET['action'] == 'condsaludliceo' ){
+				$indice->condsaludliceo($qusuario,$qnombre,$qperfil);
+		}
+		//NO AL ESTRESS
+		else if ( $_GET['action'] == 'pingpong' ){
+			$indice->pingpong($qusuario,$qnombre,$qperfil);
+		}		
+		else if ( $_GET['action'] == 'puzzle' ){
+			$indice->puzzle($qusuario,$qnombre,$qperfil);
+		}
+	}
+	else if($qperfil == '04'){
+		//CONDUCTORES
+		if ( $_GET['action'] == 'conductores' ){
+			$indice->conductores($qusuario,$qnombre,$qperfil);
+		}
+
+		//FUEC
+		else if ( $_GET['action'] == 'vehiculos' ){
+			$indice->vehiculos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'pqautomotorre' ){
+			$indice->pqautomotorre($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'contratos' ){
+			$indice->contratos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'contradigitalre' ){
+			$indice->contradigitalre($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'extractos' ){
+			$indice->extractos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'rutas_extractos' ){
+			$indice->rutas_extractos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'colaboracion_empresarial' ){
+			$indice->colaboracion_empresarial($qusuario,$qnombre,$qperfil);
+		}
+
+		//ESCOLAR
+		else if ( $_GET['action'] == 'datosliquidar' ){
+			$indice->datosliquidar($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'rutasliquidar' ){
+			$indice->rutasliquidar($qusuario,$qnombre,$qperfil);
+		}	
+		else if ( $_GET['action'] == 'listageneral' ){
+			$indice->listageneral($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'estudiantecontrato' ){
+			$indice->estudiantecontrato($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'datos' ){
+			$indice->datos($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'reconocruta' ){
+			$indice->reconocruta($qusuario,$qnombre,$qperfil);
+		}
+
+		//ALISTAMIENTO
+		else if ( $_GET['action'] == 'alistamientos' ){
+			$indice->alistamientos($qusuario,$qnombre,$qperfil);
+		}
+
+		//MANTENIMIENTOS
+		else if ( $_GET['action'] == 'mantenimientos' ){
+			$indice->mantenimientos($qusuario,$qnombre,$qperfil);
+		}
+
+		// DATOS VEH
+		else if ( $_GET['action'] == 'datosveh' ){
+			$indice->datosveh($qusuario,$qnombre,$qperfil);
+		}
+
+		
+		//VENTAS
+		else if ( $_GET['action'] == 'ventas' ){
+			$indice->ventas($qusuario,$qnombre,$qperfil);
+		}	
+		else if ( $_GET['action'] == 'clientes' ){
+			$indice->clientes($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'tarifas' ){
+			$indice->tarifas($qusuario,$qnombre,$qperfil);
+		}
+
+		// ADMINISTRACIÓN
+		else if ( $_GET['action'] == 'usuarios'){
+			$indice->usuarios($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'perfiles' ){
+			$indice->perfiles($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'maestras' ){
+			$indice->maestras($qusuario,$qnombre,$qperfil);
+		}
+		else if ( $_GET['action'] == 'dynamic' ){
+			$indice->dynamic($qusuario,$qnombre,$qperfil);
+		}
+
+		//NO AL ESTRESS
+		else if ( $_GET['action'] == 'pingpong' ){
+			$indice->pingpong($qusuario,$qnombre,$qperfil);
+		}		
+		else if ( $_GET['action'] == 'puzzle' ){
+			$indice->puzzle($qusuario,$qnombre,$qperfil);
+		}
+	}
+	else if($qperfil == '06' || $qperfil == '07' || $qperfil == '08' || $qperfil == '09' || $qperfil == '10' || $qperfil == '11' || $qperfil == '12' || $qperfil == '13'){
+		if ( $_GET['action'] == 'registrochequeate' ){
+			$indice->registrochequeate($qusuario,$qnombre,$qperfil);
+		}
+
+	}
+	else if ($qperfil == '17'){
+
+		//CONDUCTORES
+		if ( $_GET['action'] == 'conductores' ){
+			$indice->conductores($qusuario,$qnombre,$qperfil);
+		}
+
+		//FUEC
+		else if ( $_GET['action'] == 'vehiculos' ){
+			$indice->vehiculos($qusuario,$qnombre,$qperfil);
+		}
+
+		//NO AL ESTRESS
+		else if ( $_GET['action'] == 'pingpong' ){
+			$indice->pingpong($qusuario,$qnombre,$qperfil);
+		}		
+		else if ( $_GET['action'] == 'puzzle' ){
+			$indice->puzzle($qusuario,$qnombre,$qperfil);
+		}
+	}
+
+
+	//SIN ROL
+	if ( $_GET['action'] == 'datosvehcliente' ){
+			$indice->datosvehcliente($qusuario,$qnombre,$qperfil);
+	}	
 	else if ( $_GET['action'] == 'empresacovid' ){
 			$indice->empresacovid($qusuario,$qnombre,$qperfil);
 	}
 	else if ( $_GET['action'] == 'empresacovid2' ){
-			$indice->empresacovid2($qusuario,$qnombre,$qperfil);
+		$indice->empresacovid2($qusuario,$qnombre,$qperfil);
 	}
-	else if ( $_GET['action'] == 'condsaludliceo' ){
-			$indice->condsaludliceo($qusuario,$qnombre,$qperfil);
-	}
+		
 	else if ( $_GET['action'] == 'mantenimientoscliente' ){
-			$indice->mantenimientoscliente($qusuario,$qnombre,$qperfil);
+		$indice->mantenimientoscliente($qusuario,$qnombre,$qperfil);
 	}
-	else if ( $_GET['action'] == 'infovehiculos' ){
-			$indice->infovehiculos($qusuario,$qnombre,$qperfil);
-	}
+		
 	else if ( $_GET['action'] == 'infoconductores' ){
-			$indice->infoconductores($qusuario,$qnombre,$qperfil);
+		$indice->infoconductores($qusuario,$qnombre,$qperfil);
 	}
-	else if ( $_GET['action'] == 'datos' ){
-			$indice->datos($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'vehiculos' ){
-			$indice->vehiculos($qusuario,$qnombre,$qperfil);
-	}
+			
 	else if ( $_GET['action'] == 'vehiculosrt' ){
-			$indice->vehiculosrt($qusuario,$qnombre,$qperfil);
+		$indice->vehiculosrt($qusuario,$qnombre,$qperfil);
 	}
 	else if ( $_GET['action'] == 'vehiculosg3' ){
-			$indice->vehiculosg3($qusuario,$qnombre,$qperfil);
+		$indice->vehiculosg3($qusuario,$qnombre,$qperfil);
 	}
 	else if ( $_GET['action'] == 'pqautomotorg3' ){
-			$indice->pqautomotorg3($qusuario,$qnombre,$qperfil);
+		$indice->pqautomotorg3($qusuario,$qnombre,$qperfil);
 	}
 	else if ( $_GET['action'] == 'pqautomotorrt' ){
-			$indice->pqautomotorrt($qusuario,$qnombre,$qperfil);
+		$indice->pqautomotorrt($qusuario,$qnombre,$qperfil);
 	}
-	else if ( $_GET['action'] == 'pqautomotorre' ){
-			$indice->pqautomotorre($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'contratos' ){
-			$indice->contratos($qusuario,$qnombre,$qperfil);
-	}
+		
+		
 	else if ( $_GET['action'] == 'contratosrt' ){
-			$indice->contratosrt($qusuario,$qnombre,$qperfil);
+		$indice->contratosrt($qusuario,$qnombre,$qperfil);
 	}
 	else if ( $_GET['action'] == 'contratosg3' ){
-			$indice->contratosg3($qusuario,$qnombre,$qperfil);
+		$indice->contratosg3($qusuario,$qnombre,$qperfil);
 	}
 	else if ( $_GET['action'] == 'contradigitalg3' ){
-			$indice->contradigitalg3($qusuario,$qnombre,$qperfil);
+		$indice->contradigitalg3($qusuario,$qnombre,$qperfil);
 	}
 	else if ( $_GET['action'] == 'contradigitalrt' ){
-			$indice->contradigitalrt($qusuario,$qnombre,$qperfil);
+		$indice->contradigitalrt($qusuario,$qnombre,$qperfil);
 	}
-	else if ( $_GET['action'] == 'contradigitalre' ){
-			$indice->contradigitalre($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'extractos' ){
-			$indice->extractos($qusuario,$qnombre,$qperfil);
-	}
+		
 	else if ( $_GET['action'] == 'extractosrt' ){
-			$indice->extractosrt($qusuario,$qnombre,$qperfil);
+		$indice->extractosrt($qusuario,$qnombre,$qperfil);
 	}
 	else if ( $_GET['action'] == 'extractosg3' ){
-			$indice->extractosg3($qusuario,$qnombre,$qperfil);
+		$indice->extractosg3($qusuario,$qnombre,$qperfil);
 	}
-	else if ( $_GET['action'] == 'rutas_extractos' ){
-			$indice->rutas_extractos($qusuario,$qnombre,$qperfil);
-	}
+		
 	else if ( $_GET['action'] == 'rutas_extractosg3' ){
-			$indice->rutas_extractosg3($qusuario,$qnombre,$qperfil);
+		$indice->rutas_extractosg3($qusuario,$qnombre,$qperfil);
 	}
-	else if ( $_GET['action'] == 'colaboracion_empresarial' ){
-			$indice->colaboracion_empresarial($qusuario,$qnombre,$qperfil);
-	}
+		
 	else if ( $_GET['action'] == 'colaboracion_empresarialrt' ){
-			$indice->colaboracion_empresarialrt($qusuario,$qnombre,$qperfil);
+		$indice->colaboracion_empresarialrt($qusuario,$qnombre,$qperfil);
 	}
 	else if ( $_GET['action'] == 'colaboracion_empresarialg3' ){
-			$indice->colaboracion_empresarialg3($qusuario,$qnombre,$qperfil);
+		$indice->colaboracion_empresarialg3($qusuario,$qnombre,$qperfil);
 	}
+	
 	// else if ( $_GET['action'] == 'vehiculostour' ){
 	// 		$indice->vehiculostour($qusuario,$qnombre,$qperfil);
 	// }
@@ -162,9 +439,7 @@
 	// else if ( $_GET['action'] == 'colaboracion_empresarialtour' ){
 	// 		$indice->colaboracion_empresarialtour($qusuario,$qnombre,$qperfil);
 	// }
-	else if ( $_GET['action'] == 'conductores' ){
-			$indice->conductores($qusuario,$qnombre,$qperfil);
-	}
+	
 	else if ( $_GET['action'] == 'conductoresrt' ){
 			$indice->conductoresrt($qusuario,$qnombre,$qperfil);
 	}
@@ -177,66 +452,38 @@
 	else if ( $_GET['action'] == 'accidentesrt' ){
 			$indice->accidentesrt($qusuario,$qnombre,$qperfil);
 	}
-	else if ( $_GET['action'] == 'reconocruta' ){
-			$indice->reconocruta($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'estrategico' ){
-			$indice->estrategico($qusuario,$qnombre,$qperfil);
-	}		
-	else if ( $_GET['action'] == 'tarifas' ){
-			$indice->tarifas($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'certificados' ){
-			$indice->certificados($qusuario,$qnombre,$qperfil);
-	}	
-	else if ( $_GET['action'] == 'ventas' ){
-			$indice->ventas($qusuario,$qnombre,$qperfil);
-	}	
+	
+			
+	
+		
+	
 	else if ( $_GET['action'] == 'ventasrt' ){
 			$indice->ventasrt($qusuario,$qnombre,$qperfil);
 	}
-	else if ( $_GET['action'] == 'asociados' ){
-			$indice->asociados($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'importarTer' ){
-			$indice->importarTer($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'importarMov' ){
-			$indice->importarMov($qusuario,$qnombre,$qperfil);
-	}					
+	
+	
+						
 	else if ( $_GET['action'] == 'odometro' ){
 			$indice->odometro($qusuario,$qnombre,$qperfil);
 	}			
-	else if ( $_GET['action'] == 'pingpong' ){
-			$indice->pingpong($qusuario,$qnombre,$qperfil);
-	}		
-	else if ( $_GET['action'] == 'puzzle' ){
-			$indice->puzzle($qusuario,$qnombre,$qperfil);
-	}	
+		
 	else if ( $_GET['action'] == 'excel' ){
 			$indice->excel($qusuario,$qnombre,$qperfil);
 	}
 	else if ( $_GET['action'] == 'grilla00' ){
 			$indice->grilla00($qusuario,$qnombre,$qperfil);
 	}	
-	else if ( $_GET['action'] == 'perfiles' ){
-			$indice->perfiles($qusuario,$qnombre,$qperfil);
-	}							
-	else if ( $_GET['action'] == 'clientes' ){
-			$indice->clientes($qusuario,$qnombre,$qperfil);
-	}	
+								
+		
 	else if ( $_GET['action'] == 'clientesrt' ){
 			$indice->clientesrt($qusuario,$qnombre,$qperfil);
 	}						
-	else if ( $_GET['action'] == 'importar' ){
-			$indice->importar($qusuario,$qnombre,$qperfil);
-	}					
-	else if ( $_GET['action'] == 'maestras' ){
-			$indice->maestras($qusuario,$qnombre,$qperfil);
-	}
-	else if ( $_GET['action'] == 'dynamic' ){
-			$indice->dynamic($qusuario,$qnombre,$qperfil);
-	}					
+	// else if ( $_GET['action'] == 'importar' ){
+	// 		$indice->importar($qusuario,$qnombre,$qperfil);
+	// }		
+
+	
+					
 	else if ( $_GET['action'] == 'logistico_basic' ){
 			$indice->logistico_basic($qusuario,$qnombre,$qperfil);
 	}
@@ -258,9 +505,7 @@
 	else if ( $_GET['action'] == 'principaltrekking' ){
 			$indice->principaltrekking($qusuario,$qnombre,$qperfil);
 	}		
-	else if ( $_GET['action'] == 'registrochequeate' ){
-			$indice->registrochequeate($qusuario,$qnombre,$qperfil);
-	}			
+				
 	else if ( $_GET['action'] == 'registrosempresa' ){
 			$indice->registrosempresa($qusuario,$qnombre,$qperfil);
 	}			
