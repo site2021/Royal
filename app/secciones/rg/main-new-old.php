@@ -1,5 +1,6 @@
 <?
-	$usuario = $_GET['usuario'];
+session_start();
+	$usuario = $_SESSION['usuario'];
 	
 	include '../admin/conn.php';
 	$sqlc = mysql_query("SELECT ciudad, vendedor, safix from tbusuarios where usuario='$usuario'");

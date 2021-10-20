@@ -11,7 +11,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -24,7 +24,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -37,7 +37,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -50,7 +50,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -76,7 +76,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -89,7 +89,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -102,7 +102,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -115,7 +115,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -128,7 +128,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -141,7 +141,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -154,7 +154,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -167,7 +167,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -180,7 +180,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -193,7 +193,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -206,7 +206,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -219,7 +219,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -232,7 +232,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -245,7 +245,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -258,7 +258,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -271,7 +271,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -284,7 +284,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -297,7 +297,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -310,7 +310,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -323,7 +323,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -336,7 +336,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -349,7 +349,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -362,7 +362,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 	}
 
 	function extractosg3($xusuario,$xnombre,$xperfil) {
@@ -374,7 +374,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 	}
 
 	function rutas_extractos($xusuario,$xnombre,$xperfil) {
@@ -386,7 +386,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -399,7 +399,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -412,7 +412,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -425,7 +425,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -438,7 +438,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -451,7 +451,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -529,7 +529,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -542,7 +542,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -555,7 +555,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -568,7 +568,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -581,7 +581,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -594,7 +594,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -620,7 +620,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -633,7 +633,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -646,7 +646,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -659,7 +659,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -672,7 +672,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -685,7 +685,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -698,7 +698,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -711,7 +711,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -724,7 +724,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -737,7 +737,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -750,7 +750,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -763,7 +763,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -776,7 +776,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -789,7 +789,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -802,7 +802,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);		
+		$this->view_page($pagina);die;	
 		
 	}
 
@@ -815,7 +815,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);		
+		$this->view_page($pagina);die;	
 		
 	}
 
@@ -828,7 +828,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -841,7 +841,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -854,7 +854,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -867,7 +867,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -880,7 +880,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -893,7 +893,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -906,7 +906,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -919,7 +919,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);		
+		$this->view_page($pagina);die;	
 		
 	}
 
@@ -932,7 +932,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -945,7 +945,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);		
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -958,7 +958,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);		
-		$this->view_page($pagina);		
+		$this->view_page($pagina);die;	
 		
 	}
 
@@ -971,7 +971,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -984,7 +984,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -997,7 +997,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -1010,7 +1010,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -1023,7 +1023,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 	//pago del gim pereira
@@ -1036,7 +1036,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -1049,7 +1049,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -1062,7 +1062,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -1075,7 +1075,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -1088,7 +1088,7 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 
@@ -1101,12 +1101,11 @@ class clsIndice {
 		$pagina = $this->replace_content('/\#CONTENIDO\#/ms' ,$html , $pagina);		
 		$pagina = $this->replace_content('/\#USUARIO\#/ms' ,$xusuario , $pagina);
 		$pagina = $this->replace_content('/\#NOMBRE\#/ms' ,$xnombre , $pagina);
-		$this->view_page($pagina);
+		$this->view_page($pagina);die;
 		
 	}
 	
 	function load_template($title='sin titulo',$perfil=0){
-
 		if($perfil == '05'){
 			$pagina = $this->load_page('secciones/pageg3.php');
 			return $pagina;

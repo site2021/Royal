@@ -1,6 +1,6 @@
 <?php
-
-$usuario = $_GET['usuario'];
+session_start();
+$usuario = $_SESSION['usuario'];
 $clave = $_GET['clave'];
 
 // un solo archivo para conexion

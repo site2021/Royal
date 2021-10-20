@@ -117,10 +117,10 @@
 						#MENU#
 					</div>	
 					<br>
-					<div class="indicadores">
+					<!-- <div class="indicadores">
 						<p>Indicadores Económicos</p>
 						<br>
-						<!-- DolarWeb Avanzado Start -->
+						DolarWeb Avanzado Start 
 						<div id="IndEcoAvanzado">
 							<h2><a href="https://dolar.wilkinsonpc.com.co/">Dolar</a></h2>
 							<a href="https://www.misruedas.com">Carros Usados</a>
@@ -128,7 +128,7 @@
 						<script type="text/javascript" src="https://dolar.wilkinsonpc.com.co/js/ind-eco-avanzado.js?ancho=170&alto=275&fondo=transparent&fsize=12&ffamily=sans-serif&fcolor=000000"></script>
 
 						<br>
-					</div>
+					</div> -->
 				</div>
 				
 				<div data-options="region:'center'" style="">
@@ -154,20 +154,13 @@
 			
 
 			function regresar(){
-				var usuario = $("#usuario").val();
-				window.location.assign("../index.php?action=cerrar_sesion&usuario="+usuario+"&estado=0");
+				window.location.assign("index.php?action=cerrar_sesion");
 			
 			}
 
 			function ejecutar(xaccion){
-				var xusuario = $("#usuario").val();				
-				var xnombre = $("#nombre").val();	
-				var xperfil = $("#perfil").val();
-
-				window.location.assign("index.php?action="+xaccion+
-					"&usuario="+xusuario+
-					"&nombre="+xnombre+
-					"&perfil="+xperfil);	
+				window.location.assign("index.php?action="+xaccion);
+		
 			}
 		
 			function NoBack(){
@@ -182,7 +175,7 @@
         		params += ', height='+screen.height;
         		params += ', top=0, left=0'
         		params += ', fullscreen=yes';				
-				window.open ("secciones/rg/rg.php?usuario=#USUARIO#");
+				window.open ("secciones/rg/rg.php");
 
 			}
 		</script>		

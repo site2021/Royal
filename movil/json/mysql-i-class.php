@@ -6,7 +6,7 @@ class Registro {
 
 	public function __construct(){
 		//$this->conexion = new mysqli('db683676912.db.1and1.com','dbo683676912','Hector-0805','db683676912');
-		$this->conexion = new mysqli('localhost','root','royal2019*','ryl');
+		$this->conexion = new mysqli('localhost','root','sitesas','ryl');
 	}
 
 	public function ejecutar($sql){

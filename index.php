@@ -1,6 +1,5 @@
 <?php
-
-	session_start();
+session_start();
 	if ($_SESSION )
 		header ('Location: /Royal/app/index.php');
 	

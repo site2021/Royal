@@ -146,14 +146,10 @@
 			}
 
 			function ejecutar(xaccion){
-				var xusuario = $("#usuario").val();				
-				var xnombre = $("#nombre").val();	
-				var xperfil = $("#perfil").val();
+			
 
-				window.location.assign("index.php?action="+xaccion+
-					"&usuario="+xusuario+
-					"&nombre="+xnombre+
-					"&perfil="+xperfil);	
+				window.location.assign("index.php?action="+xaccion)
+						
 			}
 		
 			function NoBack(){

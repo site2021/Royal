@@ -1,14 +1,7 @@
 <?php
-	$usuario=$_GET['usuario'];
-	$estado=$_GET['estado'];
-	$perfil=$_GET['perfil'];
-
-	if ($usuario!=''){
-		include 'app/control/conex.php';
-
-		$sql = "UPDATE tbusuarios SET estado=".$estado." WHERE usuario='".$usuario."'";
-		$result = mysqli_query($conexion, $sql);
-	}
+session_start();
+	if($_SESSION)
+		header ('Location: /Royal/chequeate.php');
 ?>
 
 <!DOCTYPE html>
@@ -340,24 +333,27 @@
 			style="width:20%;height:37%;padding:8%"
 			data-options="modal:true">
 			
-			<div class="fitem">			
-				<input id="usuariose" name="usuariose" class="easyui-textbox" value=""
+
+			<form action="app/control/usuarioJSON.php" method="POST" >
+				<div class="fitem">			
+					<input type ="text" id="usuariose" name="usuario" class="easyui-textbox"
 					data-options="prompt:'digitar USUARIO',iconCls:'icon-man'" >			
-			</div>
+				</div>
 			
-			<div class="fitem">
-				<input id="clavese" name="clavese" class="easyui-textbox" type="password" value="" 
+				<div class="fitem">
+					<input id="clavese" name="clave" class="easyui-textbox" type="password" 
 					data-options="prompt:'digitar CLAVE',iconCls:'icon-lock'">			
-			</div>
+				</div>
 
-			<div style="text-size:10px; text-align:center;margin-top:35px">
-				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" style="width:100px; height:30px; border-radius: 50px 50px 50px 50px" 
-					onclick="cargarPrincipal()"><span style="font-size:12px">Entrar</span></a>
+				<div style="text-size:10px; text-align:center;margin-top:35px">
+					<button type="submit" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" style="width:100px; height:30px; border-radius: 50px 50px 50px 50px">
+						<span style="font-size:12px">Entrar</span></button>
 					
-				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" style="width:100px; height:30px; border-radius: 50px 50px 50px 50px" 
-					onclick="clearForm()"><span style="font-size:12px">Limpiar</span></a>
+					<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" style="width:100px; height:30px; border-radius: 50px 50px 50px 50px" 
+						onclick="clearForm()"><span style="font-size:12px">Limpiar</span></a>
+				</div>
+			</form>
 
-			</div>
 			<br>
 
 			<div id="variables" style="display:none">					

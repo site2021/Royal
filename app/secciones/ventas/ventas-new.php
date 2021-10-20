@@ -1,6 +1,6 @@
 <?
-
-$usuario = $_GET['usuario'];
+session_start();
+$usuario = $_SESSION['usuario'];
 
 include '../../control/conex.php';
 

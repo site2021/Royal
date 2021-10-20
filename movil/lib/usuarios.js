@@ -46,7 +46,7 @@ function validarConductor(){
   var xclave = getVar('clave',0);
 
   // validar claves usuario/conductor
-  if(xclave!='royal'+xusuario){
+  if(xclave != xusuario){
     $.messager.alert('Mensaje', 'error USUARIO/CLAVE');
     return;
   }
@@ -60,13 +60,18 @@ function validarConductor(){
   var xorden = 'interno';
 
   $.post('json/myFileDB.php',
-    {accion:xaccion, tabla:xtabla, camposCondicion:xcamposCondicion, valoresCondicion:xvaloresCondicion,
-     ordenar:xorden},
+    {
+      accion:xaccion, 
+      tabla:xtabla, 
+      camposCondicion:xcamposCondicion, 
+      valoresCondicion:xvaloresCondicion,
+      ordenar:xorden
+    },
+
     function(result){
       if(result.success){
         var reg = result.items;
         var xnombre = reg[0]['nombreconductor'];            
-
         setVar('suser',0,xusuario);
         setVar('snombre',0,xnombre);
         setVar('sciudad',0,'');

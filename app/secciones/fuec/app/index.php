@@ -4,12 +4,12 @@
 	
 	include 'control/conex.php';
 	
-	$qusuario=$_GET['usuario'];
-	$qnombre=$_GET['nombre'];
-	$qestado=$_GET['estado'];
-	$qperfil=$_GET['perfil'];
+	$qusuario=$_SESSION['usuario'];
+	$qnombre=$_SESSION['nombre'];
+	$qestado=$_SESSION['estado'];
+	$qperfil=$_SESSION['perfil'];
 	
-	//Creamos la conexión
+	//Creamos la conexiï¿½n
 	$conexion = mysqli_connect($server,$user,$pass,$bd) 
 	or die("Ha sucedido un error inexperado en la conexion de la base de datos");
 
