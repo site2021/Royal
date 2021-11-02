@@ -22,6 +22,7 @@ session_start();
 		}
 	}
 
+	
 	$indice = new clsIndice();
 	
 	
