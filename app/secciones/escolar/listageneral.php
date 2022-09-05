@@ -1,5 +1,9 @@
 <?
 session_start();
+
+if(!$_SESSION)
+	header ('Location: /Royal/index.php');
+    
 $usuario = $_SESSION['usuario'];
 
 include '../../control/conex.php';
